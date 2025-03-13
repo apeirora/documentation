@@ -1,0 +1,131 @@
+---
+title: Apeiro Reference Architecture
+keywords: [ApeiroRA, Apeiro, Apeiro Reference Architecture, IPCEI-CIS]
+sidebar_position: 0
+---
+import Journey from '@site/src/components/ApeiroJourney';
+
+# Apeiro Reference Architecture - Documentation
+
+<div class="apeiro-catch">
+Unify your services from hardware to software with Kubernetes' declarative power, across any cloud and edge!
+</div>
+
+This website provides in-depth information on areas and concepts of the Apeiro Reference Architecture (ApeiroRA).
+For an overview of the ApeiroRA project, please visit the [project's main website](https://apeirora.eu).
+
+
+<div class="apeiro-box apeiro-summary shadow--lw">
+ApeiroRA provides concepts, specifications, and building blocks for constructing a **consistent environment for managing and accessing a diverse range of services from different providers**, called "<Term>Platform Mesh</Term>."
+This Platform Mesh supports an unlimited spectrum of services, including infrastructure like virtual machines, runtime environments like Kubernetes clusters, application services like databases, and specialized business services.
+
+Developers of applications and services can utilize the Platform Mesh to **acquire all the necessary services for building and running their applications**.
+For service suppliers, the Platform Mesh **acts as a marketplace for offering their services** across multiple consumers.
+
+The foundational principles of the Platform Mesh support both large-scale and small-scale operations, making it well-suited for public, private, and edge cloud deployments.
+</div>
+
+:::warning[Project Status]
+*The Apeiro Reference Architecture is currently in an early stage of innovation and research.*  
+**Some areas may be missing, vague, or incomplete. Content is subject to change.**
+:::
+
+
+## Where to start with the ApeiroRA Documentation?
+
+A reference architecture is a **set of documents** that provides recommended structures and integrations of products and services to form a solution.
+It embodies accepted **industry best practices**, typically suggesting the optimal delivery method for specific technologies.
+
+The Apeiro Reference Architecture covers **next-generation approaches**, therefore this documentation first addresses the innovation concepts and the employed architecture.
+While many concepts are based on the de-facto cloud-native standards, **ApeiroRA diverges from accepted best practices** to leverage emerging concepts that we consider promising and are yet to become best practices.
+
+
+### The Apeiro Reference Architecture Journey
+
+**The primary focus of the current state of the documentation is on the <Term>Platform Mesh</Term>.**
+To fully comprehend the core principles of the Platform Mesh, it is important to explore a variety of existing, modified, and new concepts first.
+The initial pages of this documentation address topics that are relevant for understanding the Platform Mesh later on.
+Furthermore, there are additional concepts that, although not central to the Platform Mesh, become critical during its implementation.
+
+The concepts covered on this ApeiroRA website are relevant across the individual projects.
+Information available in other ApeiroRA open-source project documentation is not repeated here;
+instead, links to the relevant documentation are provided for reference.
+
+**We recommend following the suggested topic path below**, as each section builds upon the previous ones.
+However, each page includes cross-references to discussed terms and concepts, allowing you to skip as needed while maintaining a comprehensive understanding.
+
+export const steps = [
+  {
+    step: "1",
+    name: "Digital Twins",
+    url: "/digital-twins",
+    technologies: [],
+  },
+  {
+    step: "2",
+    name: "Control, Data, and Work Planes",
+    url: "/control-planes",
+    technologies: [],
+  },
+  {
+    step: "3",
+    name: "Multi-Cluster Federation",
+    url: "/multi-cluster-federation",
+    technologies: [],
+  },
+  {
+    step: "4",
+    name: "Managed Service Provider Pattern",
+    url: "/services/managed-service-provider-pattern",
+    technologies: [],
+  },
+  {
+    step: "5",
+    name: "Platform Mesh",
+    url: "/platform-mesh",
+    main: true,
+    technologies: [],
+  },
+  {
+    step: "6",
+    name: "Micro Frontends",
+    url: "/micro-frontends",
+    technologies: [],
+  },
+  {
+    step: "7",
+    name: "Lifecycle Management",
+    url: "/lcm",
+    technologies: [],
+  },
+  {
+    step: "8",
+    name: "Security",
+    url: "/security",
+    technologies: [],
+  },
+  {
+    step: "9",
+    name: "Observability",
+    url: "/observability",
+    technologies: [],
+  },
+  {
+    step: "10",
+    name: "Ring Deployments",
+    text: "Details to follow.",
+    technologies: [],
+  },
+];
+
+<Journey steps={steps} />
+
+----
+
+<ApeiroImage width='50%'>
+![](/img/BMWK-EU.png)
+<small>
+Funded by the European Union - NextGenerationEU.  
+The views and opinions expressed are solely those of the author(s) and do not necessarily reflect the views of the European Union or the European Commission. Neither the European Union nor the European Commission can be held responsible for them.
+</small>
+</ApeiroImage>

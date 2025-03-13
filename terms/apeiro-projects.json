@@ -1,0 +1,50 @@
+{
+    "cobaltcore": {
+        "name": "CobaltCore",
+        "url": "https://github.com/cobaltcore-dev",
+        "description": "CobaltCore is a reimagined and opinionated OpenStack distribution fully utilizing ApeiroRA. It complements IronCore as an alternative for traditional workloads and ensures backward compatibility.",
+        "icon": "/img/projects/cobaltcore.svg"
+    },
+    "gardener": {
+        "name": "Gardener",
+        "url": "https://gardener.cloud",
+        "description": "The Gardener is an open source project that provides Kubernetes-based cluster management and automation at scale.",
+        "icon": "/img/projects/gardener.svg"
+    },
+    "ironcore": {
+        "name": "IronCore",
+        "url": "https://ironcore-dev.github.io/ironcore/",
+        "description": "Project IronCore is an open source system for managing compute and storage workloads across multiple providers.",
+        "icon": "/img/projects/ironcore.png"
+    },
+    "kcp": {
+        "name": "kcp",
+        "url": "https://www.kcp.io",
+        "description": "An open source horizontally scalable control plane for Kubernetes-like APIs.",
+        "icon": "/img/projects/kcp.svg"
+    },
+    "ocm": {
+        "name": "Open Component Model (OCM)",
+        "url": "https://ocm.software",
+        "description": "OCM is an open standard for describing software artifacts and lifecycle metadata. It is a technology-agnostic and machine-readable format and focuses on software artifacts that need to be delivered securely across boundaries. At the same time, it maintains integrity and provenance along the complete supply chain.",
+        "icon": "/img/projects/ocm.png"
+    },
+    "ocm gear": {
+        "name": "OCM Gear",
+        "url": "https://github.com/open-component-model/ocm-gear",
+        "description": "Open-source components implementing the Open Component Model (OCM), including the Delivery Service and Extensions, the Delivery Database, as well as the Delivery Dashboard.",
+        "icon": "/img/projects/ocm.png"
+    },  
+    "openbao": {
+        "name": "OpenBao",
+        "url": "https://openbao.org",
+        "description": "OpenBao is an identity-based secrets and encryption management system.",
+        "icon": "/img/projects/openbao.svg"
+    },
+    "openmfp": {
+        "name": "OpenMFP",
+        "url": "https://openmfp.org",
+        "description": "The Open Micro Front End Platform (OpenMFP) brings together micro front ends and APIs into a cohesive platform, allowing teams to contribute components while maintaining their independence.",
+        "icon": "/img/projects/openmfp.png"
+    }
+}

@@ -1,0 +1,95 @@
+---
+sidebar_position: 0
+title: Multi-Cluster Federation
+keywords: [Multi-Cluster, Federation]
+---
+
+The Kubernetes cluster presents itself as a scalable runtime environment for containerized workloads.
+A cluster can be dynamically scaled either manually or automatically by  adding or removing nodes. However, a single cluster typically can't be scaled or spread across regions or different providers, due to network, latency, bandwidth, data gravity, limitations of storage replication, and restrictions of the control plane.
+
+Hence, there are several reasons for cloud services to manage and distribute their workload over multiple Kubernetes clusters:
+-	Ability to offer services in (or across) multiple regions and providers (multi-cloud scenario).
+-	Achieve manageable scale with respect to the number of nodes (a single cluster is typically limited).
+-	Instrument isolation with a simplified one cluster per customer practice.
+- Facilitate the integration of customer managed (on-premise) clusters.
+- Various other reasons.
+
+In the following, we focus only on the multi-cluster concern of compute. There are further technical considerations and options applicable for the network and storage concerns which follow from the design choice for compute.
+
+
+## Federation
+
+The standard approach to multi-cluster management is to set up a central cluster, which then federates workloads to remote clusters, the payload clusters.
+The central cluster's API is extended with specific federation APIs and also hosts the respective federation controllers. Hereby, the <Term>work plane</Term> for those controllers is the set of remote payload clusters, more precisely, the <Term>data planes</Term> of those clusters.
+Numerous projects, such as [KubeAdmiral](https://kubeadmiral.io/), [Liqo](https://liqo.io/), [Karmada](https://karmada.io/), or platforms such as [KubeVela](https://kubevela.io/), are architected with common multi-cluster federation patterns.
+
+<ApeiroFigure src="/multi-cluster-federation/img/federation.svg"
+  alt="Federation with a central and payload clusters"
+  caption="Federation with a central and payload clusters"
+  width="100%"/>
+
+This simple federation design has some direct challenges:
+
+- **Backup and restore**:
+  A generic, transactionally safe solution for backup and restore of distributed workloads across multiple payload clusters is probably not feasible. Rather, a workload specific solution needs to be considered alongside the federation faculty.
+
+- **No separation of concerns**:
+  The users typically get access to the central cluster, which is setup as Kubernetes cluster with a runtime that hosts the federation controllers. Since the entire container runtime API is discoverable, the central cluster must be adequately secured.
+
+- **Scalability**:
+  Federation controllers have a central responsibility and need to keep connections to all the remote payload clusters, and be able to reconcile all payload cluster with increasing scale. The centralized design may also be prone to the [thundering herd](https://en.wikipedia.org/wiki/Thundering_herd_problem) problem.
+
+- **Security**:
+  Credentials for all payload clusters need to be held centrally, as the federation controllers need broad access rights[^1].
+
+  [^1]: Such environments are prone to cyber attack techniques such as [lateral movement](https://en.wikipedia.org/wiki/Lateral_movement_(cybersecurity)).
+
+- **Network access**:
+  The central cluster must be able to forward-connect to all the remote payload clusters, and thus be on a common network (public or private) within which the payload clusters cannot be secured behind a firewall.
+
+
+### Federation with Agents
+
+We can immediately improve the last three drawbacks (scalability, security, and network access) by applying learnings from the Kubernetes architecture:
+
+- **Sharding responsibility with agents**:
+  Kubernetes utilizes `kubelet` controllers for managing (remote) nodes. They essentially are agents with a sharded responsibility: one agent with business logic for each node.
+  The same architecture principle can be applied, resulting in decentralizing the federation objective with agents on each node (payload cluster).
+
+- **Reversing the access direction**:
+  With the agents running within the remote payload clusters, the access direction is inside-out and not outside-in anymore. A public network with a firewall can secure and simplify the initial process of registration, upon which further network overlays or peering can be established, if necessary.
+
+- **Separation of concerns**:
+  The central cluster does not need to have access to the remote payload clusters. The agents use in-cluster roles and authentication to access their respective payload cluster.
+  No access credentials are required in the central cluster. The agents' permissions in the central cluster can be reduced to the scope of digital twins they need to access to perform their local/sharded tasks.
+
+Some federation implementations utilize agents which merely proxy the access to the payload clusters' full control plane. This is suboptimal with respect to the drawbacks mentioned above.
+Rather, the agent architecture should be utilized to design proper and useful abstractions, and establish delegation and sharding principles that effect high scalability without centralizing the complete business logic (with its latency challenges).
+
+Therefore, we benefit from the Kubernetes design knowledge (and inherit the *kubelet* terminology) by bundling all the controllers required by the agent to manage its workload into one controller manager, and call it **clusterlet**.
+The clusterlets announce their payload cluster (and its capabilities) in the central data plane utilizing a dedicated resource type, like `kubelets` register their nodes via `Nodes`. The intent of workload assignment to a specific payload cluster can be delegated to a workload aware federation scheduler.
+
+<ApeiroFigure src="/multi-cluster-federation/img/clusterlets.svg"
+  alt="Federation with clusterlet agents"
+  caption="Federation with clusterlet agents"
+  width="100%"/>
+
+
+### Separating the Planes
+
+With the clusterlets running in the payload clusters, the central cluster function can be reduced to a data plane[^2], thereby also enhancing the security posture of the system. So, only the generic API server and a suitable persistence is required (without all the resource types that native Kubernetes ships with its API server).
+
+[^2]: <Project>kcp</Project> is the project used in ApeiroRA that delivers a clusterless, pure data plane. The idea itself is older and has evolved from initiatives like [Kubeception](https://www.youtube.com/watch?v=EbNxGK9MwN4), [Gardener](https://gardener.cloud/docs/getting-started/architecture/), and [Badidea](https://www.youtube.com/watch?v=fxqV24h_ocs).
+
+For the <Term>controllers</Term> required on the central side handling global federation aspects, we still require a runtime. For which we utilize a separate Kubernetes cluster[^3]. This cluster does not need to be accessed by users of the federation service, but only by administrators.
+
+[^3]: Remember, controllers may run on any work plane or runtime and be connected with a data plane (hosting the relevant digital twin repository) which is not necessarily the same data plane used by a Kubernetes cluster in unisono.
+
+<ApeiroFigure src="/multi-cluster-federation/img/planes.svg"
+  alt="Federation with separated planes"
+  caption="Federation with separated planes"
+  width="100%"/>
+
+As a further consequence of this design, the data plane only contains the federation and workload resources and is not bound to and intertwined with a runtime cluster, enhancing the overall resiliency. The runtime cluster can fail and be replaced with a new one. Backup/restore of the data plane can be performed independently of the runtime cluster.
+
+A dynamic, managed Kubernetes-as-a-Service provider can be utilized by the central federation function to order remote payload clusters on-demand (like cluster-autoscaler manages nodes for a Kubernetes cluster on-demand). All clusters can be treated as cattle (instead of pets). Separating the concerns enables a completely dynamic, resilient and scalable federation infrastructure.
