@@ -345,20 +345,20 @@ With product-specific operators and by adhering to the below four principles it 
 
 **1. API First**
 
-    Design clean, versioned APIs; avoid passing unstructured data.
+    Design rich, versioned APIs that enable management and configuration holistically. Consider its evolution over time without breaking changes. Avoid passing unstructured and untyped data.
 
 **2. Declarative API**
 
-    Allow declaring desired states; use asynchronous responses with a standard pattern.
+    Design declarative APIs using desired states. Remodel imperative APIs. Embrace asynchronous responses with a standard pattern.
 
 **3. Reconciling controllers**
 
-    Continuously push the environment towards the desired state.
+    Implement reconciling controllers (or product-specific operators) that continuously monitor and align both the system’s desired configuration and its observed state, automatically correcting deviations. Implement any supportive complex migration and upgrade logic as intrinsic part of the controller. Continuously push the system towards the desired state.
 
-**4. Metadata in Data Plane**
+**4. Data and Metadata in Data Plane**
 
-    Make all metadata queryable via API with a consistent model.
-
+    Support emergence by ensuring that all configuration data and metadata is queryable via API (with a consistent model). This empowers others to develop APIs and controllers on top of existing functionality in unforeseen ways.
+    
 :::
 
 With these four principles, the actual controller implementation behind a versioned API contract can be exchanged without breaking changes. This is a key feature to future-proof investments in lifecycle management.
