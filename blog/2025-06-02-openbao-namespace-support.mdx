@@ -1,0 +1,61 @@
+---
+title: 'Namespace Support in OpenBao: A Key Building Block for Apeiro Security Architecture'
+authors:
+  - maximilian-lenkeit
+---
+
+The OpenBao project has just published the 2.3 Beta release with support for namespaces, a feature that introduces logical isolation within a single deployment. This enhancement allows the Apeiro Reference Architecture to securely separate sensitive information from different operator groups and trust domains across layers of the Apeiro stack.
+
+Major parts of the namespace feature were contributed by members of the Apeiro project, providing a solid foundation for multi-tenancy that spans beyond use cases of the [multi-provider cloud-edge continuum](https://8ra.com).
+
+## Structured Isolation Across Engines and Policies
+
+OpenBao comes with a range of pluggable engines for managing sensitive data such as secrets or private keys of PKIs. With the introduction of namespaces, these engines can now be configured independently for individual teams and use cases.
+
+Each namespace encapsulates:
+
+- Secret engines (e.g., key-value, PKI, transit, database)
+
+- Authentication methods
+
+- Access control policies
+
+The namespace feature allows to share a single OpenBao deployment across teams without sacrificing separation of responsibilities.
+
+## Consistent Security with HSM-Backed Unsealing
+
+While namespaces exist independently, they still share the underlying OpenBao instance. To ensure that sensitive data across all namespaces is protected uniformly, OpenBao can be configured to a hardware security module (HSM) for unsealing. By storing the unseal key of the OpenBao instance in an HSM, all namespaces benefit from an increased level of security through a hardware-backed root of trust. This provides a common baseline for the system, while policies and authentication methods may vary per namespace.
+
+## Using OpenBao Namespaces in Apeiro
+
+OpenBao is used in Apeiro for Secrets Management and PKI, two essential capabilities for any infrastructure platform. In addition to being used when the platform is up and running, OpenBao is an essential component when bootstrapping Apeiro initially.
+
+In Apeiro, different operator groups may be responsible for provisioning infrastructure: starting with compute and storage on the lowest level, continuing with brokering clusters in between, up to fully fledged workload clusters.
+
+The namespace feature makes it possible to allocate isolated realms for each of these use case in Apeiro within one OpenBao instance.
+
+## Contributions from the Apeiro Project
+
+The need for namespace support was identified early on in the Apeiro project. Members of the team joined the upstream OpenBao community to collaborate with other contributors on the technical design and details of this enhancement.
+
+With the OpenBao 2.3 Beta release, namespace support is now available for testing.
+
+In the meantime, the Apeiro team is already evaluating additional contributions to OpenBao, such as:
+
+- signing certificates with private keys stored in HSMs
+
+- recommendations for disaster recovery and backup/restore
+
+- replication across instances in different data centers
+
+- running OpenBao in FIPS mode
+
+These enhancements will make OpenBao a solid security anchor for the Apeiro Reference Architecture, so stay tuned!
+
+## Getting Started
+
+Read the [official announcement](https://openbao.org/blog/namespaces-announcement) to learn more how you can use namespaces in OpenBao today.
+
+To try it out, you can [download the OpenBao binary](https://github.com/openbao/openbao/releases/tag/v2.3.0-beta20250528) from the release notes of OpenBao 2.3 Beta on GitHub.
+
+Curious about the Apeiro Reference Architecture? Checkout other architectural insights in our [official documentation](https://documentation.apeirora.eu).
