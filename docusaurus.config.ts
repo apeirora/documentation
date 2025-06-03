@@ -69,7 +69,8 @@ const config: Config = {
         pages: false,
         blog: {
           routeBasePath: 'blog',
-          path: 'blog'
+          path: 'blog',
+          onUntruncatedBlogPosts: 'throw'
         },
         theme: {
           customCss: './src/css/custom.css',
