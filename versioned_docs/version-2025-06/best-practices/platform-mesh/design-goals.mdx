@@ -1,0 +1,21 @@
+---
+sidebar_position: 1
+---
+
+# Design Goals
+
+The Apeiro Reference Architecture outlines an architectural framework for components and API specifications to create a loosely connected network of independently provided and developed software components that offer various services: the **Platform Mesh**.  
+This allows <Term>service consumers</Term> to freely discover, access, and orchestrate <Term>services</Term> from different <Term>providers</Term>. The services covered range from workload runtimes to higher-level infrastructure services such as databases.
+
+An **service orchestration environment** for service consumers provides an API for creating, configuring, managing, and coordinating services offered by various providers.
+The reference architecture supports multiple service orchestration environments and a variety of general or specialized service marketplaces offered by multiple independent companies and entities.
+
+<ApeiroFigure src="/platform-mesh/img/soe.svg" 
+  alt="Service Orchestration Environment" 
+  caption="Service Orchestration Environment"
+  width="90%"/>
+
+This setup is suitable for **public cloud environments**, enabling application and service developers to select from a variety of services available over the Internet.  
+It is also compatible with **private and sovereign clouds**, where services and service providers reside within the same (potentially air-gapped) data centers.
+ApeiroRA provides tools for packaging, installing, and maintaining service implementations in these data centers.  
+Furthermore, the core of ApeiroRA is designed so that its physical requirements and form factor can be compacted for deployment at the near **edge**.

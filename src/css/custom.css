@@ -73,6 +73,15 @@ nav.navbar:before {
 }
 /* END - Header */
 
+/* START - Lists */
+.markdown li > p {
+  /* note that only li with multi-line text is rendered <li><p> and their default margin is excessive */
+  /* li with single-line text are rendered with plain <li> and are not subject to this CSS */
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+/* END - Lists */
+
 /* START - ApeiroRA Logo 'Icon+Text' on desktop / only 'Icon' on mobile */
 
 .navbar__title {
@@ -313,8 +322,8 @@ figcaption {
   color: var(--ifm-text-color);
   filter: brightness(200%);
   font-size: 0.8rem;
-  text-align: left;
-  padding-left: 0.5rem;
+  text-align: center;
+  padding: 0 0.5rem;
 }
 
 figcaption > span {

@@ -1,5 +1,5 @@
 import Link from "@docusaurus/Link";
-import useBaseUrl from "@docusaurus/useBaseUrl";
+import { useVersionedUrl } from "@site/src/utils/use-versioned-url";
 
 export default function Journey({ steps }): JSX.Element {
   return (
@@ -16,7 +16,7 @@ export default function Journey({ steps }): JSX.Element {
               {data.step}
             </div>
             <div className="apeiro-journey-stop-name">
-              <Link to={data.url}>{data.name}</Link>
+              <Link to={useVersionedUrl(data.url)}>{data.name}</Link>
               <br></br>
               <div className="apeiro-journey-stop-sub">
                 {data.text ? (

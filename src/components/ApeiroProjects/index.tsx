@@ -1,4 +1,4 @@
-import projects from "@site/terms/apeiro-projects.json";
+import projects from "@site/apeiro-projects.json";
 import Link from "@docusaurus/Link";
 import useBaseUrl from '@docusaurus/useBaseUrl';
 

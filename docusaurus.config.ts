@@ -58,6 +58,12 @@ const config: Config = {
               badge: true,
               noIndex: true
             },
+            '2025-06': {
+              label: 'Release June 2025',
+              banner: 'none',
+              badge: false,
+              noIndex: false
+            },
             '2025-03': {
               label: 'Release March 2025',
               banner: 'none',
@@ -102,7 +108,7 @@ const config: Config = {
     },
     footer: {
       style: 'light',
-      copyright: `Copyright © ${new Date().getFullYear()} SAP SE or an SAP affiliate company. All rights reserved.<br><small><a href="https://www.sap.com/corporate/en/legal/impressum.html">Legal Disclosure</a></small>`,
+      copyright: `Copyright © ${new Date().getFullYear()} SAP SE or an SAP affiliate company. All rights reserved.<br><small><a href="https://www.sap.com/corporate/en/legal/impressum.html" rel="noreferrer noopener">Legal Disclosure</a></small>`,
     },
     colorMode: {
       disableSwitch: true,

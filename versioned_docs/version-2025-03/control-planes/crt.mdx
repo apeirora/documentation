@@ -1,35 +1,35 @@
 ---
 sidebar_position: 3
-title: Multi-Plane Controller 
+title: Multi-Plane Controller
 ---
 
-In the [Controller Pattern section](/digital-twins/controller), we discussed the general responsibilities of a <Term>controller</Term> and in the [Kubernetes Implementation Design section](/control-planes/kid), we seem to assume that the context for a controller always has to be a single Kubernetes cluster (assembled with the three planes).  
-However, a reconciling controller can be executed anywhere suitable and be implemented to be multi-cluster, or more precisely, multi data plane aware.  
+In the [Controller Pattern section](./../digital-twins/controller), we discussed the general responsibilities of a <Term>controller</Term> and in the [Kubernetes Implementation Design section](./../control-planes/kid), we seem to assume that the context for a controller always has to be a single Kubernetes cluster (assembled with the three planes).
+However, a reconciling controller can be executed anywhere suitable and be implemented to be multi-cluster, or more precisely, multi data plane aware.
 This becomes self-explanatory during the development of a controller. Typically, development occurs on a laptop, where the controller is run outside the cluster (the laptop serving as work plane) and debugged against different clusters (for example, connected to a local cluster on the laptop first, then a cluster in the cloud).
 
-By making the controller multi-plane, or more precisely, multi data plane aware, we a) establish the necessary isolation boundaries required by cloud services, and b) enable the design for [Multi-Cluster Federation](/multi-cluster-federation):
+By making the controller multi-plane, or more precisely, multi data plane aware, we a) establish the necessary isolation boundaries required by cloud services, and b) enable the design for [Multi-Cluster Federation](./../multi-cluster-federation):
 
-1. **Runtime Cluster**:  
+1. **Runtime Cluster**:
    The controller is resiliently executed as a container in a `Pod` in the <Term>work plane</Term> of a runtime cluster.
    The controller may be instrumented with access to the <Term>data plane</Term> of the runtime in order to manage and scale (inside-out) its own service requirements. Alternatively, an outside-in approach with other controllers, like the `VPA` or `HPA`, which monitor and manage a desired objective, that is supplying the controller with adequate resources, is possible as well.
 
-2. **Digital Twin API Layer**:  
+2. **Digital Twin API Layer**:
    The business users interact with a dedicated API hosted by a separate <Term>data plane</Term>. It hosts the source of truth (the digital twins and their respective desired state) for the controller.
    It is separate from the data and control plane of the runtime cluster. This design encourages an indispensable isolation boundary by separating the user accessible API layer from any internal implementation concern.
 
-3. **Multiple Targets**:  
-   The multi-plane controller practice also encourages to utilize separate Kubernetes clusters as target for its workload, using available resource primitives (see [Multi-Cluster Federation](/multi-cluster-federation) for a more detailed discussion), or order the desired target outcome on any type of platform[^1] with an API. This practice splits and isolates the controller & runtime concern from the workload concern and enhances the security posture. Although, in the case of clusterlet (or servicelet) controllers, the runtime cluster is pragmatically used as work plane.
+3. **Multiple Targets**:
+   The multi-plane controller practice also encourages to utilize separate Kubernetes clusters as target for its workload, using available resource primitives (see [Multi-Cluster Federation](./../multi-cluster-federation) for a more detailed discussion), or order the desired target outcome on any type of platform[^1] with an API. This practice splits and isolates the controller & runtime concern from the workload concern and enhances the security posture. Although, in the case of clusterlet (or servicelet) controllers, the runtime cluster is pragmatically used as work plane.
 
-<ApeiroFigure src="/control-planes/img/crt.svg" 
-    alt="Multi-plane aware controller" 
+<ApeiroFigure src="/control-planes/img/crt.svg"
+    alt="Multi-plane aware controller"
     caption="Multi-plane aware controller"
     width="100%"/>
 
 Caveat: the popular [controller-runtime](https://github.com/kubernetes-sigs/controller-runtime) allows writing controllers against one cluster only.
-The multi-plane (or multi-cluster) design is being discussed in the Kubernetes controller-runtime Projects [Issue #2746](https://github.com/kubernetes-sigs/controller-runtime/pull/2746). As consequence, projects that operate with multiple clusters/planes commonly implement own special libraries for the puprose[^2]. 
+The multi-plane (or multi-cluster) design is being discussed in the Kubernetes controller-runtime Projects [Issue #2746](https://github.com/kubernetes-sigs/controller-runtime/pull/2746). As consequence, projects that operate with multiple clusters/planes commonly implement own special libraries for the puprose[^2].
 
 [^1]: [Crossplane](https://docs.crossplane.io/) is a CNCF incubating project and prominently enables the <Term>KRM</Term> translation to any type of API.
-      Its fitting tagline is: 
+      Its fitting tagline is:
       > "Crossplane lets you manage anything, anywhere, all through standard Kubernetes APIs. Crossplane can even let you order a pizza directly from Kubernetes. If it has an API, Crossplane can connect to it."
 
 [^2]: For example, <Project>Gardener</Project> has a [controller-manager-library](https://github.com/gardener/controller-manager-library), allowing to work with several logical clusters that are finally mapped to effective clusters when instantiating controllers.
