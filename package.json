@@ -22,14 +22,14 @@
     "clsx": "^2.0.0",
     "docusaurus-lunr-search": "^3.5.0",
     "prism-react-renderer": "^2.3.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.8.1",
     "@docusaurus/tsconfig": "^3.8.1",
     "@docusaurus/types": "^3.8.1",
-    "typescript": "~5.6.2"
+    "typescript": "~5.8.0"
   },
   "browserslist": {
     "production": [
@@ -44,6 +44,6 @@
     ]
   },
   "engines": {
-    "node": ">=18.0"
+    "node": ">=22.0"
   }
 }
