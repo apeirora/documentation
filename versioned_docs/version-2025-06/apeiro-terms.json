@@ -248,6 +248,14 @@
         "description": "OpenTelemetry, also known as OTel, is a vendor-neutral open source Observability framework for instrumenting, generating, collecting, and exporting telemetry data such as traces, metrics, and logs.",
         "url": "/:version/best-practices/observability"
     },
+    "greenhouse": {
+        "description": "The ApeiroRA project Greenhouse is a comprehensive platform designed to address the challenges of operating large-scale cloud infrastructures.",
+        "url": "/:version/best-practices/observability"
+    },
+    "greenhouse plugins": {
+        "description": "A Greenhouse Plugin is a pre-configured application that can be deployed and managed by a Greenhouse instance.",
+        "url": "/:version/best-practices/observability"
+    },
     "actuator": {
         "description": "Controllers that map real-world capabilities into the virtual-world.",
         "url": "/:version/best-practices/control-planes/cat#actuators"
