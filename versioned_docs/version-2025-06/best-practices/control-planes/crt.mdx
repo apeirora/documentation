@@ -3,33 +3,106 @@ sidebar_position: 3
 title: Multi-Plane Controller
 ---
 
-In the [Controller Pattern section](./../digital-twins/controller.mdx), we discussed the general responsibilities of a <Term>controller</Term> and in the [Kubernetes Implementation Design section](./kid.mdx), we seem to assume that the context for a controller always has to be a single Kubernetes cluster (assembled with the three planes).
-However, a reconciling controller can be executed anywhere suitable and be implemented to be multi-cluster, or more precisely, multi data plane aware.
-This becomes self-explanatory during the development of a controller. Typically, development occurs on a laptop, where the controller is run outside the cluster (the laptop serving as work plane) and debugged against different clusters (for example, connected to a local cluster on the laptop first, then a cluster in the cloud).
+In the [Controller Pattern section](./../digital-twins/controller.mdx), we discussed the general responsibilities of a <Term>controller</Term> and in the [Kubernetes Implementation Design section](./kid.mdx), we seem to
+assume that the context for a controller always has to be a single Kubernetes cluster (assembled with the three planes).
+However, a reconciling controller can be executed anywhere suitable and be implemented to be multi-plane aware - or more precisely multi-control-plane aware.
+This becomes self-explanatory during the development of a controller. Typically, development occurs on a laptop, where the controller is run outside the cluster
+(the laptop serving as work plane) and debugged against different clusters (for example, connected to a local cluster on the laptop first, then a cluster in the cloud).
 
-By making the controller multi-plane, or more precisely, multi data plane aware, we a) establish the necessary isolation boundaries required by cloud services, and b) enable the design for [Multi-Cluster Federation](./../multi-cluster-federation/index.mdx):
+By designing a multi-plane aware controller, we achieve two primary objectives:
+1. establish the necessary isolation boundaries required by cloud services
+2. enable the design for [Multi-Cluster Federation](./../multi-cluster-federation/index.mdx)
+
+For clarity throughout this document, the term "<Term>control plane</Term>" refers to any platform[^4] capable of serving [Kubernetes Resource Model](./../digital-twins/krm/index.mdx) (KRM) APIs.
+
+## Multi-Plane Architecture Components
 
 1. **Runtime Cluster**:
-   The controller is resiliently executed as a container in a `Pod` in the <Term>work plane</Term> of a runtime cluster.
-   The controller may be instrumented with access to the <Term>data plane</Term> of the runtime in order to manage and scale (inside-out) its own service requirements. Alternatively, an outside-in approach with other controllers, like the `VPA` or `HPA`, which monitor and manage a desired objective, that is supplying the controller with adequate resources, is possible as well.
+   This component is also referred to as a Host Cluster or Hub Cluster[^2] in other documentation. Regardless of the nomenclature, it serves as the primary cluster where the controller runs and from which it interacts with other control planes (note
+   that we explicitly don't mean "manages other control planes" here). The controller is resiliently executed as a container in a `Pod` in the <Term>work plane</Term> of a runtime cluster.
+
+   The controller may be instrumented with access to the <Term>control plane</Term> of the Runtime Cluster itself, in order to manage and scale its own runtime requirements (inside-out). Alternatively, an outside-in approach with other controllers is possible as well. For example, the `VPA` or `HPA`, which monitor and can manage a desired objective, can supply the controller runtime with adequate resources.
 
 2. **Digital Twin API Layer**:
-   The business users interact with a dedicated API hosted by a separate <Term>data plane</Term>. It hosts the source of truth (the digital twins and their respective desired state) for the controller.
-   It is separate from the data and control plane of the runtime cluster. This design encourages an indispensable isolation boundary by separating the user accessible API layer from any internal implementation concern.
+   Business users interact and declare their intent with a dedicated API hosted on a separate <Term>data plane</Term>. This plane serves as the source of truth (for the external business contract), hosting the digital twins and their respective desired states. This layer is _intentionally separated_ from the data and control plane of the Runtime Cluster. This design enforces a critical isolation boundary by decoupling the user-facing API from internal implementation concerns. Note that this layer may be composed of multiple <Term>data planes</Term>.
 
 3. **Multiple Targets**:
-   The multi-plane controller practice also encourages to utilize separate Kubernetes clusters as target for its workload, using available resource primitives (see [Multi-Cluster Federation](./../multi-cluster-federation/index.mdx) for a more detailed discussion), or order the desired target outcome on any type of platform[^1] with an API. This practice splits and isolates the controller & runtime concern from the workload concern and enhances the security posture. Although, in the case of clusterlet (or servicelet) controllers, the runtime cluster is pragmatically used as work plane.
+   The multi-plane controller model encourages the use of separate Kubernetes clusters (or control planes) as scale-out targets for workloads. It accomplishes this by utilizing available resource primitives (see [Multi-Cluster Federation](./../multi-cluster-federation/index.mdx) for a detailed discussion) or by orchestrating the desired outcome on any API-enabled platform[^1]. This practice isolates the controller's runtime concerns from the workload's concerns, thereby enhancing the overall security posture. In the case of simpler [clusterlet](./../multi-cluster-federation#federation-with-agents-decentralizing-control) or [servicelet](./../multi-cluster-federation/multi-cloud-service-provider.mdx) controllers, the Runtime Cluster may pragmatically be used as the work plane.
 
-<ApeiroFigure src="/control-planes/img/crt.svg"
+<ApeiroFigure src="/control-planes/img/crt2.svg"
     alt="Multi-plane aware controller"
     caption="Multi-plane aware controller"
     width="100%"/>
 
-Caveat: the popular [controller-runtime](https://github.com/kubernetes-sigs/controller-runtime) allows writing controllers against one cluster only.
-The multi-plane (or multi-cluster) design is being discussed in the Kubernetes controller-runtime Projects [Issue #2746](https://github.com/kubernetes-sigs/controller-runtime/pull/2746). As consequence, projects that operate with multiple clusters/planes commonly implement own special libraries for the puprose[^2].
+## Limitations of Standard Tooling
 
-[^1]: [Crossplane](https://docs.crossplane.io/) is a CNCF incubating project and prominently enables the <Term>KRM</Term> translation to any type of API.
-      Its fitting tagline is:
-      > "Crossplane lets you manage anything, anywhere, all through standard Kubernetes APIs. Crossplane can even let you order a pizza directly from Kubernetes. If it has an API, Crossplane can connect to it."
+The popular [controller-runtime](https://github.com/kubernetes-sigs/controller-runtime) used conventionally in most controllers has a significant caveat: this library is designed to support controllers operating against a single cluster only. The need for a multi-plane (or multi-cluster) design is an active topic of discussion within the Kubernetes community, tracked in [PR #2746](https://github.com/kubernetes-sigs/controller-runtime/pull/2746). Consequently, projects that must manage multiple clusters or planes,
+such as [Gardener](https://gardener.cloud) or [KubeVela](https://kubevela.io/), typically implement their own specialized libraries[^3] (or workarounds) to handle this requirement.
 
-[^2]: For example, <Project>Gardener</Project> has a [controller-manager-library](https://github.com/gardener/controller-manager-library), allowing to work with several logical clusters that are finally mapped to effective clusters when instantiating controllers.
+These custom solutions, while functional, often share common limitations:
+
+1. **Uniform API Schemas**: All managed APIs must be uniform, with minimal to no drift in their schemas. While this is manageable for established APIs like ConfigMaps, Secrets, and RoleBasedAccessControl, it poses a significant challenge for custom APIs. To manage different versions (e.g., v1, v2) of a custom API across a uniform set, multiple instances of a similar controller must be run, which introduces operational overhead.
+
+2. **Performance Implications**: These solutions often instantiate a separate instances of the controller-runtime for each cluster in an asynchronous mode. This means each instance manages its own caches, clients, and other resources. While acceptable for a small number of clusters, this approach becomes a performance bottleneck at scale. Managing a shared state across these parallel components is indeed a complex challenge.
+
+3. **Cluster Discovery and Management**: Custom implementations for cluster discovery and management are often required. In dynamic environments, such as a "Consumer Control Plane" scenario where control planes are the consumers of other control planes, this becomes increasingly difficult.
+
+**Multicluster-runtime on the Horizon**
+
+<div style={{
+  float: 'right',
+  width: '120px',
+  margin: '-50px 20px 0 20px',
+  padding: '10px'
+}}>![multicluster-runtime](https://github.com/kubernetes-sigs/multicluster-runtime/blob/main/contrib/logo/logo.png?raw=true)</div>
+
+The [multicluster-runtime](https://github.com/kubernetes-sigs/multicluster-runtime) project is an emerging solution that aims to address these limitations directly and provide a community-wide solution. The next sections explain how this library can be utilized.
+
+## Handling Multi-Cluster Scenarios: Fan-In and Fan-Out
+
+In multi-plane environments, controllers must address two primary architectural challenges, for the **Fan-In** and **Fan-Out** of data and control. These require specialized tooling to ensure efficient, scalable, and robust controller design.
+
+### The Fan-In of Data
+
+The **Fan-In** challenge describes the situation where a single controller must reconcile objects from multiple planes simultaneously.
+
+Consider a scenario where control planes are dynamically added (or removed). The controller needs to aggregate data from all these sources to maintain a holistic view. Standard controller-runtime patterns do not support this out of the box, as they are not designed to aggregate state from multiple sources. Typical workarounds complicate the reconciliation logic and impact the performance.
+
+<ApeiroFigure src="/control-planes/img/fan-in.svg"
+    alt="Fan-in of dynamic sources"
+    caption="Fan-in of dynamic sources"
+    width="100%"/>
+
+The  **[multicluster-runtime](https://github.com/kubernetes-sigs/multicluster-runtime)** library addresses this by extending controller-runtime to orchestrate a dynamic fleet of clusters. Multi-cluster management projects are encouraged to provide extension providers for this library. For example, [kcp](https://kcp.io) provides its [multicluster-provider](https://github.com/kcp-dev/multicluster-provider), and also Gardener supports this initiative with its [multicluster-provider](https://github.com/gardener/multicluster-provider). These providers enable controllers to dynamically discover and reconcile resources (e.g., `ConfigMaps`) across all registered clusters without modifying single-cluster logic. When used in tandem with `MultiCluster`[`Manager`](https://github.com/kubernetes-sigs/multicluster-runtime/blob/main/pkg/manager/manager.go), the provider facilitates the dynamic starting and stopping of reconciliation based on cluster discovery events, ensuring seamless multi-cluster - or the fan-in of multi-plane - support.
+
+### The Fan-Out of Control
+
+The Fan-Out challenge arises when a controller must interact with multiple clusters (or platforms) to perform operations, such as creating or updating resources. For example, when new control planes are dynamically provisioned, the controller may need to distribute configuration data, such as certificates, secrets, or instruct specific workloads to be deployed to each plane. To manage this effectively, the controller must efficiently handle multiple client connections, manage their registration and deregistration, maintain caches, and ensure consistent state across all targets.
+
+<ApeiroFigure src="/control-planes/img/fan-out.svg"
+    alt="Fan-out the reconciliation multiple targets"
+    caption="Fan-out the reconciliation multiple targets"
+    width="100%"/>
+
+With Kubernetes, the [`sigs.k8s.io/controller-runtime/pkg/cluster`](https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/cluster) package provides a `Cluster` interface to manage this scenario. It enables a controller to create distinct clients and caches for each target cluster, facilitating operations like reading from one cluster and writing to another. Again, when combined with the `MultiCluster`[`Manager`](https://github.com/kubernetes-sigs/multicluster-runtime/blob/main/pkg/manager/manager.go), it ensures efficient management of cluster connections, using `cluster.Options` to configure tailored clients for cross-cluster communication.
+
+### Best Practices
+
+These Fan-In and Fan-Out patterns can be implemented within a single controller. In practice, this is often realized not as a single monolithic process but with multiple copies of the same controller logic, either running within the target control planes (breaking isolation) or running as in-memory instances within the Runtime Cluster, managing multiple control planes with a linear scaling pattern.
+
+- **Scalability**: Leverage `multicluster-runtime` for dynamic cluster/multi-plane handling. It allows more efficient scaling and management of multiple clusters by reusing internal components like clients, queues and caches.
+- **Isolation**: Maintain clear separation between data plane (source for contract), Runtime Cluster (for the multi-plane aware controller), and target clusters (for the workloads), to ensure security and operational integrity. Only open or cross these boundaries when needed.
+- **Dynamic Discovery**: Use `MultiCluster`[`Manager`](https://github.com/kubernetes-sigs/multicluster-runtime/blob/main/pkg/manager/manager.go) to dynamically discover and manage clusters/control planes. Allow controllers to dynamically adapt to changing environments without manual intervention.
+- **Consistency**: Use level-based reconciliation for accurate state management. Make sure that you always set appropriate conditions and states to manage state transitions. Use consistent states across resources. Consistency is established by adhering to the two important basics: 1) well designed [KRM Extension APIs](./../digital-twins/krm/index.mdx) and 2) properly coded [reconciliation loops](./../digital-twins/controller.mdx#edge-and-level-triggering)
+- **Error Handling**: Implement exponential backoff and retries for robust multi-plane interactions. When implementing any retriable error handling, always consider possible hot spots - same resources being retried without random delays and the ensuing [Thundering herd problem](https://en.wikipedia.org/wiki/Thundering_herd_problem). See further information in the [Controller Pattern](./../digital-twins/controller.mdx#proportional-integral-derivative) chapter.
+
+By using [multicluster-runtime](https://github.com/kubernetes-sigs/multicluster-runtime) with providers like [kcp](https://kcp.io) and [Gardener](https://gardener.cloud) for **Fan-In** and [`Cluster`](https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/cluster) for **Fan-Out**, both integrated with `MultiCluster`[`Manager`](https://github.com/kubernetes-sigs/multicluster-runtime/blob/main/pkg/manager/manager.go), developers can build scalable multi-plane aware controllers within the controller-runtime framework.
+
+
+[^1]: [Crossplane](https://crossplane.io/) is a CNCF incubating project that prominently enables the translation from <term>KRM</term> to any type of API. Its fitting tagline is: "Crossplane lets you manage anything, anywhere, all through standard Kubernetes APIs. Crossplane can even let you order a pizza directly from Kubernetes. If it has an API, Crossplane can connect to it."
+
+[^2]: See the sig-multicluster discussion on naming conventions [PR #8210](https://github.com/kubernetes/community/pull/8210)
+
+[^3]: Gardener provides a [client map](https://github.com/gardener/gardener/tree/master/pkg/client/kubernetes/clientmap), which allows working with several logical clusters that are mapped to effective clusters when instantiating clients or controllers.
+
+[^4]: Prominent projects include [Crossplane](https://crossplane.io/), [Karmada](https://karmada.io/), and [KubeAdmiral](https://kubeadmiral.io/), among others. Ultimately, each uses a distinct control plane serving a specific set of APIs, all adhering to the Kubernetes Resource Model.
