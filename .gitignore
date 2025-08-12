@@ -22,3 +22,9 @@ yarn-error.log*
 .idea
 .vscode
 .direnv
+
+*.drawio.bkp
+
+# Vitepress
+.vitepress/cache
+.vitepress/dist

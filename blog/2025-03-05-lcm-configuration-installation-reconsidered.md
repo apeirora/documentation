@@ -1,0 +1,366 @@
+---
+title: Lifecycle Management - Configuration and Installation Reconsidered
+authors:
+  - vasu-chandrasekhara
+  - uwe-krueger
+---
+
+<!-- index.mdx -->
+Software configuration and procedures, practices, and tools for (first time) installation, patching, or updating are at the heart of software lifecycle management.
+
+Generally, lifecycle management
+involves the parametrization and adaptation of a generic (installation) procedure.
+There are plenty of popular practices, tools, and environments, like [*Terraform*](https://www.terraform.io), [*Chef*](https://www.chef.io), [*Ansible*](https://ansible.com),
+package managers like [*APT*](https://wiki.ubuntuusers.de/APT), [*Crossplane*](https://www.crossplane.io) or even [*Kubernetes*](https://kubernetes.io) (we will see later why
+this appears in this list).
+Configuration is then used to adapt the installation procedure to the needs of particular applications or their installations.
+
+There are several approaches to simplifying the description of controlling the installation procedure.
+From templating that leverages patterns and rules to avoid
+duplicate information, to complete general or product-specific Domain Specific Languages (DSL) that express complex configuration descriptions tighter to the problem domain than
+simple value structures. Those DSLs can be generalized by frameworks
+to shift the installer development from a general-purpose language to
+the composition of DSL elements.
+
+In the following, we will systematically describe what configurations look like and how they work together with installation and update procedures.
+
+While complex initial installations may be covered by the approach, we conclude with the argument that the optimization of configurations and configuration DSLs will not solve the automation problem for complex updates. Instead, the crucial aspect is the abstraction level between the configuration elements focusing on the problem domain and the finally maintained elements in their target environment. Complex updates require problem domain-specific flexible coding.
+
+<!-- truncate -->
+
+<!-- challenge.mdx -->
+## The Challenge, Day 0, 1, and 2
+
+Lifecycle management involves distinct phases - Day 0, Day 1, and Day 2. Each presenting unique challenges:
+* Day 0: Planning and Preparation
+* Day 1: Deployment and Installation
+* Day 2: Maintenance and Support
+
+The Day 1 - deployment and installation - challenge decomposes into two similar problems, the
+initial setup of a product or application and its update, required for Day 2. These parts look very similar, especially because typically an attempt is made to describe solutions for both problem flavors in a uniform manner.
+
+But there is a large difference in complexity. Setting up a new installation is relatively simple compared with an update to a newer version. During the setup procedure, no previous or existing state of an installation has to be considered. Day 1 deployments can be fully tested. It is only necessary to describe and finally create the required elements (resources) in a target environment.
+
+In contrast to this, an update in its general form has to handle the migration of an existing installation towards a potentially different one with major structural changes, arising from revised or evolved design decisions of the product. Potentially, this requires the migration of data structures and also may necessitate the preservation of abstract state, distributed over multiple implementation elements[^1].
+
+The term *installation* will be used in the following as a synonym for both *setup* and
+*update*. If required, the term update will explicitly be used.
+
+[^1]: Popular data migration tools for example are [Wikipedia: Flyway](https://en.wikipedia.org/wiki/Flyway_(software)), [Wikipedia: Liquibase](https://en.wikipedia.org/wiki/Liquibase), and programming languages offer libraries, such as [github: go-migrate](https://github.com/golang-migrate/migrate).
+
+<!-- layout.mdx -->
+## General Installation Layout
+
+In consequence, all approaches follow the same general layout:
+
+The installation or update code is developed in a general-purpose programming language. Its task is to install or update a particular product or component in a target environment. It uses the API provided by the target environment to manage elements. The encoded procedure is product-specific. Variations or variants are supported by extracting applicable parameters into a configuration. The configuration is typically data centric and does not contain
+code.
+
+<ApeiroFigure src="/lcm/img/general-installation-layout.svg"
+    alt="General installation layout"
+    width="100%"/>
+
+Optionally, the procedure may keep some state about the actual
+installation state, which is used to complete configuration data when
+updating or deleting an existing installation.
+
+Let us next consider the configuration description.
+
+
+
+<!-- configurations.mdx -->
+## Configurations Reconsidered
+
+In the simplest case, configuration is described by some general, possibly structured, data definition format, like [YAML](https://yaml.org), [JSON](https://www.json.org), [XML](https://www.w3.org/TR/xml) or [INI](https://docs.fileformat.com/system/ini). The installation code looks for dedicated fields in the configuration to assign a particular meaning. This could be single parameters or complete structures.
+
+Since the code interprets the semantic meaning of even simple data formats in the configuration, we effectively describe a DSL, albeit a logical DSL simply defined by structure and type fields. This demonstrates that it is not necessarily required to define a complex DSL with its own syntax to describe configuration tailored for a particular problem domain.
+
+<ApeiroFigure src="/lcm/img/configuration-logical-dsl.svg"
+    alt="Configuration with logical DSL"
+    width="100%"/>
+
+Configuration formats for purely defining value structures, like JSON, typically lack the feature of supporting values derived from other settings or rules for common value layouts.
+
+We now enter into a problem domain with increasing complexity:
+Values of particular attributes should either follow some rules (or constraints), may depend on other settings or should be set according to some relations in an overall scenario. The immediate consequence is that the same or related values must be configured independently at different structural locations in the configuration description. YAML, for example, features value references as part of its syntax to be able to refer to values or complete data structures defined somewhere else in the configuration. But this is only of limited utility, because YAML does not allow expression rules or calculations. It is left to the reader to discuss the pros and cons of XML, INI, HCL, and the many other formats.
+
+Let us therefore consider templating engines next.
+
+<!-- templating.mdx -->
+## Templating Engines
+
+
+Templating engines are often used to enhance the options to describe, reference, and even manipulate configuration data. Tools like [Go-templates](https://pkg.go.dev/text/template), [ytt](https://carvel.dev/ytt), [cue](https://cuelang.org) or [spiff++](https://github.com/mandelsoft/spiff) are often used. They allow keeping the input (and the parsing) for the installation code simple and act similar to a macro language.
+
+<ApeiroFigure src="/lcm/img/configuration-template-engines.svg"
+    alt="Configuration with template engines"
+    width="100%"/>
+
+Templates typically support expressions to solve the problem of derived values, but they can also be used to introduce explicitly named and parameterized elements. Hence, templates support the *Don't Repeat Yourself* (DRY[^2]) software principle. In contrast, *Write Everything Twice* (WET[^3]) is a cheeky abbreviation to mean the opposite of DRY.
+
+[^2]: It is overall desired to follow the [Wikipedia: DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) approach. The acronym also stands for *duplication is evil*. DRY is correlated with the [Wikipedia: SSOT](https://en.wikipedia.org/wiki/Single_source_of_truth) practice of structuring information models such that every data element is mastered in only one place.
+
+[^3]: The backcronym of DRY is [Wikipedia: WET](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself#WET). It also stands for *write every time*, *we enjoy typing*, or *waste everyone's time*. While WET may be an accepted reality for distributed teams, the DRY approach can eliminate or reduce redundancies and duplication errors.
+
+### Templated DSLs as Framework
+Templating engines furthermore provide the option to offer formal DSLs on top of simple structured value formats by supporting functions or named and parameterized templates.
+
+<ApeiroFigure src="/lcm/img/configuration-templated-dsl.svg"
+    alt="Configuration with templated DSL"
+    width="100%"/>
+
+This is achieved by providing libraries usable for generic or particular installation parameterization. The libraries describe parameterized functions or templates, which evaluate to more complex descriptive structures of the underlying data format. The result is a kind of intermediate, versatile DSL usable to maintain a final configuration description. Those libraries can be domain-specific but usable for a complete range of applications. Or they may be designed specifically for a dedicated product installer.
+
+### Versatile Libraries
+
+With the introduction of libraries, we open the scenario to providing basic installers applicable to a wide range of applications. The concrete product installer may be provided by a library or module set with a product-specific composition of elements. We can clearly distinguish between the basic installer, its specialization for a dedicated application or product, and its application for a particular installation instance.
+
+<ApeiroFigure src="/lcm/img/configuration-cascade.svg"
+    alt="Configuration cascade"
+    width="100%"/>
+
+There are two basic possibilities where such libraries can be located:
+- They can be located on the right-hand side together with the technical, basic installer itself to support generic application installations. This way it is used to offer a higher-level abstraction or comfort for the development of particular product installers. The installer itself is generalized to an installer framework applicable for installer development for a particular application domain, whose basic installation capabilities are defined by the core functions of the technical installer code and the abstractions provided by the library.
+- Or they are associated with the left-hand side as part of the installed product to compose elements of the DSL provided by the installer code to meet the installation needs for the particular product.
+
+The libraries may be designed for a very specific product, without any reuse in mind. In the generic case, we derive an installer framework that is generally usable for a widely applicable domain.
+
+An example is [Crossplane](https://www.crossplane.io), [KRO](https://kro.run/), and [KCL](https://www.kcl-lang.io), which provide an extensible core framework (based on KRM) with a form of compositions that can be used to describe a wide range of application scenarios. Another example is [Terraform](https://www.terraform.io) or [OpenTofu](https://opentofu.org/), which provide an extensible core framework for any type of elements available via an API in the target environment. The configuration DSL with its framework can be used to create installation descriptions by composing basic elements to describe an installation outcome.
+
+
+### Templated DSLs with Feedback
+
+All the previous scenarios are based on configurations that can be fully evaluated prior to the execution of the installation itself. But crucially, some configuration has internal dependencies which requires parameters that can only be derived from the result of an execution or from the target environment.
+
+Now functionality for integrated DSLs is required. These offer the option to include a feedback cycle from the installation execution. Integrated DSLs can incorporate values from the results of other internal steps (data pipelines which produce deployment pipelines), thereby also implicitly ordering the procedure or flow of the execution.
+
+<ApeiroFigure src="/lcm/img/configuration-feedback-dsl.svg"
+    alt="Configuration with feedback from target environment"
+    width="100%"/>
+
+An often-cited example for integrated configuration DSL allowing for feedback from the target environment (mixed in with previously captured state) is *Terraform* with [HCL](https://github.com/hashicorp/hcl). Even the *Pod* manifest where the *kubelet* configures the source manifest with referential field expressions is an example for feedback loops.
+
+With this last scenario we leave the pure configuration description. Let us consider and take a closer look at the installation procedure itself next.
+
+<!-- installations.mdx -->
+## Installations Reconsidered
+
+The installer coding is responsible to map a configuration (utilizing a DSL) to an appropriate set of elements in the target environment and execute the concrete installation.
+
+An orthogonal aspect is how the configuration and installation are executed. We can distinguish two general flavors:
+
+- Option 1: the installer is explicitly called to execute an installation (or an update) in a single execution procedure. The installer may be manually operated or can be embedded as a step in a CI/CD pipeline.
+- Option 2: the installer is embedded in a system to continuously align changes in the configuration with changes in the target environment. This kind of drift-control is called reconciliation or reconciliation-loop and is well-known from the *Kubernetes* ecosystem.
+
+<ApeiroFigure src="/lcm/img/installation-procedures.svg"
+    alt="Installation procedure"
+    width="100%"/>
+
+There are two possible classifications for the internal structure of the installer.
+
+### Installer Hardcoded
+The simplest installer consists of explicit coding specialized for the intended
+installation scenario, including the evaluation of the configuration, together with any templating engine and resulting DSL.
+
+<ApeiroFigure src="/lcm/img/installation-explicit.svg"
+    alt="Installation with explicit coding"
+    width="100%"/>
+
+This is basically a direct implementation of the general installation layout discussed in previous sections. The typical applications of this pattern are ad-hoc scripts or coding to provide a tool to set up something quickly, before remastering the code for productive use.
+
+### Installer Framework
+
+In the next iteration, a generic reuse framework is used. The application-specific installation/update procedure is translated or adapted to it. The framework typically covers two functionalities:
+- It defines a DSL and provides access to the configuration values in a formalized way by evaluating the syntactical elements of the configuration format.
+- It controls the execution of the application-specific code.
+
+If multiple installers are involved, it must also handle the dependency management.
+
+<ApeiroFigure src="/lcm/img/installation-framework.svg"
+    alt="Installation with framework"
+    width="100%"/>
+
+Typical applications of this pattern are operating system level packages handled by a package manager, like [APT](https://wiki.ubuntuusers.de/APT). But also [Kubernetes](https://kubernetes.io) basically follows this pattern: the configuration description is the resource manifest, the specialized code is the controller or operator. Kubernetes takes the role of the framework by handling the configuration description, coordinating the requests to the controller to execute updates. Kubernetes also provides the runtime for the controllers.
+
+### Fixed Mapping
+
+In many cases, frameworks are able to handle multiple specialized installers or functions for different kinds of installation steps. The configuration may describe multiple, often typed elements. Every type is then associated with special code, which is responsible for mapping the described elements of this type to associated real-world elements in the target environment[^4].
+
+[^4]: The [control, data plane concept](/best-practices/control-planes/kid) of *Kubernetes* is an example for this pattern.
+
+<ApeiroFigure src="/lcm/img/installation-extensible-framework.svg"
+    alt="Installation with extensible framework"
+    width="100%"/>
+
+The more common use-case of this pattern in the domain of installers is to
+provide some kind of DSL, which can be used to describe multiple interdependent steps for the installation of an application. The installer for a particular application is
+developed with the DSL provided by the framework and orchestrated with elements of predefined types. The framework must, in addition, support the separation of configuration values, which can be used to parameterize the elements described by the DSL.
+
+<ApeiroFigure src="/lcm/img/installation-framework-values.svg"
+    alt="Installation with framework values"
+    width="100%"/>
+
+In summary, we use generic installer frameworks that provide a DSL which allow for a mapping of typed elements that are very close to elements in the real-world target environment (1:1 or 1:n, where n is very small). The versatility of the framework and its DSL can be used to create a product-specific installer without requiring any user provided code (just by composing elements with the DSL).
+
+### The Price we Pay
+
+The DSL used to describe the elements is practically used to *implement* the installer. And the instance-specific value configuration is used to concretize the variation points offered by this installer.
+The final installer consists of the product-specific DSL composition and
+the independent generic installer framework. The idea behind the
+concept is to simplify and standardize the development of installers.
+
+The simplification is achieved by decomposing the installation problem into low-level fine granular elements offered by the (extensible) generic framework. A typical example for such an environment is *Terraform* with *HCL* as configuration DSL or *Crossplane* enriched by controllers for various target environments (e.g. IaaS layers and elements like VMs, networks, VPCs or volumes).
+
+This approach has typically four constraints for the design of the DSL:
+- to be as flexible as possible for describing installations and to avoid the creation of own general-purpose code, the elements offered on the DSL level are as close as possible to the elements of the target environment.
+- therefore the extensible installer code provides a fixed 1:1 or 1:n (where n is very small) mapping to elements of the target environment.
+- the framework must also handle the (cascaded) deletion of elements if they disappear from the concrete DSL manifestation.
+- to provide higher level abstractions, elements like compositions or modules must be supported, offering an own parameterization.
+
+Unfortunately, the price we pay is the consequence that the installer at the DSL level looses the control over the coordination of element creation and deletion. More importantly, the installer loses control to handle migrations, needed to avoid loss of information (e.g. deleting a database and creating a new one is never a good idea, if the database contains data).
+
+For the initial setup part of an installation, this is not a problem. Because it typically only requires some basic ordering and value dependencies among the created implementation elements. The real challenge occurs with update procedures, because here migrations must be considered.
+
+This becomes even more evident, if the framework keeps state about the
+mapping of described elements, which are bound to, or identified by
+the structuring of elements in the DSL. A structural migration and
+therefore the evolution of the installation or implementation (of the product) structure is hardly possible.
+
+A typical telltale sign can be identified for *Terraform*: it is highly recommended to carefully examine the output of the *plan* statement before really applying a change.
+
+All approaches to circumvent those problems are typically
+- highly specialized for particular problem flavors.
+- require the embedding of general-purpose code combined with complex synchronization mechanism to connect it with the implicit handling by the framework.
+
+In summary, while Day 1 installation can be handled with multi-purpose, generic frameworks, Day 2 updates with structural changes, even requiring migrations, can't be handled by typical generic frameworks. All approaches to fix updates within generic frameworks become very complicated, confusing and error-prone.
+
+<!-- target.mdx -->
+## Target Environment Reconsidered
+
+A new quality can be achieved with the configuration (the DSL-based composition) not treated as static input to the complete installation procedure. A first step towards this direction is to refer to information from the target environment by using special (static) expressions in the configuration description. The next iteration is to incorporate feedback loops that are generalized for all element configuration descriptions.
+
+<ApeiroFigure src="/lcm/img/installation-recursion.svg"
+    alt="Recursive installation"
+    width="100%"/>
+
+Here, the static configuration description is replaced by a completely dynamic one, by considering the configuration itself as part of the target environment. Configuration descriptions can be created, manipulated or
+deleted on demand, even during the execution of an installation step.
+
+The result is a recursion, which enables particular installer code to implement its configuration elements by other configuration elements.
+
+This feature is tightly coupled with the decomposition of the overall installer into separately processed configuration element types, in the best case combined with the extensibility of the set of element types, and a reconciliation approach. The last feature is required to be able to dynamically react to changes of the set of configuration elements and their attribution appearing after the initial process has been started. Therefore, it combines most of the elements shown before to drastically
+increase the expressive power of the overall system as well as the abstraction available for the installer implementation. It can asynchronously decompose into other configuration elements and
+combine this with its own synchronization and ordering logic.
+
+<!-- gitops.mdx -->
+## GitOps Operational Model
+
+A popular practice to handle installations is [*GitOps*](https://opengitops.dev/) with *Kubernetes* as runtime. Whereas, *GitOps* is not necessarily part of the technical installation procedure itself but only augments it with a [DevOps](https://en.wikipedia.org/wiki/DevOps) operational model. Its task is to handle the synchronization process of bringing together static configurations stored in (versioned) repositories (of course Git, but also OCI) with the execution of the installation.
+
+<ApeiroFigure src="/lcm/img/gitops.svg"
+    alt="GitOps"
+    width="100%"/>
+
+So, *GitOps* embeds and wraps a configuration and installation
+procedure as described in the previous sections. Git is treated as a single source of truth and change management is handled in the auditable versioning system, for example via pull requests.
+
+Nevertheless, *GitOps* systems like [Flux](https://fluxcd.io/) or [ArgoCD](https://argoproj.github.io/cd/) also enrich the synchronization process with additional tooling. For example, [Kustomize](https://kustomize.io/) or [Helm](https://helm.sh/) are used to template and modify *Kubernetes* manifests (as resource configurations) prior to handing them over to the *Kubernetes* execution environment. In this case, the templating as discussed in the previous sections is externalized or extended by the GitOps system.
+
+Because of the nature of the configuration representation in a versioning
+system, GitOps also takes the role of describing compositions of
+configuration elements represented as different files. But finally those
+descriptive elements are always transformed and transferred
+into a representation and location from where they can be consumed by
+involved technical installers.
+
+:::info GitOps Principles v1.0.0
+
+**1. Declarative**:
+    A system managed by GitOps must have its desired state expressed declaratively.
+
+**2. Versioned and Immutable**:
+    Desired state is stored in a way that enforces immutability, versioning and retains a complete version history.
+
+**3. Pulled Automatically**:
+    Software agents automatically pull the desired state declarations from the source.
+
+**4. Continuously Reconciled**:
+    Software agents continuously observe actual system state and attempt to apply the desired state.
+
+GitOps Principles v1.0.0 [^5]
+
+:::
+
+[^5]: GitOps principles according to [opengitops.dev/#principles](https://opengitops.dev/#principles)
+
+
+<!-- conclusion.mdx -->
+## Conclusion
+
+First of all, we see that DSLs are present everywhere, where configuration is interpreted. Even with simple data formats it is possible to express rules, commonalities and derived values. The expressive power comes from the evaluation logic as part of the installation code. Explicit specialized DSL can be seen as syntactical sugar to improve the readability.
+
+A tiny step forward is the ability to incorporate reflection of the target environment into the parameterization of a configuration description.
+But a completely new quality comes with the possibility to describe reactions on the actual target state compared with the described desired state. This not only means the evaluation of configuration values derived from installation steps or the actual target state, but the bi-directional synchronization of installations steps themselves. Even deciding which installation steps are to be executed due to configuration changes, or even more important, because of changed implementation decisions. This means that the installer has the ability to choose a changed mapping of the installation to elements into the target environment. Such updates might necessitate additional actions, like data migrations, which must be synchronized with other installation steps.
+
+All this requires (installer) code provided by the product or application. At the same time a human operator should not be overwhelmed by (internal) complexity. Ideally, they just have to understand and set basic (simple) configuration settings for the particular installation/update they wish to achieve.
+
+We argue that any *intermediate* DSL that is able to express complex updates turns out to be a Turing complete language; with synchronization, programmable steps and explicit calls to the API of the target environment. Following this argument, for supporting complex Day 2 maintenance cases, it is more convenient for installation/update development teams to implement everything in their prevalent programming language. The benefits derived from a generic installation framework cover the access to configuration values, standardized execution/implementation, and modularized API access to the target environment.
+
+Furthermore, the flexibility needed for designing complex update procedures can only be realized by increasing the abstraction level between the configuration description and the elements required in the target environment. Only 1:1 or 1:n mapping of elements with a framework does not suffice.
+
+We rotated 12 hours on the [Configuration Complexity Clock](https://mikehadlow.blogspot.com/2012/05/configuration-complexity-clock.html) and returned to the very first schematic.
+
+<ApeiroFigure src="/lcm/img/operator-abstract.svg"
+    alt="Abstract operator pattern"
+    width="100%"/>
+
+In conclusion, the configuration description must purely focus on *what* should be achieved (the intent), but not *how* it could be achieved (the required implementation elements). This principle also decouples the skill level expected from a human operator.
+
+When bringing all learnings together, from continuous drift control, extensibility, abstract configuration, to full control of the implementation mapping, we end up with a framework which looks as follows:
+
+<ApeiroFigure src="/lcm/img/operator-framework.svg"
+    alt="Operator pattern with framework"
+    width="100%"/>
+
+It is able to handle multiple, potentially different installations by
+explicit general-purpose coding able to execute any manipulation of a target
+environment.
+
+A modern implementation of such a framework is the [Kubernetes Resource Model](/best-practices/digital-twins/krm) architecture, which also provides a runtime for controllers or operators, whose code can be written in general-purpose programming languages. *KRM* allows to describe the *what* in simple configuration formats with pure data. The controllers then are responsible for the *how*.
+
+Controllers also have access to the data plane. They can evaluate references and access appropriate other configuration resources. Following the reconciliation approach, dynamic dataflow can be achieved among different kinds of resources/configurations.
+
+In contrast to a static description layer as implemented by traditional installation systems, the *KRM* data plane is dynamic. New elements can arbitrarily be created, updated or deleted. This enables a flexible cascading of configuration implementations backed by other (potentially more low level) elements. This is another quality for the feedback between the target environment and configuration description.
+
+Cascading allows for implementing completely dynamic setup and update flows
+by falling back to other descriptive elements, combining general-purpose code with its descriptive power. A similar outcome cannot be achieved with static description formalism (with or without DSL).
+
+<ApeiroFigure src="/lcm/img/operator-kubernetes.svg"
+    alt="Operator pattern in Kubernetes"
+    width="100%"/>
+
+It is possible to create product-specific operators that dynamically make use of other (lower level) configuration elements. For complex updates, such an operator can be developed to orchestrate any structural changes in sync with the application itself, including data migrations. The product operator itself can be transported as container. The human operator is relieved of cognitive load and only needs to understand the declarative, intent based API for this operator.
+
+With product-specific operators and by adhering to the below four principles it is possible to shift left the responsibility for lifecycle management back from DevOps team to the development and product team, which can design the product and its installation/update requirements in lock step.
+
+:::info Four Principles
+
+1. **API First**
+
+    Design rich, versioned APIs that enable management and configuration holistically. Consider its evolution over time without breaking changes. Avoid passing unstructured and untyped data.
+
+2. **Declarative API**
+
+    Design declarative APIs using desired states. Remodel imperative APIs. Embrace asynchronous responses with a standard pattern.
+
+3. **Reconciling controllers**
+
+    Implement reconciling controllers (or product-specific operators) that continuously monitor and align both the system’s desired configuration and its observed state, automatically correcting deviations. Implement any supportive complex migration and upgrade logic as intrinsic part of the controller. Continuously push the system towards the desired state.
+
+4. **Data and Metadata in Data Plane**
+
+    Support emergence by ensuring that all configuration data and metadata is queryable via API (with a consistent model). This empowers others to develop APIs and controllers on top of existing functionality in unforeseen ways.
+
+:::
+
+With these four principles, the actual controller implementation behind a versioned API contract can be exchanged without breaking changes. This is a key feature to future-proof investments in lifecycle management.

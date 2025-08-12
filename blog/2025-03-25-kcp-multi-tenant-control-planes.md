@@ -1,0 +1,96 @@
+---
+title: "The End of Kubernetes as We Know It: A New Era of Multi‑Tenant Control Planes"
+authors:
+  - mangirdas-judeikis
+tags:
+  - kcp
+  - control planes
+  - multi-tenancy
+  - kubernetes
+---
+
+**Kubernetes is evolving.** For nearly a decade, it has been the default choice to deploy and manage containers at scale – the go-to platform for container orchestration. However, Kubernetes today is no longer just a container orchestrator; it has grown into a foundational technology for modern infrastructure. While some people still try to create unified cloud standards or agree on some shared communication protocols[^10], they ignore the fact we already have this standard. Not by explicit choice, but by its success and adoption. Industry experts foresee Kubernetes becoming the common control plane spanning clouds, datacenters, and the edge​[^1]. This means Kubernetes provides a consistent way to manage containers and all kinds of workloads and resources across diverse environments, becoming de-facto the most widely adopted standard to manage services and resources.
+
+This transformation didn't happen overnight. The Kubernetes API and its resource model - often called the Kubernetes Resource Model (KRM) - have become an industry standard for declarative infrastructure management. Many open-source projects now extend Kubernetes well beyond running containers. For example, [Crossplane](https://crossplane.io), a Cloud Native Computing Foundation (CNCF) project, builds on Kubernetes to orchestrate "anything… not just containers"[^2], leveraging Kubernetes' reliability and integration capabilities with other tools​. Likewise, projects for certificates (cert-manager), secrets management, databases, and more are leveraging Kubernetes as a universal automation engine. The message is clear: Kubernetes has grown into a powerful general-purpose platform API for infrastructure.
+
+So what's the catch? As organizations embrace Kubernetes for more use cases, new challenges have surfaced with how we traditionally run Kubernetes.
+
+<!-- truncate -->
+
+## Challenges with the Traditional Kubernetes Model
+
+**Cluster-per-Team Inefficiencies:** A typical pattern in enterprises has been giving each team, project, or customer their Kubernetes cluster to ensure isolation. While this "cluster-per-team" approach isolates workloads, it leads to **cluster sprawl** – dozens or hundreds of clusters to manage, each with its own control plane. This fragmentation drives up operational overhead and infrastructure costs. Compared to managing many single-tenant clusters, a shared multi-tenant cluster can **reduce management overhead and minimize resource fragmentation​**[^3]. The Kubernetes documentation itself notes that sharing clusters (i.e. multi-tenancy) can save costs and simplify administration – albeit with challenges in areas like security and fairness​[^4]. Yet many organizations still opt for separate clusters per tenant because Kubernetes was not initially designed with strong multi-tenant boundaries.
+
+**Why not just share one cluster?** The trouble is that Kubernetes' extensibility and some configurations are inherently cluster-wide. For instance, when teams add new capabilities to Kubernetes via Custom Resource Definitions (CRDs) – essentially custom APIs that extend Kubernetes – those CRDs apply to the entire cluster. In a shared cluster, you wouldn't want one team's custom API to affect another team inadvertently. Without native multi-tenant controls at the API level, platform teams have been forced to silo tenants by cluster. This ensures isolation, but it's like the early days of computing when every application ran on its physical server for safety reasons: it works, but it's inefficient.
+
+**Operational Complexity and Waste:** Maintaining a fleet of single-tenant clusters introduces heavy lifting. Each cluster must be monitored, secured, patched, and scaled independently. Consistency is more challenging to enforce across environments. Resource utilization is often suboptimal – one team's cluster might be underused while another is strained, and they can't easily share capacity. In short, the one-cluster-per-team model trades better isolation for higher cost and complexity.
+
+**Partial Workarounds:** The community has developed stop-gap solutions such as *virtual clusters* or lightweight multi-cluster management tools (e.g. [vcluster](https://github.com/loft-sh/vcluster) by Loft or projects like [k3s](https://k3s.io/)) to mitigate these issues. These allow multiple "clusters" to run on a shared infrastructure by spinning up isolated control planes on top of a host cluster. This provides some separation with less overhead than full standalone clusters. However, these solutions still essentially create strict slices of Kubernetes under the hood – akin to giving everyone their virtual machine when you want to secure multi-tenancy on one robust system. They solve some symptoms but not the root issue.
+
+All of this points to a need for a new paradigm. We're at an inflection point, much like when the industry moved from many physical servers to virtualization, and then to containers for efficiency. Kubernetes needs multi-tenancy and scalability at the control plane level to serve as the next-generation platform fabric.
+
+## From Clusters to Workspaces: Introducing kcp for Multi‑Tenancy
+
+Enter **[kcp](https://www.kcp.io/)** – an open-source project that represents a paradigm shift in how we use Kubernetes. Think of kcp as Kubernetes-like control plane, re-imagined for multi-tenant, cloud-scale scenarios. It's still Kubernetes at heart (kcp is a CNCF Sandbox project built on Kubernetes), but it adds the "missing pieces" – native support for organizing multiple tenants and APIs within a single Kubernetes-based control plane.
+
+How does kcp achieve this? The key concept is the *Workspace*. A kcp workspace is like a virtual Kubernetes cluster: each workspace behaves as if it has its own Kubernetes API server – with its own endpoint, its own set of API resources, its own role-based access controls – yet all those workspaces are hosted efficiently on a shared control plane. In practical terms, kcp "implements fully-isolated workspaces, each acting as its own Kubernetes-like cluster… but as cheap and quick as a namespace." In other words, creating a new Kubernetes environment for a team or project becomes as lightweight as creating a new namespace, instead of provisioning an entire new cluster.
+
+This is a game-changer for scalability. A single kcp deployment can potentially handle thousands of workspaces, all securely isolated from each other. The kcp control plane is horizontally scalable – it can distribute workspaces across multiple server instances (shards) behind the scenes – so the platform grows seamlessly as you add more teams or applications. The goal is to eliminate the need to stand up a new full cluster for every use case; instead, you allocate a new workspace in kcp whenever you need a fresh Kubernetes environment.
+
+**Multi-Tenant API Extensions:** kcp also introduces the idea of offering APIs-as-a-Service. Platform engineers can install custom APIs (CRDs plus their controllers) once into the kcp platform and then "export" them to many workspaces. Under a traditional model, if you wanted every team to have, say, a _database_ custom resource available, you'd have to deploy the CRD and its operator in every cluster. With kcp, you can load that capability into the global control plane and make it available to each workspace on demand. Each team still only sees and manages the APIs in their workspace. This design enables central management of services while still isolating consumption per tenant – combining efficiency with safety.
+
+Crucially, kcp achieves all this without forking or replacing Kubernetes. It builds on the proven Kubernetes Resource Model and extends it. The kcp project emphasizes that it "does not replace Kubernetes, but complements it as a backend to host Kubernetes‑like APIs as SaaS. It's a flexible framework for building platforms."​[^5].
+
+In practice, you can treat kcp as a building block to create your own internal developer platform or SaaS offering, with Kubernetes under the hood. Because kcp adheres to Kubernetes conventions, it preserves everything that makes Kubernetes attractive: declarative configuration, familiar `kubectl` tooling, and a huge ecosystem of controllers and integrations.
+
+For enterprise decision-makers, what kcp offers is the best of both worlds:
+
+- **Stronger Multi-Tenancy:** Fine-grained isolation at the API level. Each tenant (team or customer) feels like they have their own Kubernetes cluster, while operators manage a unified control plane.
+- **Improved Efficiency:** Dramatically lower overhead by hosting many logical clusters on shared infrastructure. Fewer control plane instances mean less duplication and easier management.
+- **Scalability:** A platform built on kcp can scale to many tenants and environments without a linear increase in operational effort. Adding a new tenant is as simple as creating a workspace, not provisioning new servers.
+- **Security & Governance:** Centralized control over what APIs and policies are available to tenants. Global policies (security, compliance) can be enforced uniformly, even as each workspace remains isolated for autonomy.
+- **Developer Agility:** Teams get on-demand access to Kubernetes APIs for their needs in minutes. No more waiting for weeks for a new cluster to be set up. This accelerates experimentation and ensures consistency across dev, test, and prod environments (which could be separate workspaces instead of separate clusters).
+
+## Composable Platforms Built on a Kubernetes Foundation
+
+The emergence of kcp aligns with a broader industry trend towards **composable platforms** and leveraging Kubernetes as the substrate for modern infrastructure. Forward-looking initiatives like the **[Apeiro Reference Architecture](https://apeirora.eu/)** (ApeiroRA) treat Kubernetes as a fundamental building block – leveraging Kubernetes as a unified automation control plane even for managing physical hardware​[^6]. By embracing well-accepted open standards (Linux, containers, Kubernetes, and more), Apeiro aims to enable a "cloud operating system" spanning cloud and edge environments​[^7]. While Kubernetes is commonly associated with container orchestration, its architecture and declarative API model are truly general-purpose​[^8]. In other words, Kubernetes is seen as the foundation for all kinds of platform services, not just container workloads.
+
+In practical terms, building your platform strategy on the Kubernetes Resource Model unlocks a wealth of innovation. The Kubernetes API has become the **"glue" of the cloud-native ecosystem​**, meaning that everything from CI/CD pipelines to monitoring systems can plug into it. When your internal platform is Kubernetes-native, you tap into an ecosystem of operators and tools rather than creating everything from scratch. Need to provide databases or cloud resources to your developers? Tools like Crossplane can be part of your platform, offering those resources through the same Kubernetes interface that developers use to deploy applications. Want to streamline certificate management or implement event-driven architecture? Kubernetes-based solutions (e.g. Cert-Manager for certificates, Knative or Korifi for serverless apps) can be composed into the platform. Kubernetes' ubiquity ensures that skills and tooling are transferable – your teams don't have to learn a completely new system for your internal platform.
+
+By leveraging kcp on top of this, organizations can offer these composable platform capabilities in a scalable, tenant-aware way. Instead of running dozens of separate clusters with a patchwork of add-ons, you run one logical control plane where new services and updates can be rolled out to all tenants consistently. This enhances **consistency and compliance** – an important consideration for enterprises – without sacrificing the flexibility each team needs to innovate.
+
+In essence, Kubernetes is evolving from a deployment tool into the **strategic platform layer** of modern IT. Projects like kcp are extending its reach, making true multi-tenant, platform-as-a-service scenarios much more attainable. The old model of one cluster per team is giving way to a model where Kubernetes itself can host many virtual clusters efficiently and securely.
+
+The strategic platform layer built on KRM is not only beneficial for internal platforms within an organization. The declarative, cloud-native API standard can be linked to Digital Twin[^11] descriptions that play a vital role in fostering interoperability between organizations. KRM enables the integration of diverse service offerings from multiple organizations/providers, communicating seamlessly in a common language established by Kubernetes. Teams in different organizations can re-use their Kubernetes skills and collaborate across organizational boundaries while operating within (and contributing to) a cohesive ecosystem. The Apeiro **Platform Mesh**[^12] implements exactly this vision of interoperability[^9] for the multi-provider cloud-edge continuum by adopting KRM and kcp in its core.
+
+## Call to Action: Embracing the Next Kubernetes Paradigm
+
+Kubernetes has come a long way from being a container orchestration engine. As we stand at this new frontier, enterprise leaders should recognize the opportunity in front of them. Embracing Kubernetes as a universal control plane – and adopting technologies like kcp for multi-tenancy – can significantly boost infrastructure efficiency and accelerate innovation. It allows your organization to provide a cloud-like platform experience to developers and business units, all on top of the same solid Kubernetes foundation that the industry trusts.
+
+The paradigm shift is clear: **move from managing fleets of clusters to managing flexible control planes** that serve your whole organization. Adopting this shift early can reduce complexity, cut costs, and empower your teams with self-service capabilities that were previously hard to deliver at scale. Kubernetes has evolved, and those who evolve their platform strategy along with it will be positioned to lead in the cloud-native era.
+
+**Next Steps:** Interested in seeing this new model in action? We invite you to explore kcp through a self-guided workshop. It's a hands-on way to experience these concepts using just a Linux environment (even Google Cloud Shell works). Check out the guide and give it a try: **[kcp Multi-Tenancy Workshop](https://github.com/kcp-dev/contrib/tree/main/kubecon.eu.workshop/20250401-kubecon-london/workshop) from KubeCon Europe 2025**. See for yourself how Kubernetes, combined with kcp, can become the backbone of your next-generation platform – and imagine what that could mean for your organization.
+
+[^1]: [Enterprises To Adopt Composable Platforms For Flexibility In 2025 | Predictions by Mirantis](https://tfir.io/enterprises-to-adopt-composable-platforms-for-flexibility-in-2025-predictions-by-mirantis/) by Stephen Frassetti, Mirantis
+
+[^2]: [Crossplane: The cloud native control plane framework](https://www.crossplane.io/#:~:text=Upbound%20built%20Crossplane%20to%20help,to%20become%20an%20infrastructure%20expert)
+
+[^3]: [Kubernetes CRDs = Huge Pain In Multi-Tenant Clusters](https://www.loft.sh/blog/kubernetes-crds-huge-pain-in-multi-tenant-clusters#:~:text=Compared%20to%20managing%20multiple%2C%20individual,managing%20individual%20clusters%20become%20more) by Volodymyr Grin
+
+[^4]: [Multi-tenancy | Kubernetes](https://kubernetes.io/docs/concepts/security/multi-tenancy/#:~:text=Sharing%20clusters%20saves%20costs%20and,fairness%2C%20and%20managing%20noisy%20neighbors)
+
+[^5]: [Horizontally Scalable Control Plane for Kubernetes APIs - kcp.io](https://kcp.io/#:~:text=Building%20Block%2C%20Not%20Walled%20Garden)
+
+[^6]: [Multi-Plane Controller](https://documentation.apeirora.eu/control-planes/crt) and [Baremetal Operating System (BOS)](https://apeirora.eu/content/about/#:~:text=infrastructure%20to%20independently%20operate%20compute%2C,for%20non) in ApeiroRA
+
+[^7]: [How to apply Apeiro-Reference-Architecture?](https://apeirora.eu/content/about/#:~:text=The%20%E2%80%9Creference%E2%80%9D%20in%20ApeiroRA%20and,are%20truly%20general) and [Documentation](https://documentation.apeirora.eu/) of ApeiroRA
+
+[^8]: [How to apply Apeiro-Reference-Architecture?](https://apeirora.eu/content/about/#:~:text=compatible%20underlays%20at%20every%20participating,of%20uniformity%20required%20for%20the) and [Kubernetes Implementation Design](https://documentation.apeirora.eu/control-planes/kid) in ApeiroRA
+
+[^9]: [Building Europe's Platform Mesh: Cloud-Native APIs for Multi-Provider Integration and Digital Sovereignty](https://fosdem.org/2025/schedule/event/fosdem-2025-5746-building-europe-s-platform-mesh-cloud-native-apis-for-multi-provider-integration-and-digital-sovereignty/) at FOSDEM 2025
+
+[^10]: [How Standards Proliferate](https://xkcd.com/927/) (xkcd comic)
+
+[^11]: [Digital Twins | Apeiro Reference Architecture - Documentation](https://documentation.apeirora.eu/digital-twins)
+
+[^12]: [ApeiroRA Platform Mesh | Apeiro Reference Architecture - Documentation](https://documentation.apeirora.eu/platform-mesh)

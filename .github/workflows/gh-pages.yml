@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build Docusaurus
+    name: Build VitePress site
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,12 +23,12 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build website
-        run: npm run build
+        run: npm run docs:build
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: .vitepress/dist
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest

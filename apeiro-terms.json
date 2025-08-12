@@ -1,0 +1,286 @@
+{
+    "cloud-edge continuum": {
+        "description": "The cloud-edge continuum describes the seamless integration of edge and cloud computing, facilitating new methodologies and optimized data processing and storage within distributed networks.",
+        "url": "https://www.8ra.com"
+    },
+    "platform mesh": {
+        "description": "Enables diverse application development across the cloud-edge continuum by allowing service selection without vendor lock-in.",
+        "url": "/docs/best-practices/platform-mesh"
+    },
+    "service": {
+        "description": "A solution or active entity, which offers some API to its consumers.",
+        "url": "/docs/best-practices/services#service"
+    },
+    "services": {
+        "alias": "service"
+    },
+    "unmanaged service": {
+        "description": "A service not set up and controlled by a service provider.",
+        "url": "/docs/best-practices/services#managed-and-unmanaged-services"
+    },
+    "unmanaged services": {
+        "alias": "unmanaged service"
+    },
+    "unmanaged": {
+        "alias": "unmanaged service"
+    },
+    "managed service": {
+        "description": "A service provided by a Managed Service Provider (MSP).",
+        "url": "/docs/best-practices/services#managed-and-unmanaged-services"
+    },
+    "managed services": {
+        "alias": "managed service"
+    },
+    "managed": {
+        "alias": "managed service"
+    },
+    "capability": {
+        "description": "A concrete incarnation of a service that has been created and configured for a specific application or service.",
+        "url": "/docs/best-practices/services#capability"
+    },
+    "capabilities": {
+        "alias": "capability"
+    },
+    "service instance": {
+        "alias": "capability"
+    },
+    "service instances": {
+        "alias": "capability"
+    },
+    "managed capability": {
+        "description": "A concrete incarnation of a service that has been provided by a Managed Service Provider (MSP).",
+        "url": "/docs/best-practices/services#managed-and-unmanaged-services"
+    },
+    "managed capabilities": {
+        "alias": "managed capability"
+    },
+    "digital twin": {
+        "description": "A virtual representation of a physical object, system, or process that is continuously updated with real-time or near-real-time data to mirror its real-world counterpart.",
+        "url": "/docs/best-practices/digital-twins"
+    },
+    "digital twins": {
+        "alias": "digital twin"
+    },
+    "service consumer": {
+        "description": "An organization or individual that orders, utilizes, and manages the lifecycle of a service.",
+        "url": "/docs/best-practices/services#service-suppliers-and-service-consumers"
+    },
+    "service consumers": {
+        "alias": "service consumer"
+    },
+    "consumer": {
+        "alias": "service consumer"
+    },
+    "consumers": {
+        "alias": "service consumer"
+    },
+    "service supplier": {
+        "description": "An organization or individual that offers and manages one or more services.",
+        "url": "/docs/best-practices/services#service-suppliers-and-service-consumers"
+    },
+    "service suppliers": {
+        "alias": "service supplier"
+    },
+    "supplier": {
+        "alias": "service supplier"
+    },
+    "suppliers": {
+        "alias": "service supplier"
+    },
+    "service provider": {
+        "description": "A service provider offers services to consumers.",
+        "url": "/docs/best-practices/services#service-provider"
+    },
+    "service providers": {
+        "alias": "service provider"
+    },
+    "Service providers":{
+        "alias": "service provider"
+    },
+    "provider": {
+        "alias": "service provider"
+    },
+    "providers": {
+        "alias": "service provider"
+    },
+    "managed service provider": {
+        "alias": "service provider"
+    },
+    "managed service providers": {
+        "alias": "service provider"
+    },
+    "msp": {
+        "alias": "service provider"
+    },
+    "kubernetes resource model": {
+        "description": "A framework used in Kubernetes to define and manage the various entities or resources.",
+        "url": "/docs/best-practices/digital-twins/krm"
+    },
+    "krm": {
+        "alias": "kubernetes resource model"
+    },
+    "controller": {
+        "description": "A control loop that watch the for state changes and makes or requests changes where needed.",
+        "url": "/docs/best-practices/digital-twins/controller"
+    },
+    "controllers": {
+        "alias": "controller"
+    },
+    "resource": {
+        "description": "A document defining the desired state of a capability and capturing its actual state. See also Kubernetes Resource Model (KRM).",
+        "url": "/docs/best-practices/services#resource"
+    },
+    "resources": {
+        "alias": "resource"
+    },
+    "service runtime": {
+        "description": "A runtime environment that hosts one or more capabilities.",
+        "url": "/docs/best-practices/services#service-runtime"
+    },
+    "service runtimes": {
+        "alias": "service runtime"
+    },
+    "service coordinator": {
+        "description": "A central component of a service provider, containing the service scheduler and the service runtime manager.",
+        "url": "/docs/best-practices/services/managed-service-provider-pattern#service-coordinator"
+    },
+    "service scheduler": {
+        "description": "A controller that identifies and assigns an service runtime to unscheduled capabilities.",
+        "url": "/docs/best-practices/services/managed-service-provider-pattern#service-scheduler"
+    },
+    "service runtime manager": {
+        "description": "A component that manages service runtimes for a service provider.",
+        "url": "/docs/best-practices/services/managed-service-provider-pattern#service-runtime-manager"
+    },
+    "servicelet": {
+        "description": "A component managing capabilities on a service runtime.",
+        "url": "/docs/best-practices/services/managed-service-provider-pattern#servicelet"
+    },
+    "servicelets": {
+        "alias": "servicelet"
+    },
+    "service provisioners": {
+        "alias": "service provisioner"
+    },
+    "service marketplace": {
+        "description": "A place where service providers offer various services, and consumers can discover these services.",
+        "url": "/docs/best-practices/services#service-marketplace"
+    },
+    "service marketplaces": {
+        "alias": "service marketplace"
+    },
+    "marketplace": {
+        "alias": "service marketplace"
+    },
+    "marketplaces": {
+        "alias": "service marketplace"
+    },
+    "service orchestration environment": {
+        "description": "The central component of the ApeiroRA Platform Mesh, in which service consumers can order and manage digital twins.",
+        "url": "/docs/best-practices/platform-mesh/service-provider-control-planes"
+    },
+    "service orchestration environments": {
+        "alias": "service orchestration environment"
+    },
+    "security posture": {
+        "description": "The overall security strength and readiness of an organization, reflecting its ability to protect against, detect, and respond to cyber threats through implemented policies, processes, and technologies.",
+        "url": "/docs/best-practices/security/security-compliance-automation"
+    },
+    "account model": {
+        "description": "A hierarchical structure that serves as the foundational fabric for managing interactions between service providers and consumers, enabling sophisticated service management while maintaining clear organizational boundaries and operational control.",
+        "url": "/docs/best-practices/platform-mesh/account-model"
+    },
+    "account": {
+        "alias": "account model"
+    },
+    "accounts": {
+        "alias": "account model"
+    },
+    "micro frontend": {
+        "description": "An architectural style where independently deliverable frontend applications are composed into a larger whole.",
+        "url": "/docs/best-practices/micro-frontends"
+    },
+    "micro frontends": {
+        "alias": "micro frontend"
+    },
+    "Micro Frontends": {
+        "alias": "micro frontend"
+    },
+    "microfrontends": {
+        "alias": "micro frontend"
+    },
+    "microfrontend": {
+        "alias": "micro frontend"
+    },
+    "Apeiro Frontend": {
+        "description": "The primary user interface for managing cloud-edge services provided by the Apeiro Reference Architecture, built on open-source principles and leveraging a microfrontend architecture.",
+        "url": "/docs/best-practices/micro-frontends"
+    },
+    "frontend": {
+        "alias": "Apeiro Frontend"
+    },
+    "workspace": {
+        "description": "A concept in kcp that creates additional isolation for resources and APIs, serving as a basis for a technical account model in OpenMFP.",
+        "url": "/docs/best-practices/platform-mesh/account-model#account-structure"
+    },
+    "workspaces": {
+        "alias": "workspace"
+    },
+    "ord": {
+        "description": "A protocol that allows applications and services to self-describe resources and interfaces.",
+        "url": "https://github.com/open-resource-discovery"
+    },
+    "Open Resource Discovery": {
+        "alias": "ord"
+    },
+    "kms": {
+        "description": "Key Management Service (KMS) is a secure cloud service that manages cryptographic keys for data encryption, enabling users to easily create, control, and use encryption keys across various applications and services.",
+        "url": "/docs/best-practices/security/key-management"
+    },
+    "hsm": {
+        "description": "A physical computing device that safeguards and manages digital keys for strong authentication and provides cryptoprocessing to enhance the security of sensitive data.",
+        "url": "/docs/best-practices/security/key-management"
+    },
+    "hardware security module": {
+        "alias": "hsm"
+    },
+    "otel": {
+        "description": "OpenTelemetry, also known as OTel, is a vendor-neutral open source Observability framework for instrumenting, generating, collecting, and exporting telemetry data such as traces, metrics, and logs.",
+        "url": "/docs/best-practices/observability"
+    },
+    "actuator": {
+        "description": "Controllers that map real-world capabilities into the virtual-world.",
+        "url": "/docs/best-practices/control-planes/cat#actuators"
+    },
+    "actuators": {
+        "alias": "actuator"
+    },
+    "control plane": {
+        "description": "Central management system responsible for orchestrating and managing a target environment.",
+        "url": "/docs/best-practices/control-planes#control-plane"
+    },
+    "control planes": {
+        "alias": "control plane"
+    },
+    "data plane": {
+        "description": "Persistency part of the management or control plane that hosts the shared repository for all digital twin resources.",
+        "url": "/docs/best-practices/control-planes#data-plane"
+    },
+    "data planes": {
+        "alias": "data plane"
+    },
+    "work plane": {
+        "description": "Operational heart of a target environment.",
+        "url": "/docs/best-practices/control-planes#work-plane"
+    },
+    "work planes": {
+        "alias": "work plane"
+    },
+    "ums": {
+        "description": "A service that gathers metadata and offers a graph-based API for easy discovery, querying, and selection of metadata across different business contexts and providers.",
+        "url": "#"
+    },
+    "Unified Metadata Service": {
+        "alias": "ums"
+    }
+}
