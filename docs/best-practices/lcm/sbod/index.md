@@ -4,7 +4,7 @@ title: Software Bill of Delivery
 keywords: [SBoD]
 ---
 
-Secure Software Development Lifecycle (S-SDLC) adds the security emphasis on SDLC, from software design, development, packaging, shipment, to deployment and beyond. Ensuring the integrity, security, and traceability of software and all artifacts across various environments is paramount. Security and compliance must be [automated](./../../security/security-compliance-automation/index.mdx) for modern development practices to meet the business demand of increasing pace of feature innovation and delivery to production.
+Secure Software Development Lifecycle (S-SDLC) adds the security emphasis on SDLC, from software design, development, packaging, shipment, to deployment and beyond. Ensuring the integrity, security, and traceability of software and all artifacts across various environments is paramount. Security and compliance must be [automated](./../../security/security-compliance-automation/index.md) for modern development practices to meet the business demand of increasing pace of feature innovation and delivery to production.
 
 ## Open Component Model as SBoD
 While a Software Bill of Materials (SBoM) focuses on the constituent parts of a software artifact[^1], the reference architecture adopts the novel concept of **Software Bill of Delivery (SBoD)** to facilitate integrity, security, and traceability of software (and much more) in a holistic fashion. The **<Project name="ocm">Open Component Model</Project>** (OCM)[^2] is utilized as SBoD, and the following outlines some of the key features:
@@ -34,7 +34,7 @@ But ultimately, adopters of OCM as SBoD can package any type of runbook, and req
 
 ## Security Compliance
 
-The OCM coordinate system is the crucial missing link to establish [security compliance automation](./../../security/security-compliance-automation/index.mdx). It enables organizations to enhance security posture and certification readiness.
+The OCM coordinate system is the crucial missing link to establish [security compliance automation](./../../security/security-compliance-automation/index.md). It enables organizations to enhance security posture and certification readiness.
 
 :::info Real-world analogy
 In the context of food safety, Global Trade Item Number (GTIN) serves as a crucial coordinate system. It provides a standardized method to identify any food product uniquely, regardless of where it is in the supply chain. This unique identification is critical for tracking and tracing food products, a fundamental aspect of food safety. The GTIN is usually embedded in the barcode of the product, along with a label that provides access to immediate information, such as nutrition score. More extensive data is then stored in backoffice databases which then can be correlated using the GTIN.

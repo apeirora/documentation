@@ -57,7 +57,7 @@ Key aspects of Service Management Integration within the account model:
 
 This integration expertly balances clear boundaries between different <Term>services</Term> with seamless integration across the service portfolio. It supports complex multi-tenant scenarios without compromising security and provides a foundation for a scalable and regionally distributed service ecosystem.
 
-For more details about service management concepts and patterns, see [Services and Service Management](../services).
+For more details about service management concepts and patterns, see [Services and Service Management](../services/index.md).
 
 ## Key Features
 

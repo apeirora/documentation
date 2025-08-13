@@ -3,11 +3,11 @@ sidebar_position: 1
 title: Hosted Control Planes
 ---
 
-A notable evolution and special case in multi-cluster federation architecture is the concept of **Hosted Control Planes (HCP)**, originating from the idea of [Kubeception](https://gardener.cloud/docs/getting-started/architecture/)[^1], that is [recursively](./..//control-planes/index.mdx#interactions-of-planes) deploying Kubernetes with or in Kubernetes. With HCP the control and data plane components are hosted as tenant workloads in the worker plane of another cluster, a so-called host or seed cluster. Notably, HCP at its core is a Control-Plane-as-a-Service offering. The HCP approach offers:
+A notable evolution and special case in multi-cluster federation architecture is the concept of **Hosted Control Planes (HCP)**, originating from the idea of [Kubeception](https://gardener.cloud/docs/getting-started/architecture/)[^1], that is [recursively](./..//control-planes/index.md#interactions-of-planes) deploying Kubernetes with or in Kubernetes. With HCP the control and data plane components are hosted as tenant workloads in the worker plane of another cluster, a so-called host or seed cluster. Notably, HCP at its core is a Control-Plane-as-a-Service offering. The HCP approach offers:
 
 - **Cost Efficiency**: Organizations can reduce operational overhead and costs associated with maintaining dedicated cluster infrastructure.
 - **Faster Provisioning**: HCPs enable quicker cluster provisioning times, as the control and data plane can be treated like any other cloud-native component deployment.
-- **Security Optimizations**: With the planes managed [separately](./../control-planes/crt.mdx), HCP enhances security, including strong isolation boundaries between control and work plane.
+- **Security Optimizations**: With the planes managed [separately](./../control-planes/crt.md), HCP enhances security, including strong isolation boundaries between control and work plane.
 - **Cloud-Native Benefits**: Kubernetes is the cloud-native reference system for automating deployment, scaling, and management of containerized software. As Kubernetes itself is (containerized) software, we inherit all cloud-native advantages and benefits by using Kubernetes to deploy, host, and operate Kubernetes.
 
 <ApeiroFigure src="/multi-cluster-federation/img/hcp.svg"
@@ -34,7 +34,7 @@ Automated operations and enterprise-readiness at scale are a key factor for Mana
 
 Project <Project>Gardener</Project> is the default Kubernetes-as-a-Service provider of choice in ApeiroRA. It specifically has codified and automated crucial operational [features](https://gardener.cloud/docs/gardener/) which elevate the otherwise generic HCP architecture to enterprise-readiness level. For example, Gardener automates the management and scaling of its own hosting infrastructure.
 
-Although the Gardener architecture is a variant of the more generic HCP architecture, its specific architecture also provided the blueprint for comprehensive [Managed Service Providers (MSP)](./../services/managed-service-provider-pattern.mdx). MSP is a service provisioning system capable of initializing and managing its own hosting or seed infrastructure across available resources in the cloud-edge-continuum, with the goal to offer desired, specialized services.
+Although the Gardener architecture is a variant of the more generic HCP architecture, its specific architecture also provided the blueprint for comprehensive [Managed Service Providers (MSP)](./../services/managed-service-provider-pattern.md). MSP is a service provisioning system capable of initializing and managing its own hosting or seed infrastructure across available resources in the cloud-edge-continuum, with the goal to offer desired, specialized services.
 
 <ApeiroFigure src="/multi-cluster-federation/img/gardener.svg"
   alt="Gardener Schematics"

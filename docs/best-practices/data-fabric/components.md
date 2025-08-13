@@ -20,5 +20,5 @@ Three main components of Data Fabric:
 Application resources leverage a standardized metadata model to ensure consistent identification of business objects, independent of resource or service naming conventions. A common example is the use of a dedicated annotation within the specification that explicitly defines the business object associated with the API.
 
 
-The [following section](./landscape.mdx) illustrates the interaction of these components within the system architecture and the metadata flow.
+The [following section](./landscape.md) illustrates the interaction of these components within the system architecture and the metadata flow.
 

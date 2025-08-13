@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Kubernetes Implementation Design
 ---
 
-Kubernetes is said to be composed of microservices which form the [aforementioned three planes](./index.mdx).
+Kubernetes is said to be composed of microservices which form the [aforementioned three planes](./index.md).
 But an important distinction needs to be made: microservices manage and encapsulate their state with their own API protocol, whereas Kubernetes fully defines a common API framework and manages the state for all its components in the <Term>data plane</Term>.
 
 There is ample external [documentation](https://kubernetes.io/docs/concepts/architecture/) available, which describes the architecture and detailed implementation of Kubernetes (primarily as container orchestrator).
@@ -34,7 +34,7 @@ width="100%"/>
 ### Components of the Control Plane
 
 If we conceptually attribute the API server to the <Term>data plane</Term>, then the <Term>control plane</Term> contains
-a) all needed **[API Extensions](./../digital-twins/extensibility.mdx)**.
+a) all needed **[API Extensions](./../digital-twins/extensibility.md)**.
 The Kubernetes core design pattern includes b) [**scheduler**](https://kubernetes.io/docs/concepts/architecture/#kube-scheduler), and
 c) [**controller manager**](https://kubernetes.io/docs/concepts/architecture/#kube-controller-manager) which bundles various Kubernetes internal controllers.
 Furthermore, a typical cluster minimally requires d) [**cloud controller manager**](https://kubernetes.io/docs/concepts/architecture/cloud-controller/) which bundles controllers necessary for dealing with resources from external cloud providers.

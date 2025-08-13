@@ -26,4 +26,4 @@ The control plane manages the entire lifecycle of capabilities, from initial pro
 
 As the Platform Mesh continues to evolve, control planes will remain essential in enabling the creation of sophisticated service orchestrations.
 They provide the foundation for managing modern cloud services while maintaining operational simplicity, making them a cornerstone of the Platform Mesh architecture.
-Through their implementation of the declarative API model and support for the [Managed Service Provider pattern](./../services/managed-service-provider-pattern.mdx), control planes enable the flexible, scalable, and reliable service ecosystem that the Platform Mesh aims to create.
+Through their implementation of the declarative API model and support for the [Managed Service Provider pattern](./../services/managed-service-provider-pattern.md), control planes enable the flexible, scalable, and reliable service ecosystem that the Platform Mesh aims to create.

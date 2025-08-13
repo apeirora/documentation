@@ -5,7 +5,7 @@ authors:
   - uwe-krueger
 ---
 
-<!-- index.mdx -->
+<!-- index.md -->
 Software configuration and procedures, practices, and tools for (first time) installation, patching, or updating are at the heart of software lifecycle management.
 
 Generally, lifecycle management
@@ -28,7 +28,7 @@ While complex initial installations may be covered by the approach, we conclude 
 
 <!-- truncate -->
 
-<!-- challenge.mdx -->
+<!-- challenge.md -->
 ## The Challenge, Day 0, 1, and 2
 
 Lifecycle management involves distinct phases - Day 0, Day 1, and Day 2. Each presenting unique challenges:
@@ -48,7 +48,7 @@ The term *installation* will be used in the following as a synonym for both *set
 
 [^1]: Popular data migration tools for example are [Wikipedia: Flyway](https://en.wikipedia.org/wiki/Flyway_(software)), [Wikipedia: Liquibase](https://en.wikipedia.org/wiki/Liquibase), and programming languages offer libraries, such as [github: go-migrate](https://github.com/golang-migrate/migrate).
 
-<!-- layout.mdx -->
+<!-- layout.md -->
 ## General Installation Layout
 
 In consequence, all approaches follow the same general layout:
@@ -68,7 +68,7 @@ Let us next consider the configuration description.
 
 
 
-<!-- configurations.mdx -->
+<!-- configurations.md -->
 ## Configurations Reconsidered
 
 In the simplest case, configuration is described by some general, possibly structured, data definition format, like [YAML](https://yaml.org), [JSON](https://www.json.org), [XML](https://www.w3.org/TR/xml) or [INI](https://docs.fileformat.com/system/ini). The installation code looks for dedicated fields in the configuration to assign a particular meaning. This could be single parameters or complete structures.
@@ -86,7 +86,7 @@ Values of particular attributes should either follow some rules (or constraints)
 
 Let us therefore consider templating engines next.
 
-<!-- templating.mdx -->
+<!-- templating.md -->
 ## Templating Engines
 
 
@@ -142,7 +142,7 @@ An often-cited example for integrated configuration DSL allowing for feedback fr
 
 With this last scenario we leave the pure configuration description. Let us consider and take a closer look at the installation procedure itself next.
 
-<!-- installations.mdx -->
+<!-- installations.md -->
 ## Installations Reconsidered
 
 The installer coding is responsible to map a configuration (utilizing a DSL) to an appropriate set of elements in the target environment and execute the concrete installation.
@@ -234,7 +234,7 @@ All approaches to circumvent those problems are typically
 
 In summary, while Day 1 installation can be handled with multi-purpose, generic frameworks, Day 2 updates with structural changes, even requiring migrations, can't be handled by typical generic frameworks. All approaches to fix updates within generic frameworks become very complicated, confusing and error-prone.
 
-<!-- target.mdx -->
+<!-- target.md -->
 ## Target Environment Reconsidered
 
 A new quality can be achieved with the configuration (the DSL-based composition) not treated as static input to the complete installation procedure. A first step towards this direction is to refer to information from the target environment by using special (static) expressions in the configuration description. The next iteration is to incorporate feedback loops that are generalized for all element configuration descriptions.
@@ -252,7 +252,7 @@ This feature is tightly coupled with the decomposition of the overall installer 
 increase the expressive power of the overall system as well as the abstraction available for the installer implementation. It can asynchronously decompose into other configuration elements and
 combine this with its own synchronization and ordering logic.
 
-<!-- gitops.mdx -->
+<!-- gitops.md -->
 ## GitOps Operational Model
 
 A popular practice to handle installations is [*GitOps*](https://opengitops.dev/) with *Kubernetes* as runtime. Whereas, *GitOps* is not necessarily part of the technical installation procedure itself but only augments it with a [DevOps](https://en.wikipedia.org/wiki/DevOps) operational model. Its task is to handle the synchronization process of bringing together static configurations stored in (versioned) repositories (of course Git, but also OCI) with the execution of the installation.
@@ -294,7 +294,7 @@ GitOps Principles v1.0.0 [^5]
 [^5]: GitOps principles according to [opengitops.dev/#principles](https://opengitops.dev/#principles)
 
 
-<!-- conclusion.mdx -->
+<!-- conclusion.md -->
 ## Conclusion
 
 First of all, we see that DSLs are present everywhere, where configuration is interpreted. Even with simple data formats it is possible to express rules, commonalities and derived values. The expressive power comes from the evaluation logic as part of the installation code. Explicit specialized DSL can be seen as syntactical sugar to improve the readability.

@@ -25,4 +25,4 @@ Both higher-level and lower-level services are provided and managed through the 
 
 The reference architecture includes several common, but optional services. For a comprehensive list of these projects, visit the [Apeiro Reference Architecture website](https://apeirora.eu/content/projects/).
 For example, ApeiroRA offers a Kubernetes environment through the <Project>Gardener</Project> project, but its use is not mandatory for applications. Other Kubernetes providers can also offer their services within the mesh.
-This flexibility gives [developers](./perspectives/developer-perspective.mdx) more choices and helps prevent lock-in to a particular service supplier.
+This flexibility gives [developers](./perspectives/developer-perspective.md) more choices and helps prevent lock-in to a particular service supplier.

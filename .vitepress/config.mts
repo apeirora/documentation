@@ -20,7 +20,11 @@ export default withMermaid(defineConfig({
   description: "Apeiro Reference Architecture - Documentation",
   base: BASE,
   srcDir: '.',
-  srcExclude: ['./node_modules/**/*'],
+  srcExclude: [
+    './node_modules/**/*',
+    'README.md',
+    'RELEASE.md'
+  ],
   // assetsDir: './static',
   cleanUrls: true,
   appearance: false, // disable dark mode
@@ -133,5 +137,5 @@ export default withMermaid(defineConfig({
       }
     ]
   },
-  ignoreDeadLinks: true // TODO: set to false
+  ignoreDeadLinks: false
 }))

@@ -81,16 +81,16 @@ The paradigm shift is clear: **move from managing fleets of clusters to managing
 
 [^5]: [Horizontally Scalable Control Plane for Kubernetes APIs - kcp.io](https://kcp.io/#:~:text=Building%20Block%2C%20Not%20Walled%20Garden)
 
-[^6]: [Multi-Plane Controller](https://documentation.apeirora.eu/control-planes/crt) and [Baremetal Operating System (BOS)](https://apeirora.eu/content/about/#:~:text=infrastructure%20to%20independently%20operate%20compute%2C,for%20non) in ApeiroRA
+[^6]: [Multi-Plane Controller](./../docs/best-practices/control-planes/crt.md) and [Baremetal Operating System (BOS)](https://apeirora.eu/content/about/#:~:text=infrastructure%20to%20independently%20operate%20compute%2C,for%20non) in ApeiroRA
 
-[^7]: [How to apply Apeiro-Reference-Architecture?](https://apeirora.eu/content/about/#:~:text=The%20%E2%80%9Creference%E2%80%9D%20in%20ApeiroRA%20and,are%20truly%20general) and [Documentation](https://documentation.apeirora.eu/) of ApeiroRA
+[^7]: [How to apply Apeiro-Reference-Architecture?](https://apeirora.eu/content/about/#:~:text=The%20%E2%80%9Creference%E2%80%9D%20in%20ApeiroRA%20and,are%20truly%20general) and [Documentation](/) of ApeiroRA
 
-[^8]: [How to apply Apeiro-Reference-Architecture?](https://apeirora.eu/content/about/#:~:text=compatible%20underlays%20at%20every%20participating,of%20uniformity%20required%20for%20the) and [Kubernetes Implementation Design](https://documentation.apeirora.eu/control-planes/kid) in ApeiroRA
+[^8]: [How to apply Apeiro-Reference-Architecture?](https://apeirora.eu/content/about/#:~:text=compatible%20underlays%20at%20every%20participating,of%20uniformity%20required%20for%20the) and [Kubernetes Implementation Design](./../docs/best-practices//control-planes/kid.md) in ApeiroRA
 
 [^9]: [Building Europe's Platform Mesh: Cloud-Native APIs for Multi-Provider Integration and Digital Sovereignty](https://fosdem.org/2025/schedule/event/fosdem-2025-5746-building-europe-s-platform-mesh-cloud-native-apis-for-multi-provider-integration-and-digital-sovereignty/) at FOSDEM 2025
 
 [^10]: [How Standards Proliferate](https://xkcd.com/927/) (xkcd comic)
 
-[^11]: [Digital Twins | Apeiro Reference Architecture - Documentation](https://documentation.apeirora.eu/digital-twins)
+[^11]: [Digital Twins | Apeiro Reference Architecture - Documentation](./../docs/best-practices/digital-twins/index.md)
 
-[^12]: [ApeiroRA Platform Mesh | Apeiro Reference Architecture - Documentation](https://documentation.apeirora.eu/platform-mesh)
+[^12]: [ApeiroRA Platform Mesh | Apeiro Reference Architecture - Documentation](./../docs/best-practices//platform-mesh/index.md)

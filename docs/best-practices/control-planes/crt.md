@@ -3,7 +3,7 @@ sidebar_position: 3
 title: Multi-Plane Controller
 ---
 
-In the [Controller Pattern section](./../digital-twins/controller.mdx), we discussed the general responsibilities of a <Term>controller</Term> and in the [Kubernetes Implementation Design section](./kid.mdx), we seem to
+In the [Controller Pattern section](./../digital-twins/controller.md), we discussed the general responsibilities of a <Term>controller</Term> and in the [Kubernetes Implementation Design section](./kid.md), we seem to
 assume that the context for a controller always has to be a single Kubernetes cluster (assembled with the three planes).
 However, a reconciling controller can be executed anywhere suitable and be implemented to be multi-plane aware - or more precisely multi-control-plane aware.
 This becomes self-explanatory during the development of a controller. Typically, development occurs on a laptop, where the controller is run outside the cluster
@@ -11,9 +11,9 @@ This becomes self-explanatory during the development of a controller. Typically,
 
 By designing a multi-plane aware controller, we achieve two primary objectives:
 1. establish the necessary isolation boundaries required by cloud services
-2. enable the design for [Multi-Cluster Federation](./../multi-cluster-federation/index.mdx)
+2. enable the design for [Multi-Cluster Federation](./../multi-cluster-federation/index.md)
 
-For clarity throughout this document, the term "<Term>control plane</Term>" refers to any platform[^4] capable of serving [Kubernetes Resource Model](./../digital-twins/krm/index.mdx) (KRM) APIs.
+For clarity throughout this document, the term "<Term>control plane</Term>" refers to any platform[^4] capable of serving [Kubernetes Resource Model](./../digital-twins/krm/index.md) (KRM) APIs.
 
 ## Multi-Plane Architecture Components
 
@@ -27,7 +27,7 @@ For clarity throughout this document, the term "<Term>control plane</Term>" refe
    Business users interact and declare their intent with a dedicated API hosted on a separate <Term>data plane</Term>. This plane serves as the source of truth (for the external business contract), hosting the digital twins and their respective desired states. This layer is _intentionally separated_ from the data and control plane of the Runtime Cluster. This design enforces a critical isolation boundary by decoupling the user-facing API from internal implementation concerns. Note that this layer may be composed of multiple <Term>data planes</Term>.
 
 3. **Multiple Targets**:
-   The multi-plane controller model encourages the use of separate Kubernetes clusters (or control planes) as scale-out targets for workloads. It accomplishes this by utilizing available resource primitives (see [Multi-Cluster Federation](./../multi-cluster-federation/index.mdx) for a detailed discussion) or by orchestrating the desired outcome on any API-enabled platform[^1]. This practice isolates the controller's runtime concerns from the workload's concerns, thereby enhancing the overall security posture. In the case of simpler [clusterlet](./../multi-cluster-federation#federation-with-agents-decentralizing-control) or [servicelet](./../multi-cluster-federation/multi-cloud-service-provider.mdx) controllers, the Runtime Cluster may pragmatically be used as the work plane.
+   The multi-plane controller model encourages the use of separate Kubernetes clusters (or control planes) as scale-out targets for workloads. It accomplishes this by utilizing available resource primitives (see [Multi-Cluster Federation](./../multi-cluster-federation/index.md) for a detailed discussion) or by orchestrating the desired outcome on any API-enabled platform[^1]. This practice isolates the controller's runtime concerns from the workload's concerns, thereby enhancing the overall security posture. In the case of simpler [clusterlet](./../multi-cluster-federation/index.md#federation-with-agents-decentralizing-control) or [servicelet](./../multi-cluster-federation/multi-cloud-service-provider.md) controllers, the Runtime Cluster may pragmatically be used as the work plane.
 
 <ApeiroFigure src="/control-planes/img/crt2.svg"
     alt="Multi-plane aware controller"
@@ -92,8 +92,8 @@ These Fan-In and Fan-Out patterns can be implemented within a single controller.
 - **Scalability**: Leverage `multicluster-runtime` for dynamic cluster/multi-plane handling. It allows more efficient scaling and management of multiple clusters by reusing internal components like clients, queues and caches.
 - **Isolation**: Maintain clear separation between data plane (source for contract), Runtime Cluster (for the multi-plane aware controller), and target clusters (for the workloads), to ensure security and operational integrity. Only open or cross these boundaries when needed.
 - **Dynamic Discovery**: Use `MultiCluster`[`Manager`](https://github.com/kubernetes-sigs/multicluster-runtime/blob/main/pkg/manager/manager.go) to dynamically discover and manage clusters/control planes. Allow controllers to dynamically adapt to changing environments without manual intervention.
-- **Consistency**: Use level-based reconciliation for accurate state management. Make sure that you always set appropriate conditions and states to manage state transitions. Use consistent states across resources. Consistency is established by adhering to the two important basics: 1) well designed [KRM Extension APIs](./../digital-twins/krm/index.mdx) and 2) properly coded [reconciliation loops](./../digital-twins/controller.mdx#edge-and-level-triggering)
-- **Error Handling**: Implement exponential backoff and retries for robust multi-plane interactions. When implementing any retriable error handling, always consider possible hot spots - same resources being retried without random delays and the ensuing [Thundering herd problem](https://en.wikipedia.org/wiki/Thundering_herd_problem). See further information in the [Controller Pattern](./../digital-twins/controller.mdx#proportional-integral-derivative) chapter.
+- **Consistency**: Use level-based reconciliation for accurate state management. Make sure that you always set appropriate conditions and states to manage state transitions. Use consistent states across resources. Consistency is established by adhering to the two important basics: 1) well designed [KRM Extension APIs](./../digital-twins/krm/index.md) and 2) properly coded [reconciliation loops](./../digital-twins/controller.md#edge-and-level-triggering)
+- **Error Handling**: Implement exponential backoff and retries for robust multi-plane interactions. When implementing any retriable error handling, always consider possible hot spots - same resources being retried without random delays and the ensuing [Thundering herd problem](https://en.wikipedia.org/wiki/Thundering_herd_problem). See further information in the [Controller Pattern](./../digital-twins/controller.md#proportional-integral-derivative) chapter.
 
 By using [multicluster-runtime](https://github.com/kubernetes-sigs/multicluster-runtime) with providers like [kcp](https://kcp.io) and [Gardener](https://gardener.cloud) for **Fan-In** and [`Cluster`](https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/cluster) for **Fan-Out**, both integrated with `MultiCluster`[`Manager`](https://github.com/kubernetes-sigs/multicluster-runtime/blob/main/pkg/manager/manager.go), developers can build scalable multi-plane aware controllers within the controller-runtime framework.
 

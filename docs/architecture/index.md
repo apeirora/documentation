@@ -19,11 +19,11 @@ Apeiro conceptually pursues a _declarative approach_ across its components, just
 
 ## Layers Top to Bottom
 
-- **[Platform Mesh](./../best-practices/platform-mesh/index.mdx)** is a core component of Apeiro that allows service providers to offer services of any kind and service consumers to discover those services, order capabilities, and control their lifecycle.
+- **[Platform Mesh](./../best-practices/platform-mesh/index.md)** is a core component of Apeiro that allows service providers to offer services of any kind and service consumers to discover those services, order capabilities, and control their lifecycle.
 
     Other layers of Apeiro usually act as both service provider and service consumers: they provide their functionality as capability and consume capabilities of other layers through the Platform Mesh. The Platform Mesh also acts as a single point of contact for integrating non-Apeiro services (not depicted) and making them available via the same cloud-native mechanisms.
 
-- **[Data Fabric](./../best-practices/data-fabric/index.mdx)** provides standards and tooling for decentralized self-describing of application resources leading to a mesh architecture.
+- **[Data Fabric](./../best-practices/data-fabric/index.md)** provides standards and tooling for decentralized self-describing of application resources leading to a mesh architecture.
 
 - **Konfidence** is the software development and release framework of Apeiro for microservice-based SaaS applications. It comes with support for ring deployments, feature toggle management and a delivery process, all based on best practices from the CNCF landscape[^cncf-landscape].
 
@@ -46,13 +46,13 @@ Apeiro conceptually pursues a _declarative approach_ across its components, just
 
 ## Cross Cutting Concerns
 
-- **[Lifecycle Tooling](./../best-practices/lcm/index.mdx)** based on cloud native principles is considered essential by Apeiro in order to managing software lifecycle at scale.
+- **[Lifecycle Tooling](./../best-practices/lcm/index.md)** based on cloud native principles is considered essential by Apeiro in order to managing software lifecycle at scale.
 
-- **[Security & Compliance](./../best-practices/security/index.mdx)** are built into Apeiro across the different layers.
+- **[Security & Compliance](./../best-practices/security/index.md)** are built into Apeiro across the different layers.
 
 - **Zero-Trust** is a security paradigm in Apeiro to improve the overall security posture.
 
-- **[Observability](./../best-practices/observability/index.mdx)** is available in Apeiro through its layers.
+- **[Observability](./../best-practices/observability/index.md)** is available in Apeiro through its layers.
 
 [^cncf-landscape]: CNCF Cloud Native Landscape, see https://landscape.cncf.io
-[^kubeception]: see [Hosted Control Planes](./../best-practices/multi-cluster-federation/hosted-control-planes.mdx)
+[^kubeception]: see [Hosted Control Planes](./../best-practices/multi-cluster-federation/hosted-control-planes.md)
