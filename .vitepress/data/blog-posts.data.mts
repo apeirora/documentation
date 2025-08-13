@@ -1,5 +1,5 @@
 import { createContentLoader } from 'vitepress'
-import { getBlogDate, loadAllAuthors } from '../util/blog'
+import { getBlogDate, loadAllAuthors, rewriteBlogPath } from '../util/blog'
 import { estimateReadingTime } from '../util/reading-time'
 
 
@@ -13,6 +13,7 @@ export default createContentLoader('blog/*.md', {
         const date = getBlogDate(it.url)
         return {
           ...it,
+          url: rewriteBlogPath(it.url),
           frontmatter: {
             ...(it.frontmatter || {}),
             authors: (it.frontmatter?.authors || []).map(authorId => {

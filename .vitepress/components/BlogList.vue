@@ -1,6 +1,5 @@
 <script setup>
 import { data } from '../data/blog-posts.data'
-import { estimateReadingTime } from '../util/reading-time';
 </script>
 
 <template>

@@ -17,7 +17,7 @@ In the next few blog posts we will make a journey, starting to explore the <Term
 
 ## Kubernetes Resource Model
 
-We will not repeat all the concepts of the <Term>Kubernetes Resource Model</Term>, but will focus only on the important concepts which are relevant for our discussion. Take a look also at the official [Apeiro documentation](/best-practices/digital-twins/krm) regarding the KRM.
+We will not repeat all the concepts of the <Term>Kubernetes Resource Model</Term>, but will focus only on the important concepts which are relevant for our discussion. Take a look also at the official [Apeiro documentation](./../docs/best-practices/digital-twins/krm/index.md) regarding the KRM.
 
 **Everything is a Resource**
 \
@@ -27,7 +27,7 @@ Kubernetes represents all infrastructure elements as API resources. Some common 
 
 **Declarative State Management**
 \
-Rather than issuing imperative commands (like "start 3 containers"), you define the desired state in a text document (also called "manifest"), which can be transmitted into a data plane and then manipulated by CRUD operations. Kubernetes' controllers continuously monitor and reconcile the current cluster state to match the declared state. This reconciling process is known as the [control loop](/best-practices/digital-twins/controller).
+Rather than issuing imperative commands (like "start 3 containers"), you define the desired state in a text document (also called "manifest"), which can be transmitted into a data plane and then manipulated by CRUD operations. Kubernetes' controllers continuously monitor and reconcile the current cluster state to match the declared state. This reconciling process is known as the [control loop](./../docs/best-practices/digital-twins/controller.md).
 
 **Controllers and Reconciliation Loop**
 \
@@ -37,7 +37,7 @@ Kubernetes uses controllers to monitor resources and ensure they match the desir
 
 **Custom Resources and Extensibility**
 \
-Kubernetes is extensible. You can define your own resource types using [Custom Resource Definitions](/best-practices/digital-twins/extensibility) (CRDs) and build controllers to manage them.
+Kubernetes is extensible. You can define your own resource types using [Custom Resource Definitions](./../docs/best-practices/digital-twins/extensibility.md) (CRDs) and build controllers to manage them.
 
 To understand the big picture we will look at the RESTful design pattern and how it's used in the Kubernetes API server, the resource documents and the controllers.
 
@@ -59,7 +59,7 @@ In many cases the semantics of the REST endpoints is operation-centric.
 
 Technically, the Kubernetes API server is like a REST server, however Kubernetes has chosen to use a completely different approach: it separates the functionality behind the API related to the real-world from the API management handled by a REST server. This architecture is also described as **API centric**. The Kubernetes API server restricts itself to operations required to manage textual resource documents representing the state of a software system.
 
-The Kubernetes API server focuses on the documents, including access control and document type management. It does not know anything about the meaning of those managed documents. It just manages typed resources and specializes on the API service infrastructure and functionality required to maintain typed documents, also called resource manifest. It manages an object space for hosting resource documents, called the [data plane](/best-practices/control-planes#data-plane).
+The Kubernetes API server focuses on the documents, including access control and document type management. It does not know anything about the meaning of those managed documents. It just manages typed resources and specializes on the API service infrastructure and functionality required to maintain typed documents, also called resource manifest. It manages an object space for hosting resource documents, called the [data plane](./../docs/best-practices/control-planes/index.md#data-plane).
 
 <ApeiroFigure src="/status/img/big-picture.svg"
     alt="Kubernetes-style API endpoints"
@@ -97,14 +97,14 @@ Kubernetes controllers are often described as reconciliation loops that keep the
 Controllers working together can manipulate any other Kubernetes object via the same API, coordinate complex behaviors, and orchestrate infrastructure, even without directly interacting with the real world, all using the same underlying control pattern.
 
 ### Controllers as Compositional Units
-A controller isn't limited to acting on a single type of resource or external API. It can modify any object in the Kubernetes object space, using the generic, document-centric Kubernetes API, often without knowing which controller will pick up those changes. For example, the **[Kubernetes scheduler](/best-practices/control-planes/cat#attribute-controllers)** doesn't create Pods, it assigns them to Nodes by modifying the `nodeName` field in the `Pod` spec. This change triggers the **[kubelet](/best-practices/control-planes/cat#actuators)**, which is the controller actually responsible for launching the Pod on the target Node.
+A controller isn't limited to acting on a single type of resource or external API. It can modify any object in the Kubernetes object space, using the generic, document-centric Kubernetes API, often without knowing which controller will pick up those changes. For example, the **[Kubernetes scheduler](./../docs/best-practices/control-planes/cat.md#attribute-controllers)** doesn't create Pods, it assigns them to Nodes by modifying the `nodeName` field in the `Pod` spec. This change triggers the **[kubelet](./../docs/best-practices/control-planes/cat.md#actuators)**, which is the controller actually responsible for launching the Pod on the target Node.
 
 <ApeiroFigure src="/status/img/general-controller.svg"
     alt="Controller in general"
     caption="Controller in general"
     width="100%"/>
 
-This decoupled, object-driven pattern allows for **[recursive orchestration](/best-practices/control-planes/cat#logical-object-controllers)**. Higher-level abstractions like **Deployments** are implemented by managing other resources, such as ReplicaSets and Pods. Each layer is handled by a different controller, forming a chain from abstract declarations to real-world execution.
+This decoupled, object-driven pattern allows for **[recursive orchestration](./../docs/best-practices/control-planes/cat.md#logical-object-controllers)**. Higher-level abstractions like **Deployments** are implemented by managing other resources, such as ReplicaSets and Pods. Each layer is handled by a different controller, forming a chain from abstract declarations to real-world execution.
 
 <ApeiroFigure src="/status/img/recursive-nature-of-controller.svg"
     alt="Recursive nature of controller "
@@ -129,7 +129,7 @@ Let’s explore each.
 
 ## Controller Behavioral Types
 
-With this dimension we describe how a controller works on its data plane and target environment. Also take a look at the [Controller Archetypes](/best-practices/control-planes/cat).
+With this dimension we describe how a controller works on its data plane and target environment. Also take a look at the [Controller Archetypes](./../docs/best-practices/control-planes/cat.md).
 
 ### Resource Controllers
 
@@ -184,7 +184,7 @@ This is the typical controller design, one controller instance is responsible fo
 
 Although a controller implementation is state-less, only one controller instance is used to handle all resources. This is required to avoid inter-process synchronization to coordinate the processing of a single resource among different controller instances to avoid the processing for a resource by more than one instance in parallel.
 
-:::note
+:::info
 Even in the straight assignment case, you may want the controller to be highly available in case of a failure. The simple mechanism, often used in Kubernetes, is to spawn several instances and use leader election to elect one as the leader.
 
 This opens up the question about the limits of scalability of a single, active controller instance. How much reconciliation work can one instance coordinate in parallel? How much memory is and how many threads are feasible?

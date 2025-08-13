@@ -186,7 +186,7 @@ Typical applications of this pattern are operating system level packages handled
 
 In many cases, frameworks are able to handle multiple specialized installers or functions for different kinds of installation steps. The configuration may describe multiple, often typed elements. Every type is then associated with special code, which is responsible for mapping the described elements of this type to associated real-world elements in the target environment[^4].
 
-[^4]: The [control, data plane concept](/best-practices/control-planes/kid) of *Kubernetes* is an example for this pattern.
+[^4]: The [control, data plane concept](./../docs/best-practices/control-planes/kid.md) of *Kubernetes* is an example for this pattern.
 
 <ApeiroFigure src="/lcm/img/installation-extensible-framework.svg"
     alt="Installation with extensible framework"
@@ -326,7 +326,7 @@ It is able to handle multiple, potentially different installations by
 explicit general-purpose coding able to execute any manipulation of a target
 environment.
 
-A modern implementation of such a framework is the [Kubernetes Resource Model](/best-practices/digital-twins/krm) architecture, which also provides a runtime for controllers or operators, whose code can be written in general-purpose programming languages. *KRM* allows to describe the *what* in simple configuration formats with pure data. The controllers then are responsible for the *how*.
+A modern implementation of such a framework is the [Kubernetes Resource Model](./../docs/best-practices/digital-twins/krm/index.md) architecture, which also provides a runtime for controllers or operators, whose code can be written in general-purpose programming languages. *KRM* allows to describe the *what* in simple configuration formats with pure data. The controllers then are responsible for the *how*.
 
 Controllers also have access to the data plane. They can evaluate references and access appropriate other configuration resources. Following the reconciliation approach, dynamic dataflow can be achieved among different kinds of resources/configurations.
 

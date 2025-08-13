@@ -93,11 +93,22 @@ export default withMermaid(defineConfig({
 
 
           const { content, data } = matter(code)
-          const injectedChunks: string[] = [content]
+          const injectedChunks: string[] = []
+          const injectToTop: string[] = []
+          if (content.startsWith('__VP_PARAMS_START')) {
+            // content contains dynamic routing
+            // this marker must be the first row of the file's content
+            const [marker, ...actualContent] = content.split('\n')
+            injectToTop.push(marker)
+            injectedChunks.push(actualContent.join('\n'))
+          } else {
+            injectedChunks.push(content)
+          }
 
           const isBlogPost = id.includes('/blog/')
             && !id.endsWith('/index.md')
-          if (isBlogPost) {
+          const isRedirect = id.includes('__VP_PARAMS_START__') && id.includes('redirect')
+          if (isBlogPost && !isRedirect) {
             injectedChunks.unshift(`
 <BlogPost
   date="${getBlogDate(id)}"
@@ -112,6 +123,7 @@ export default withMermaid(defineConfig({
             injectedChunks.unshift(`# ${data.title}`)
           }
 
+          injectedChunks.unshift(...injectToTop)
           const injected = injectedChunks.join('\n\n')
           return {
             code: matter.stringify(injected, data),
