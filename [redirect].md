@@ -7,4 +7,4 @@ useRouter().go(withBase(params.value.redirectUrlAbsolute))
 
 # Redirect
 
-Redirecting to <a :href="withBase($params.redirectUrlRelative)">{{ $params.redirectUrlAbsolute }}</a>
+Redirecting to <a :href="withBase($params.redirectUrlAbsolute)">{{ $params.redirectUrlAbsolute }}</a>
