@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig, HeadConfig } from 'vitepress'
 import markdownItFootnote from 'markdown-it-footnote'
 import { withMermaid } from "vitepress-plugin-mermaid";
 import blogSidebar from './theme/blog-sidebar';
@@ -11,6 +11,14 @@ import { estimateReadingTime } from './util/reading-time';
 const BASE = process.env.VP_BASE || '/'
 if (!path.posix.isAbsolute(BASE)) {
   throw new Error(`Base path '${BASE}' must be absolute, check environment variable VP_BASE`);
+}
+const resolveAbsoluteUrl = (relativeUrl: string) => {
+  const domain = process.env.VP_DOMAIN
+  if (domain) {
+    return new URL(relativeUrl, domain).toString()
+  } else {
+    return path.posix.resolve(BASE, relativeUrl)
+  }
 }
 
 // https://vitepress.dev/reference/site-config
@@ -122,7 +130,12 @@ export default withMermaid(defineConfig({
               `.trim())
           }
 
-          const hasH1 = /^\s*#\s+.+/m.test(content)
+          // we check if the first n(200) characters contain the
+          // Markdown for h1. note that the same sequence may show
+          // up regularly in e.g. YAML comments in codeblocks, messing
+          // with the logic. so we just hope no one uses this so early
+          // in a document.
+          const hasH1 = /^\s*#\s+.+/m.test(content.slice(0, 200))
           if (data.title && !hasH1) {
             injectedChunks.unshift(`# ${data.title}`)
           }
@@ -137,5 +150,23 @@ export default withMermaid(defineConfig({
       }
     ]
   },
-  ignoreDeadLinks: false
+  ignoreDeadLinks: false,
+  transformHead: ({ pageData }) => {
+    const title = (() => {
+      if (pageData.frontmatter.title) {
+        return `${pageData.frontmatter.title} | Apeiro Reference Architecture`
+      } else if (pageData.title) {
+        return `${pageData.title} | Apeiro Reference Architecture`
+      } else {
+        return 'Apeiro Reference Architecture'
+      }
+    })()
+    const head: HeadConfig[] = [
+      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:description', content: pageData.description || '' }],
+      ['meta', { property: 'og:url', content: resolveAbsoluteUrl(pageData.relativePath.replace('index.md', '').replace('.md', '')) }],
+      ['meta', { property: 'og:image', content: resolveAbsoluteUrl('./img/og-image.png') }],
+    ]
+    return head
+  }
 }))
