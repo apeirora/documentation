@@ -28,3 +28,9 @@ yarn-error.log*
 # Vitepress
 .vitepress/cache
 .vitepress/dist
+
+# Artifacts of prepare-publish.yml
+__all-authors.txt
+__authors.txt
+__co-authors.txt
+__message.txt

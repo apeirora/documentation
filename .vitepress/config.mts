@@ -7,6 +7,8 @@ import matter from 'gray-matter'
 import path from 'node:path'
 import { getBlogDate, resolveAuthors, rewriteBlogPath } from './util/blog';
 import { estimateReadingTime } from './util/reading-time';
+import fs from 'node:fs'
+import { glob } from 'glob'
 
 const BASE = process.env.VP_BASE || '/'
 if (!path.posix.isAbsolute(BASE)) {
@@ -146,6 +148,26 @@ export default withMermaid(defineConfig({
             code: matter.stringify(injected, data),
             map: null
           }
+        }
+      },
+      {
+        name: 'post-build-once',
+        apply: 'build' as const,
+        async closeBundle() {
+          // some SVG files that were created with draw.io have built-in
+          // support for light/dark mode. however, the color palette is not
+          // complete, so it looks messy. as dark mode is anyway not supported
+          // right now, we'll simply post-process all SVG and enforce light mode
+          // on them.
+          const files = await glob('.vitepress/dist/**/*.svg')
+          files.forEach(filepath => {
+            const svg = fs.readFileSync(filepath, 'utf-8')
+            const pattern = /color-scheme: light dark/
+            if (pattern.test(svg)) {
+              const newSvg = svg.replace(pattern, 'color-schema: only light')
+              fs.writeFileSync(filepath, newSvg)
+            }
+          })
         }
       }
     ]
