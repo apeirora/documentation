@@ -22,6 +22,7 @@ const resolveAbsoluteUrl = (relativeUrl: string) => {
     return path.posix.resolve(BASE, relativeUrl)
   }
 }
+const NAV_BAR_DIVIDER = { text: '', link: '#--divider--', activeMatch: '' }
 
 // https://vitepress.dev/reference/site-config
 export default withMermaid(defineConfig({
@@ -49,6 +50,8 @@ export default withMermaid(defineConfig({
     nav: [
       { text: 'Documentation', link: '/docs/index.md', activeMatch: '/docs/' },
       { text: 'Blog', link: '/blog/index.md', activeMatch: '/blog/' },
+      { text: 'Changelog', link: '/changelog.md', activeMatch: '/blog/' },
+      NAV_BAR_DIVIDER,
       { text: 'Project Website', link: 'https://apeirora.eu/'  }
     ],
     sidebar: {

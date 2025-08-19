@@ -212,3 +212,30 @@
 .VPFeature article a {
   text-decoration: underline;
 }
+
+/* Make the placeholder a thin vertical line */
+.VPNavBarMenu .VPNavBarMenuLink[href="#--divider--"] {
+  pointer-events: none; /* disable click */
+  border-left: 1px solid var(--vp-c-divider);
+  height: 24px;
+  margin-top: 20px;
+  margin-left: 8px;
+  margin-right: 8px;
+  /* margin: 0 0.75rem; */
+  padding: 0;
+  background: none;
+}
+
+/* Divider magic in nav bar */
+.VPNavBarMenu .VPNavBarMenuLink[href="#--divider--"] span {
+  display: none;
+}
+
+.VPNavBarMenu .VPNavBarMenuLink[href="#--divider--"] span:before {
+  content: 'B'
+}
+@media (max-width: 768px) {
+  .VPNavScreenMenu .VPNavScreenMenuLink[href="#--divider--"] {
+    display: none;
+  }
+}
