@@ -1,7 +1,8 @@
-# apeirora.github.io
+# ApeiroRA Documentation
 
+This repository contains the content for the [documentation website](https://documentation.apeirora.eu) of the Apeiro Reference Architecture (ApeiroRA, see [apeirora.eu](https://apeirora.eu/)).
 
-Documentation for the [Apeiro Reference Architecture](https://apeirora.eu/).
+The website is built with [VitePress](http://vitepress.dev/).
 
 ## Development
 
