@@ -24,6 +24,22 @@ const resolveAbsoluteUrl = (relativeUrl: string) => {
 }
 const NAV_BAR_DIVIDER = { text: '', link: '#--divider--', activeMatch: '' }
 
+const EDIT_LINK_PATTERN = process.env.VP_EDIT_LINK_PATTERN
+if (EDIT_LINK_PATTERN) {
+  try {
+    const url = new URL(EDIT_LINK_PATTERN)
+    const urlStr = url.toString()
+    if (!urlStr.includes('/:path')) {
+      throw new Error(`Edit link pattern '${EDIT_LINK_PATTERN}' must contain the placeholder '/:path', check environment variable VP_EDIT_LINK_PATTERN`)
+    }
+  } catch (err) {
+    throw new Error(`Edit link pattern '${EDIT_LINK_PATTERN}' must be a valid URL, check environment variable VP_EDIT_LINK_PATTERN`, err)
+  }
+}
+const editLinkConfig = EDIT_LINK_PATTERN
+  ? { editLink: { pattern: EDIT_LINK_PATTERN } }
+  : {}
+
 // https://vitepress.dev/reference/site-config
 export default withMermaid(defineConfig({
   title: "ApeiroRA",
@@ -64,6 +80,7 @@ export default withMermaid(defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/apeirora/' }
     ],
+    ...editLinkConfig,
 
     logo: {
       // relative to `public` folder

@@ -26,6 +26,7 @@ jobs:
         run: npm run docs:build
         env:
           VP_DOMAIN: https://documentation.apeirora.eu/
+          VP_EDIT_LINK_PATTERN: 'https://github.com/apeirora/documentation/edit/main/:path'
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
