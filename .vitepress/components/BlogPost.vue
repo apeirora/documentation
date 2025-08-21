@@ -23,7 +23,17 @@
       <div class="authors" v-if="authors">
         <ul>
           <li v-for="author in authors">
-            {{  author.name }}
+            <div class="name">
+              <a v-if="author.url" :href="author.url" target="_blank" rel="noopener noreferrer">
+                {{  author.name }}
+              </a>
+              <span v-else>
+                {{  author.name }}
+              </span>
+            </div>
+            <div v-if="author.title" class="title">
+              {{  author.title }}
+            </div>
           </li>
         </ul>
       </div>
@@ -58,15 +68,24 @@ h2 > a {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-}
-.authors ul li {
-  margin: 0;
-  margin-bottom: 0.5rem;
-  display: block;
-  flex-basis: 50%;
-  flex-grow: 0;
-  flex-shrink: 0;
-  font-weight: bold;
+
+  li {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    display: block;
+    flex-basis: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    .name {
+      font-weight: bold;
+    }
+
+    .title {
+      font-size: 0.8rem;
+      line-height: 1rem;
+    }
+  }
 }
 
 .more {

@@ -33,6 +33,8 @@ export default withMermaid(defineConfig({
   srcDir: '.',
   srcExclude: [
     './node_modules/**/*',
+    'AUTHORING.md',
+    'CONTRIBUTING.md',
     'README.md',
     'RELEASE.md'
   ],

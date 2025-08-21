@@ -24,6 +24,8 @@ export default createContentLoader('blog/*.md', {
               return author
             })
           },
+          // remove headlines from the excerpt, as they mess up the layout
+          excerpt: it.excerpt?.replace(/<h[1-6][^>]*>.*?<\/h[1-6]>/gis, ''),
           metadata: {
             readingTime: estimateReadingTime(it.src || '')
           },

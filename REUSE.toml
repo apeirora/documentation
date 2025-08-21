@@ -1,0 +1,10 @@
+version = 1
+SPDX-PackageName = "apeirora/documentation"
+SPDX-PackageSupplier = "ospo@sap.com"
+SPDX-PackageDownloadLocation = "https://github.com/apeirora/documentation"
+
+[[annotations]]
+path = "**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2024 - 2025 SAP SE or an SAP affiliate company and ApeiroRA contributors"
+SPDX-License-Identifier = "Apache-2.0"
