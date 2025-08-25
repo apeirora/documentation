@@ -2,6 +2,10 @@
 title: Changelog
 ---
 
+## v2.1.0 (2025-08-25)
+
+- Blog post: Garden Linux: Enabling AI on Kubernetes with NVIDIA GPUs
+
 ## v2.0.0 (2025-08-12)
 
 - Update layout to new design
@@ -21,11 +25,11 @@ title: Changelog
 
 ## v1.2.0 (2025-06-03)
 
-- Blog: Release of OpenBao namespaces
+- Blog post: Release of OpenBao namespaces
 
 ## v1.1.0 (2025-03-25)
 
-- Blog: KCP Multi‑Tenant Control Planes
+- Blog post: KCP Multi‑Tenant Control Planes
 
 ## v1.0.0 (2025-03-13)
 
