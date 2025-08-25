@@ -24,6 +24,11 @@ const redirects = [
     from: 'blog/2025/08/07/kubernetes-api-server-and-controller-archetypes',
     to: 'blog/2025-08-07-kubernetes-api-server-and-controller-archetypes.md'
   },
+  // Blogs that were shared internally for review and renamed later
+  {
+    from: 'blog/2025-08-25-enabling-ai-workloads-on-kubernetes-with-nvidia-gpu-operator-on-gardener-gardenlinux',
+    to: 'blog/2025-08-25-garden-linux-enabling-ai-workloads-with-nvidia-gpus.md'
+  },
   // Links that were shared on social media before changing directory structure
   {
     from: 'best-practices/digital-twins/controller',

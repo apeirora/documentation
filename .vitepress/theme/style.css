@@ -239,3 +239,19 @@
     display: none;
   }
 }
+
+/* Blog Styling */
+/*
+ * Some blog post may start with a h2 headline, which by default has
+ * significant padding-top, margin-top and border-top, which looks
+ * odd. This correction aligns the look with a regular paragraph
+ */
+.vp-doc h1 + article.blog-post + h2 {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 16px;
+
+  .header-anchor {
+    top: 0;
+  }
+}

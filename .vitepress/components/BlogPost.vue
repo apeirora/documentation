@@ -10,7 +10,7 @@
 </script>
 
 <template>
-  <article>
+  <article class="blog-post">
     <header>
       <h2 v-if="title">
         <a :href="withBase(titleHref)">
