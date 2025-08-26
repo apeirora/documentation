@@ -68,7 +68,7 @@ export default withMermaid(defineConfig({
     nav: [
       { text: 'Documentation', link: '/docs/index.md', activeMatch: '/docs/' },
       { text: 'Blog', link: '/blog/index.md', activeMatch: '/blog/' },
-      { text: 'Changelog', link: '/changelog.md', activeMatch: '/blog/' },
+      { text: 'Changelog', link: '/changelog.md', activeMatch: '/changelog' },
       NAV_BAR_DIVIDER,
       { text: 'Project Website', link: 'https://apeirora.eu/'  }
     ],
