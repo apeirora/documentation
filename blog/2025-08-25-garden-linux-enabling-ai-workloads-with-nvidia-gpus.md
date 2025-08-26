@@ -31,7 +31,7 @@ In Apeiro, we offer [Gardener](https://gardener.cloud) and [Garden Linux](https:
 
 ## Understanding the NVIDIA GPU Operator
 
-The NVIDIA GPU Operator automates GPU support in Kubernetes by deploying all the required software components (drivers, CUDA, device plugins, etc.) in the right [ABI-compatible](https://en.wikipedia.org/wiki/Application_binary_interface) versions. It eliminates any manual GPU driver installation and configuration, and enables GPUs as native Kubernetes resources. The GPU Operator is a Kubernetes-native operator with custom resource definitions. Furthermore, it ensures consistent GPU functionality across different hardware nodes and configurations, while enabling automatic updates, scaling, and troubleshooting through standard Kubernetes APIs.
+The NVIDIA GPU Operator automates GPU support in Kubernetes by deploying all the required software components (drivers, CUDA, device plugins, etc.) in the right [ABI-compatible](https://en.wikipedia.org/wiki/Application_binary_interface) versions. It eliminates any manual GPU driver installation and configuration, and enables GPUs as native Kubernetes resources. The NVIDIA GPU Operator is a Kubernetes-native operator with custom resource definitions. Furthermore, it ensures consistent GPU functionality across different hardware nodes and configurations, while enabling automatic updates, scaling, and troubleshooting through standard Kubernetes APIs.
 
 <ApeiroFigure src="/img/blog/2025-08-25-nvidia-gpu-enablement-gpu-operator.png"
   caption="NVIDIA GPU Operator visualization in layers"
@@ -39,9 +39,9 @@ The NVIDIA GPU Operator automates GPU support in Kubernetes by deploying all the
   sourceLink="https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/overview.html"
   width="100%"/>
 
-## Enabling Garden Linux for the GPU Operator
+## Enabling Garden Linux for the NVIDIA GPU Operator
 
-The NVIDIA GPU Operator is architected in a modular way so anyone who wants to build GPU Driver containers can make the GPU Operator work with their operating system.
+The NVIDIA GPU Operator is architected in a modular way so anyone who wants to build GPU Driver containers can make the NVIDIA GPU Operator work with their operating system.
 This is what we have done and we are making it publicly available. We used the public NVIDIA GPU Driver Dockerfile to create functional Garden Linux GPU Driver images. Please feel free to use them and collaborate by sharing feedback within the Garden Linux
 [gardenlinux-nvidia-installer](https://github.com/gardenlinux/gardenlinux-nvidia-installer/) repository.
 
@@ -59,7 +59,7 @@ We automated the support directly in our build pipelines.
 
 ### Automating the Build
 
-With guidance from NVIDIA[^thanks], Garden Linux's build and release process was adjusted to automatically publish the ABI-compatible container images required by the GPU Operator.
+With guidance from NVIDIA[^thanks], Garden Linux's build and release process was adjusted to automatically publish the ABI-compatible container images required by the NVIDIA GPU Operator.
 
 [^thanks]: Thanks to [Jathavan Sriram](https://www.linkedin.com/in/jathavansriram) from NVIDIA for the productive discussions.
 
@@ -77,7 +77,7 @@ Orchestrating the publishing of the drivers, wrapped in the correct container fo
 
 ### Example Helm Chart Configuration
 
-The GPU Operator is installed using a [Helm Chart](https://helm.sh/docs/topics/charts/) provided in the NVIDIA Helm repository. Running the NVIDIA GPU Operator on Garden Linux requires a specific set of configuration values in [gpu-operator-values.yaml](https://github.com/gardenlinux/gardenlinux-nvidia-installer/blob/main/helm/gpu-operator-values.yaml).
+The NVIDIA GPU Operator is installed using a [Helm Chart](https://helm.sh/docs/topics/charts/) provided in the NVIDIA Helm repository. Running the NVIDIA GPU Operator on Garden Linux requires a specific set of configuration values in [gpu-operator-values.yaml](https://github.com/gardenlinux/gardenlinux-nvidia-installer/blob/main/helm/gpu-operator-values.yaml).
 
 For sovereign (and air-gapped) environments, you need to maintain your own repository correctly in the `driver.repository` value of the Helm chart.
 
@@ -121,7 +121,7 @@ The example below assumes you have:
 
 4. Test GPU availability (optional)
 
-    You can verify that GPU Operator has worked correctly using a sample job from the NVIDIA [k8s-device-plugin](https://github.com/NVIDIA/k8s-device-plugin) repository. Deploy the following GPU pod manifest:
+    You can verify that NVIDIA GPU Operator has worked correctly using a sample job from the NVIDIA [k8s-device-plugin](https://github.com/NVIDIA/k8s-device-plugin) repository. Deploy the following GPU pod manifest:
 
     ```yaml
     apiVersion: v1
