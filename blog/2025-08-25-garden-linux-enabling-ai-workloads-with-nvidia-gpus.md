@@ -112,10 +112,10 @@ The example below assumes you have:
 
     - use Helm flag `--values` with value `https://raw.githubusercontent.com/gardenlinux/gardenlinux-nvidia-installer/refs/heads/main/helm/gpu-operator-values.yaml` as demonstrated below.
 
-    ```bash
-    helm upgrade --install -n gpu-operator --create-namespace gpu-operator nvidia/gpu-operator --values \
-      https://raw.githubusercontent.com/gardenlinux/gardenlinux-nvidia-installer/refs/heads/main/helm/gpu-operator-values.yaml
-    ```
+        ```bash
+        helm upgrade --install -n gpu-operator --create-namespace gpu-operator nvidia/gpu-operator --values \
+          https://raw.githubusercontent.com/gardenlinux/gardenlinux-nvidia-installer/refs/heads/main/helm/gpu-operator-values.yaml
+        ```
 
     - By default you can use the latest supported version with the values file above, but if you really need it, you can change the `driver.version` property to any available version available in [Garden Linux NVIDIA Driver Package Repository](https://github.com/gardenlinux/gardenlinux-nvidia-installer/pkgs/container/gardenlinux-nvidia-installer).
 
