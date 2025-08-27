@@ -78,7 +78,7 @@ mindmap
       Compatibility, Localization and Accessibility
 ```
 
-[^openmfp]: [OpenMFP](http://openmfp.org/docs)
+[^openmfp]: [OpenMFP](https://openmfp.github.io/openmfp.org/docs)
 [^thoughtworks]: [Thoughtworks technology radar on Micro Frontends](https://www.thoughtworks.com/radar/techniques/micro-frontends)
 [^mforg]: [Micro-Frontends.org](https://micro-frontends.org)
 [^turing]: [What are Micro Frontends and When Should You Use Them?](https://www.turing.com/blog/micro-frontends-what-are-they-when-to-use-them)

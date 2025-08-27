@@ -43,7 +43,7 @@
     },
     "openmfp": {
         "name": "OpenMFP",
-        "url": "https://openmfp.org",
+        "url": "https://openmfp.github.io/openmfp.org",
         "description": "The Open Micro Front End Platform (OpenMFP) brings together micro front ends and APIs into a cohesive platform, allowing teams to contribute components while maintaining their independence.",
         "icon": "/img/projects/openmfp.png"
     }
