@@ -15,13 +15,14 @@ const getTermName = () => {
     return props.name
   } else if (defaultSlot && defaultSlot.length > 0) {
     // Convert the slot's VNode(s) into plaintext
-    return defaultSlot.map(vnode => {
+    const text = defaultSlot.map(vnode => {
       // If it's a text vnode
       if (typeof vnode.children === 'string') {
         return vnode.children
       }
       return ''
     }).join('')
+    return text
   } else {
     return null
   }
@@ -29,7 +30,6 @@ const getTermName = () => {
 
 onMounted(() => {
   const termName = getTermName()
-  const defaultSlot = slots.default?.()
 
   let term = terms[termName.trim()] || terms[termName.toLowerCase().trim()];
   if (!term) {
@@ -47,13 +47,20 @@ onMounted(() => {
   termUrl.value = term.url
   descriptionText.value = term.description
 })
+// Note: .term-content shouldn't be a span
+// but for some reason, div caused some side-
+// effects that did not show up during local
+// dev preview; see #163
 </script>
+
 <template>
   <abbr class="term-wrap">
     <a :href="withBase(termUrl)">
-      {{ termText }}
+      <slot />
     </a>
-    <div class="term-content">{{ descriptionText }}</div>
+    <span class="term-content">
+      {{ descriptionText }}
+    </span>
   </abbr>
 </template>
 
