@@ -2,6 +2,21 @@
 title: Changelog
 ---
 
+## v2.2.0 (2025-10-13)
+
+**New content**
+
+- [Konfidence](./docs/best-practices/lcm/konfidence/index.md) - software delivery framework for microservice-based software-as-a-service (SaaS) in Apeiro
+- [Gardener](./docs/best-practices/multi-cluster-federation/managed-kubernetes-as-a-service.md) - Kubernetes-as-a-Service in Apeiro
+- [Operating Systems](./docs/best-practices/operating-system/index.md) - modern cloud-native operating systems such as Garden Linux in Apeiro
+- [Baremetal](./docs/best-practices/baremetal/index.md) - control plane capable for managing the entire physical lifecycle of hardware resource
+- [Data and Control Plane State](./docs/best-practices/control-planes/data-and-control-plane-state.md) - about the role of state in Kubernetes data and control planes
+
+**Updated content**
+
+- [Architecture Overview](./docs/architecture/index.md) - link to Konfidence, Gardener, Garden Linux, and Baremetal
+- [Observability](./docs/best-practices/observability/index.md) - explanation of different observability signals
+
 ## v2.1.0 (2025-08-25)
 
 - Blog post: Garden Linux: Enabling AI on Kubernetes with NVIDIA GPUs

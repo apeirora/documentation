@@ -2,7 +2,7 @@
   description = "Nix flake for apeiro";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
   };
 
   outputs = { self, nixpkgs, ... }:
@@ -31,7 +31,7 @@
           default = pkgs.mkShell rec {
             buildInputs = with pkgs; [ 
               yarn
-              nodejs_23
+              nodejs
               nodePackages.typescript-language-server
               nodePackages.eslint
             ];

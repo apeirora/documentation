@@ -12,20 +12,20 @@ Finally, let's consider the perspective of platform mesh operators.
 A platform mesh setup typically includes a <Term>service orchestration environment</Term> and, in many cases, at least one <Term>service marketplace</Term>. 
 Depending on the scenario, external third-party service marketplaces may also be involved.
 
-**ApeiroRA does not offer turnkey solutions for either component.**
-Instead, it provides a toolbox of core and optional elements designed to be complemented with additional components that are likely already present in the existing setup where ApeiroRA is deployed.
+**Apeiro does not offer turnkey solutions for either component.**
+Instead, it provides a toolbox of core and optional elements designed to be complemented with additional components that are likely already present in the existing setup where Apeiro Reference Architecture projects are deployed.
 
-Here are some examples that **fall outside the scope of ApeiroRA**:
+Here are some examples that **fall outside the scope of Apeiro**:
 
 - *Identity Provider (IdP)*:  
-  ApeiroRA requires one or more OpenID Connect-compatible identity providers for authentication and user management.
+  Apeiro requires one or more OpenID Connect-compatible identity providers for authentication and user management.
 
 - *Legal contracts and customer management*:  
-  ApeiroRA offers solely technical account management and does not include CRM functionalities or infrastructure access management for employees or something similar.
+  Apeiro offers solely technical account management and does not include CRM functionalities or infrastructure access management for employees or something similar.
   It is assumed that these systems are already in place and need to be integrated.
  
 - *Billing, cross-charing infrastructure, and related topics*:  
-  Similar to the topics mentioned above, ApeiroRA focuses exclusively on technical infrastructure.
+  Similar to the topics mentioned above, Apeiro focuses exclusively on technical infrastructure.
   It offers integration points for external systems only.
 
 **The responsibility of a platform mesh operator is to establish and maintain integrations with other systems.**

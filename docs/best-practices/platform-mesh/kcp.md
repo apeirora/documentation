@@ -3,7 +3,7 @@ sidebar_position: 6
 title: User-facing Control Plane
 ---
 
-The ApeiroRA Platform Mesh leverages <Project>kcp</Project> as a foundational technology that provides the essential capabilities for connecting <Term>service providers</Term>
+The Apeiro Platform Mesh leverages <Project>kcp</Project> as a foundational technology that provides the essential capabilities for connecting <Term>service providers</Term>
 and <Term>service consumers</Term> through standardized APIs and management interfaces.
 
 ## Core KRM-based API Management

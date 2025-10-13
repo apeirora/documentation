@@ -14,7 +14,7 @@ const hrefVal = computed(() => props.href ? withBase(props.href) : '')
     <a v-if="hrefVal" :href="hrefVal" target="_blank" rel="noopener noreferrer">
       <img :src="srcVal" :alt="altVal" />
     </a>
-    <img v-else :src="srcVal" :alt="altVal" />
+    <img v-else :src="srcVal" :alt="altVal" :width="width" />
     <figcaption>
       {{ captionVal }}
       <div class="source" v-if="sourceLink">

@@ -282,5 +282,9 @@
     },
     "Unified Metadata Service": {
         "alias": "ums"
+    },
+    "audit relevant logs": {
+        "description": "Audit Logging and Audit Relevant Logs are usually system-generated logs of security-related events or user actions. These often contains data that can be crucial for maintaining system integrity, compliance or investigating malicious activity. For example, logs emitted on write-operations to sensitive files, login attempts or delete-operations made on a system.",
+        "url": "/:version/best-practices/observability"
     }
 }

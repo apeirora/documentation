@@ -73,7 +73,7 @@ The paradigm shift is clear: **move from managing fleets of clusters to managing
 
 [^1]: [Enterprises To Adopt Composable Platforms For Flexibility In 2025 | Predictions by Mirantis](https://tfir.io/enterprises-to-adopt-composable-platforms-for-flexibility-in-2025-predictions-by-mirantis/) by Stephen Frassetti, Mirantis
 
-[^2]: [Crossplane: The cloud native control plane framework](https://www.crossplane.io/#:~:text=Upbound%20built%20Crossplane%20to%20help,to%20become%20an%20infrastructure%20expert)
+[^2]: [Crossplane: The cloud-native control plane framework](https://www.crossplane.io/#:~:text=Upbound%20built%20Crossplane%20to%20help,to%20become%20an%20infrastructure%20expert)
 
 [^3]: [Kubernetes CRDs = Huge Pain In Multi-Tenant Clusters](https://www.loft.sh/blog/kubernetes-crds-huge-pain-in-multi-tenant-clusters#:~:text=Compared%20to%20managing%20multiple%2C%20individual,managing%20individual%20clusters%20become%20more) by Volodymyr Grin
 

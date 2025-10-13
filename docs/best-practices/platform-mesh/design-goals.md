@@ -16,5 +16,5 @@ The reference architecture supports multiple service orchestration environments 
 
 This setup is suitable for **public cloud environments**, enabling application and service developers to select from a variety of services available over the Internet.
 It is also compatible with **private and sovereign clouds**, where services and service providers reside within the same (potentially air-gapped) data centers.
-ApeiroRA provides tools for packaging, installing, and maintaining service implementations in these data centers.
-Furthermore, the core of ApeiroRA is designed so that its physical requirements and form factor can be compacted for deployment at the near **edge**.
+Apeiro provides tools for packaging, installing, and maintaining service implementations in these data centers.
+Furthermore, the core of Apeiro is designed so that its physical requirements and form factor can be compacted for deployment at the near **edge**.

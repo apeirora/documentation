@@ -8,7 +8,7 @@ The architectural framework, including its components and API specifications, is
 ## Declarative API
 
 The API design is solely dedicated to a declarative model, with no support for imperative requests. REST is exclusively used for managing declaration resources.  
-The declarative API model of ApeiroRA is inherited from the Kubernetes ecosystem, known as the <Term>Kubernetes Resource Model</Term> (KRM).
+The declarative API model of Apeiro is inherited from the Kubernetes ecosystem, known as the <Term>Kubernetes Resource Model</Term> (KRM).
 This model is based on a generic API server with extensible resource types.
 
 Unlike traditional REST designs, the execution of real-world actions (drift control) is handled by "controllers" or "operators" that work on top of a REST model.

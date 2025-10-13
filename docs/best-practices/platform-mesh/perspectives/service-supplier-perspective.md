@@ -11,12 +11,12 @@ Let's explore what a supplier of a <Term>service</Term> needs to do to offer the
 ## Service Lifecycle API
 
 First and foremost, the supplier needs to have a service to offer.
-This service can be anything, as long as it meets one crucial requirement set by ApeiroRA: the lifecycle of a <Term>capability</Term> of the service must be controllable through ApeiroRA's declarative model.
+This service can be anything, as long as it meets one crucial requirement set by Apeiro: the lifecycle of a <Term>capability</Term> of the service must be controllable through a declarative model.
 In other words, the supplier must ensure that the creation, modification, and deletion of a <Term>digital twin</Term> in a service orchestration environment are translated into real-world actions.
 In the context of cloud applications, capabilities should offer an API that the client applications and services can utilize.
 
 However, an important [principle](../guiding-principles.md) of the reference architecture is that the lifecycle API and the capabilities business API must remain strictly decoupled.
-While ApeiroRA imposes no constraints on the capabilities business API, it enforces guardrails for the lifecycle API, mandating the use of the <Term>Kubernetes Resource Model</Term>.
+While Apeiro imposes no constraints on the capabilities business API, it enforces guardrails for the lifecycle API, mandating the use of the <Term>Kubernetes Resource Model</Term>.
 
 
 ## Register Service in Marketplace
@@ -49,4 +49,4 @@ What exactly this entails depends on the specific service being offered.
 
 A supplier may change and expand a service offering over time, but reducing the scope or shutting down the service entirely can be difficult.
 There may be contractual obligations between the supplier and the service marketplace and/or the service consumer that must be honored.
-However, these considerations fall outside the scope of ApeiroRA.
+However, these considerations fall outside the scope of the Apeiro Reference Architecture.

@@ -25,13 +25,15 @@ Apeiro conceptually pursues a _declarative approach_ across its components, just
 
 - **[Data Fabric](./../best-practices/data-fabric/index.md)** provides standards and tooling for decentralized self-describing of application resources leading to a mesh architecture.
 
-- **Konfidence** is the software development and release framework of Apeiro for microservice-based SaaS applications. It comes with support for ring deployments, feature toggle management and a delivery process, all based on best practices from the CNCF landscape[^cncf-landscape].
+- **[Konfidence](./../best-practices/lcm/konfidence/index.md)** is the software delivery framework of Apeiro for microservice-based SaaS applications. It comes with support for ring deployments, feature toggle management and a delivery process, all based on best practices from the CNCF landscape[^cncf-landscape].
 
     _Note that additional information will be added in the future._
 
-- **Kubernetes** is the layer in Apeiro for hosting your cloud native workloads. Note that this is vanilla Kubernetes.
+- **Kubernetes** is the layer in Apeiro for hosting your cloud-native workloads. Note that this is vanilla Kubernetes.
 
-- **Gardener** provides managed Kubernetes-as-a-Service in Apeiro across infrastructure providers. It will come with support for IronCore and CobaltCore out of the box and be extended for additional IaaS stacks.
+- **[Gardener](./../best-practices//multi-cluster-federation/managed-kubernetes-as-a-service.md)** provides managed Kubernetes-as-a-Service in Apeiro across infrastructure providers. It will come with support for IronCore and CobaltCore out of the box and be extended for additional IaaS stacks.
+
+    Gardener-managed Kubernetes nodes use **[Garden Linux](./../best-practices/operating-system/index.md)** - a small, reproducible and auditable Linux image based on Debian GNU/Linux with a focus on Linux containers and virtual machines.
 
     _Note that additional information will be added in the future._
 
@@ -39,14 +41,13 @@ Apeiro conceptually pursues a _declarative approach_ across its components, just
 
     _Note that additional information will be added in the future._
 
-- **Bare Metal Automation** provides functionality to manage bare metal infrastructure in Apeiro through Kubernetes principles. By leveraging Baseboard Management Controllers (BMCs) and the [Redfish API](https://www.dmtf.org/standards/redfish), it enables streamlined and automated server discovery, provisioning, and lifecycle management.
+- **[Bare Metal Automation](./../best-practices/baremetal/index.md)** provides functionality to manage bare metal infrastructure in Apeiro through Kubernetes principles. By leveraging Baseboard Management Controllers (BMCs) and the [Redfish API](https://www.dmtf.org/standards/redfish), it enables streamlined and automated server discovery, provisioning, and lifecycle management.
 
     _Note that additional information will be added in the future._
 
-
 ## Cross Cutting Concerns
 
-- **[Lifecycle Tooling](./../best-practices/lcm/index.md)** based on cloud native principles is considered essential by Apeiro in order to managing software lifecycle at scale.
+- **[Lifecycle Tooling](./../best-practices/lcm/index.md)** based on cloud-native principles is considered essential by Apeiro in order to managing software lifecycle at scale.
 
 - **[Security & Compliance](./../best-practices/security/index.md)** are built into Apeiro across the different layers.
 

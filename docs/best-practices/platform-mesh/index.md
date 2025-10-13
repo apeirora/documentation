@@ -1,6 +1,6 @@
 ---
 sidebar_label: Platform Mesh
-title: ApeiroRA Platform Mesh
+title: Apeiro Platform Mesh
 sidebar_position: 5
 ---
 
@@ -13,7 +13,7 @@ sidebar_position: 5
 **The high-level goal of the Apeiro Reference Architecture is to enable development and operation of applications and services** across public clouds, private clouds, and the edge - the <Term>cloud-edge continuum</Term>.
 The use cases for these applications and services should be diverse and unrestricted, catering to end-users, other applications and services, IoT scenarios, and beyond.
 
-The **ApeiroRA Platform Mesh** defines an environment that allows **<Term>service providers</Term> to offer services of any kind** and
+The **Apeiro Platform Mesh** defines an environment that allows **<Term>service providers</Term> to offer services of any kind** and
 **<Term>service consumers</Term> to discover those services, order <Term>capabilities</Term>, and control their lifecycle**.
 
 The Apeiro Reference Architecture defines and implements the "<Term>Platform Mesh</Term>" that enables developers to select and utilize the needed and preferred services from various <Term>service marketplaces</Term>.
@@ -24,5 +24,5 @@ This framework aims to **transcend the traditional layered approach of strictly 
 Both higher-level and lower-level services are provided and managed through the same mechanism.
 
 The reference architecture includes several common, but optional services. For a comprehensive list of these projects, visit the [Apeiro Reference Architecture website](https://apeirora.eu/content/projects/).
-For example, ApeiroRA offers a Kubernetes environment through the <Project>Gardener</Project> project, but its use is not mandatory for applications. Other Kubernetes providers can also offer their services within the mesh.
+For example, Apeiro offers a Kubernetes environment through the <Project>Gardener</Project> project, but its use is not mandatory for applications. Other Kubernetes providers can also offer their services within the mesh.
 This flexibility gives [developers](./perspectives/developer-perspective.md) more choices and helps prevent lock-in to a particular service supplier.

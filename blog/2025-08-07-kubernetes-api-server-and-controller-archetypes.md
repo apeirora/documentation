@@ -189,7 +189,7 @@ Even in the straight assignment case, you may want the controller to be highly a
 
 This opens up the question about the limits of scalability of a single, active controller instance. How much reconciliation work can one instance coordinate in parallel? How much memory is and how many threads are feasible?
 
-At cloud scale, you may want to distribute the required reconciliation work across multiple, simultaneously active controller instances. The following paper describes an approach that allows scaling horizontally without sacrificing availability or performance: [Horizontally Scalable Kubernetes Controllers](https://github.com/timebertt/masters-thesis-controller-sharding/releases/download/v1.0/Horizontally_Scalable_Kubernetes_Controllers.pdf)
+At cloud scale, you may want to distribute the required reconciliation work across multiple, simultaneously active controller instances. The following paper describes an approach that allows scaling horizontally without sacrificing availability or performance: [Horizontally Scalable Kubernetes Controllers](https://github.com/timebertt/kubernetes-controller-sharding) (or Kubernetes Controller Sharding). 
 :::
 
 The only other way to circumvent this synchronization is to establish a formal partitioning of the resource set. This leads to the next archetype: environment sharding.

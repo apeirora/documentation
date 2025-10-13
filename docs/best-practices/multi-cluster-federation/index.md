@@ -1,7 +1,7 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 title: Multi-Cluster Federation
-keywords: [Multi-Cluster, Federation]
+keywords: [Multi-Cluster, Federation, Gardener]
 ---
 
 Kubernetes clusters are inherently designed as scalable runtime environments for containerized applications. While a single cluster can be dynamically scaled by adding or removing nodes (either manually or automatically), its ability to span across diverse geographical regions or multiple cloud providers is fundamentally limited. These limitations arise from several critical factors:
