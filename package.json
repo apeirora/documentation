@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@types/js-yaml": "4.0.9",
-    "@types/node": "22.18.10",
+    "@types/node": "22.18.12",
     "semver": "7.7.3",
     "typescript": "~5.9.0"
   },

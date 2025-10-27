@@ -52,6 +52,11 @@ These operating systems natively support container runtimes such as containerd o
 
 [Garden Linux](https://gardenlinux.io), based on Debian GNU/Linux, is the default cloud-native operating system for Apeiro. It is purpose-built for running containerized workloads and Kubernetes clusters, providing a minimal, secure, and robust foundation. Garden Linux is used by Gardener for all Kubernetes conformance tests, ensuring full compatibility and reliability for cloud-native environments (cf. [Gardener Extension for Garden Linux](https://gardener.cloud/docs/extensions/os-extensions/gardener-extension-os-gardenlinux/))
 
+<ApeiroFigure src="/badges/certified-kubernetes-color.svg"
+  alt="Certified Kubernetes Logo"
+  caption="Gardener is a fully certified Kubernetes solution and uses Garden Linux for all Kubernetes conformance tests"
+  width="20%"/>
+
 For more details and daily, transparent data proof, see the [Gardener conformance test results](https://testgrid.k8s.io/conformance-gardener). They are exclusively run with Garden Linux.
 
 In conclusion, modern cloud-native operating systems are a critical foundation for scalable, secure, and efficient containerized infrastructure. By embracing minimalism, security, and atomic operations, a purpose built distribution, like Garden Linux, enable organizations to run Kubernetes, containers, and VMs with confidence and agility.

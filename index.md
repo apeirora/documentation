@@ -14,6 +14,9 @@ hero:
       text: Documentation
       link: /docs/index.md
     - theme: alt
+      text: Getting Started
+      link: /docs/getting-started/index.md
+    - theme: alt
       text: Blog
       link: /blog/index.md
 

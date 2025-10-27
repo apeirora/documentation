@@ -2,6 +2,12 @@
 title: Changelog
 ---
 
+## v2.3.0 (2025-10-27)
+
+**New content**
+
+- [Getting Started](./docs/getting-started/) - get started with Apeiro by exploring how you can use individual components in your existing setup.
+
 ## v2.2.0 (2025-10-13)
 
 **New content**
