@@ -32,3 +32,7 @@ Presentation at FOSDEM 2025 on [Building Europe's Platform Mesh: Cloud-Native AP
 ### OCM
 
 Presentation at FOSDEM 2024 on [SBOM: What's next?](https://archive.fosdem.org/2024/schedule/event/fosdem-2024-2939-sbom-what-s-next-/).
+
+### CobaltCore
+
+At the [25th ACM Internet Measurement Conference (IMC) 2025](https://conferences.sigcomm.org/imc/2025/), Arno Uhlig presented the paper "[The SAP Cloud Infrastructure Dataset: A Reality Check of Scheduling and Placement of VMs in Cloud Computing](https://arxiv.org/pdf/2510.23911)".

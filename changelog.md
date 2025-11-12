@@ -2,11 +2,17 @@
 title: Changelog
 ---
 
+## v2.4.0 (2025-11-12)
+
+**New content**
+
+- Blog post: [AI Conformant Cloud Operating System for a Sovereign Europe](./blog/2025-11-12-gardener-ai-conformance.md)
+
 ## v2.3.0 (2025-10-27)
 
 **New content**
 
-- [Getting Started](./docs/getting-started/) - get started with Apeiro by exploring how you can use individual components in your existing setup.
+- [Getting Started](./docs/getting-started/index.md) - get started with Apeiro by exploring how you can use individual components in your existing setup.
 
 ## v2.2.0 (2025-10-13)
 

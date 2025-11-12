@@ -21,11 +21,11 @@
   },
   "devDependencies": {
     "@types/js-yaml": "4.0.9",
-    "@types/node": "22.18.12",
+    "@types/node": "24.10.1",
     "semver": "7.7.3",
     "typescript": "~5.9.0"
   },
   "engines": {
-    "node": ">=22.0"
+    "node": ">=24"
   }
 }

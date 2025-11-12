@@ -14,6 +14,7 @@ Start exploring the Apeiro Reference Architecture at different levels of the sta
 Explore the following Apeiro components for baremetal:
 
 - **[Baremetal Automation](https://ironcore.dev/baremetal/)** of IronCore - manage physical servers in a Kubernetes-native way.
+- **[IronCore-in-a-Box](https://github.com/ironcore-dev/ironcore-in-a-box?tab=readme-ov-file)** - evaluate IronCore on a local kind cluster for demo purposes.
 
 ## Getting Started for Existing Infrastructure
 
