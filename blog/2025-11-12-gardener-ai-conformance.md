@@ -13,6 +13,11 @@ We are thrilled to announce that Apeiro with its project [Gardener](https://gard
 
 <!-- truncate -->
 
+<ApeiroFigure src="/badges/certified-ai-platform-color.png"
+  alt="Certified AI Platform Logo"
+  caption="Gardener is a CNCF-certified Kubernetes AI Platform"
+  width="20%"/>
+
 ## **What is Kubernetes AI Conformance?**
 
 As AI/ML applications become more prevalent and crucial for business, the need for standardized environments[^1] to run them has become critical. The CNCF's Kubernetes AI Conformance Working Group was established to address this need. It aims to define a clear, verifiable set of requirements that a Kubernetes distribution must meet to be considered "AI Conformant". In fact, equipped with these requirements CNCF established the [**Certified** Kubernetes AI Conformance Program](https://github.com/cncf/k8s-ai-conformance).
