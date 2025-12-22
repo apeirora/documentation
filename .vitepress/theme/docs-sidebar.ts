@@ -22,6 +22,12 @@ type SidebarItemAugmented = SidebarItem & {
   __frontmatter?: any
 }
 
+const topLevelFolderSequenceLowerCase = [
+  'showroom',
+  'best-practices',
+  'resources'
+]
+
 const sortByFrontmatterSidebarPosition  = (items: SidebarItemAugmented[]) => {
   const augmentedItems = items.map(it => {
     if (it.link) {
@@ -38,6 +44,13 @@ const sortByFrontmatterSidebarPosition  = (items: SidebarItemAugmented[]) => {
     if (it.items) {
       it.items = sortByFrontmatterSidebarPosition(it.items)
     }
+
+    // manual sequence corrections
+    if (topLevelFolderSequenceLowerCase.includes(it.text?.toLowerCase() || '')) {
+      it.__frontmatter = it.__frontmatter || {}
+      it.__frontmatter.sidebar_position = topLevelFolderSequenceLowerCase.indexOf(it.text.toLowerCase())
+    }
+
     if (it.text?.toLowerCase() === 'best-practices') {
       it.text = 'Best Practices'
     }

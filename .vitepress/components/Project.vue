@@ -33,10 +33,10 @@ onMounted(() => {
 
   const project =  projects[projectName.trim()] || projects[projectName.toLowerCase().trim()];
   if (!project) {
-    throw new Error("Project '" + project + "' does not exist!");
+    throw new Error("Project '" + projectName + "' does not exist!");
   }
 
-  projectText.value = projectName
+  projectText.value = project.name
   projectUrl.value = project.url
   descriptionText.value = project.description
   iconSrc.value = project.icon ?? undefined

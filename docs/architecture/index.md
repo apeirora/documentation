@@ -57,3 +57,38 @@ Apeiro conceptually pursues a _declarative approach_ across its components, just
 
 [^cncf-landscape]: CNCF Cloud Native Landscape, see https://landscape.cncf.io
 [^kubeception]: see [Hosted Control Planes](./../best-practices/multi-cluster-federation/hosted-control-planes.md)
+
+## 8ra and the IPCEI-CIS Reference Architecture
+
+The Apeiro reference architecture is developed as part of the [8ra](https://www.8ra.com) and [IPCEI-CIS](https://www.8ra.com/ipcei-cis/) initiative. 
+The IPCEI-CIS published an overall [reference architecture](https://www.8ra.com/resources/) that provides the framework to all IPCEI-CIS projects and partners for describing their specific contributions to an overall cloud-edge infrastructure.
+The Apeiro reference architecture and its components fit well into the holistic IPCEI-CIS architecture and the structures, layers, and domains prescribed in this central document.
+<!-- add reference to https://landscape.apeirora.eu -->
+
+<ApeiroFigure src="/architecture/apeiro-icra.png"
+  alt="The Apeiro components mapped to the IPCEI-CIS Reference Architecture"
+  caption="Mapping the Apeiro components to the IPCEI-CIS Reference Architecture"
+  width="100%"/>
+
+These Apeiro components are part of the **Virtualization** layer:
+- <Project name="gardenlinux">Garden Linux</Project>
+- <Project>CobaltCore</Project>
+- <Project>IronCore</Project>
+
+These Apeiro components are part of the **Cloud Edge Platform** layer:
+- <Project>Gardener</Project>
+
+These Apeiro components are part of the **Service Orchestration** layer:
+- <Project name="platformmesh">Platform Mesh</Project>
+
+These Apeiro components are part of the **Data** layer:
+- <Project name="ord">Open Resource Discovery</Project>
+
+These Apeiro components are part of the **Application** layer:
+- <Project>Konfidence</Project>
+
+These Apeiro components are part of the **Management** domain:
+- <Project>Greenhouse</Project>
+- <Project name="openmfp">Open Micro Frontend Platform</Project>
+- <Project name="openmcp">Open Managed Control Plane</Project>
+- <Project name="ocm">Open Component Model</Project>

@@ -46,5 +46,41 @@
         "url": "https://openmfp.org",
         "description": "The Open Micro Front End Platform (OpenMFP) brings together micro front ends and APIs into a cohesive platform, allowing teams to contribute components while maintaining their independence.",
         "icon": "/img/projects/openmfp.png"
+    },
+    "gardenlinux": {
+        "name": "Garden Linux",
+        "url": "https://github.com/gardenlinux",
+        "description": "Garden Linux is a Debian GNU/Linux derivate that aims to provide small, auditable Linux images for most cloud providers (e.g. AWS, Azure, GCP etc.) and bare-metal machines.",
+        "icon": "/img/projects/gardenlinux.svg"
+    },
+    "platformmesh": {
+        "name": "Platform Mesh",
+        "url": "https://platform-mesh.io",
+        "description": "The Platform Mesh is the main Platform API for users and technical services to order and orchestrate capabilities attached to the environment. Its guiding and design principle is inherited from Kubernetes’s declarative API approach with its digital twin manifests, the Kubernetes Resource Model (KRM). It utilizes and refines the upstream project KCP for its purpose.",
+        "icon": "/img/projects/platformmesh.svg"
+    },
+    "ord": {
+        "name": "Open Resource Discovery",
+        "url": "https://open-resource-discovery.github.io/specification/",
+        "description": "ORD is an open protocol for the decentralized publishing and discovery of application and service metadata. It provides a structured schema for metadata such as endpoints, capabilities, documentation links, and ownership details, ensuring that application resources like APIs, events, data products and AI agents can be discovered, understood, and integrated consistently across different systems and marketplaces.",
+        "icon": "/img/projects/ord.svg"
+    },
+    "konfidence": {
+        "name": "Konfidence",
+        "url": "https://konfidence.cloud",
+        "description": "Konfidence is an open-source software delivery framework. It ensures that only tested and approved versions reach production, addressing a common challenge in complex IT landscapes.",
+        "icon": "/img/projects/konfidence.svg"
+    },
+    "greenhouse": {
+        "name": "Greenhouse",
+        "url": "https://github.com/cloudoperators/greenhouse",
+        "description": "Greenhouse is a Kubernetes based day 2 operations platform focusing on providing a set of opinionated tools & operational processes for managing cloud native infrastructure.",
+        "icon": "/img/projects/greenhouse.svg"
+    },
+    "openmcp": {
+        "name": "Open Managed Control Plane",
+        "url": "https://github.com/openmcp-project",
+        "description": "OpenMCP is a managed Infrastructure-as-data orchestration layer, designed to streamline and automate the management of cloud resources and corresponding services. It involves the coordination and management of various Infrastructure-as-data services, to support the automation of workflows such as provisioning and scaling of workloads.",
+        "icon": "/img/projects/omcp.svg"
     }
 }

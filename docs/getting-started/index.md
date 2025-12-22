@@ -42,6 +42,6 @@ Explore the following Apeiro components for existing workloads:
 
 ## Next Steps
 
-- **Assemble Apeiro** - the [Showroom](./../showroom/index.md) demonstrates how Apeiro assembles the individual components as a working environment.
+- **Assemble Apeiro** - the [Showroom](./../showroom/scenarios.md) demonstrates how Apeiro assembles the individual components as a working environment.
 - **Adapt Apeiro** - most components of Apeiro are extensible and adjustable, you can adapt them to your own infrastructure or environment constraints.
 - **Pick and choose** - Apeiro is a toolkit and you can pick-and-choose the components that provide the most value for your use case.

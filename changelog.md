@@ -2,6 +2,16 @@
 title: Changelog
 ---
 
+## v2.5.0 (2025-12-22)
+
+**New content**
+
+- [Showroom Hardware Recommendations](./docs/showroom/hardware-recommendations/index.md) - hardware recommendations for setting up an Apeiro-based cloud infrastructure
+
+**Updated content**
+
+- [Architecture Overview](./docs/architecture/index.md#_8ra-and-the-ipcei-cis-reference-architecture) - mapping between IPCEI-CIS Reference Architecture layers and Apeiro components
+
 ## v2.4.0 (2025-11-12)
 
 **New content**

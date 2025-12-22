@@ -83,7 +83,6 @@ const steps = [
     step: "5",
     name: "Platform Mesh",
     url: "./best-practices/platform-mesh",
-    main: true,
     technologies: [],
   },
   {
