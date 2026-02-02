@@ -12,7 +12,7 @@
   "dependencies": {
     "glob": "13.0.0",
     "js-yaml": "4.1.1",
-    "lodash-es": "4.17.22",
+    "lodash-es": "4.17.23",
     "markdown-it-footnote": "^4.0.0",
     "mermaid": "^11.8.1",
     "vitepress": "^1.6.3",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@types/js-yaml": "4.0.9",
-    "@types/node": "24.10.4",
+    "@types/node": "24.10.9",
     "semver": "7.7.3",
     "typescript": "~5.9.0"
   },

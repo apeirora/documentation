@@ -1,52 +1,54 @@
 <script setup>
-import { useSlots, onMounted, ref } from 'vue'
+import { useSlots, computed } from 'vue'
 import { withBase } from 'vitepress'
 import { data as terms } from './../data/terms.data'
 const props = defineProps(['name'])
 
 const slots = useSlots()
-const termText = ref('')
-const termUrl = ref('')
-const descriptionText = ref('')
 
-const getTermName = () => {
-  const defaultSlot = slots.default?.()
-  if (props.name) {
-    return props.name
-  } else if (defaultSlot && defaultSlot.length > 0) {
-    // Convert the slot's VNode(s) into plaintext
-    const text = defaultSlot.map(vnode => {
-      // If it's a text vnode
-      if (typeof vnode.children === 'string') {
-        return vnode.children
-      }
-      return ''
-    }).join('')
-    return text
-  } else {
-    return null
-  }
+// Helper to extract text from VNodes recursively
+const extractTextFromVNodes = (vnodes) => {
+  if (!vnodes) return ''
+  return vnodes.map(vnode => {
+    if (typeof vnode === 'string') return vnode
+    if (typeof vnode.children === 'string') return vnode.children
+    if (Array.isArray(vnode.children)) return extractTextFromVNodes(vnode.children)
+    return ''
+  }).join('')
 }
 
-onMounted(() => {
-  const termName = getTermName()
+// Compute term data based on props.name or slot content
+const termData = computed(() => {
+  // Prefer props.name if provided
+  let termName = props.name
 
-  let term = terms[termName.trim()] || terms[termName.toLowerCase().trim()];
+  // Fall back to slot content
+  if (!termName) {
+    const defaultSlot = slots.default?.()
+    termName = extractTextFromVNodes(defaultSlot)
+  }
+
+  if (!termName) return { url: '', description: '' }
+
+  let term = terms[termName.trim()] || terms[termName.toLowerCase().trim()]
   if (!term) {
-    throw new Error("Term '" + termName + "' does not exist!");
+    console.warn("Term '" + termName + "' does not exist!")
+    return { url: '', description: '' }
   }
 
   if ("alias" in term) {
-    term = terms[term.alias.trim()];
+    term = terms[term.alias.trim()]
     if (!term) {
-      throw new Error("Term '" + termName + "' does not exist (via alias)!");
+      console.warn("Term '" + termName + "' does not exist (via alias)!")
+      return { url: '', description: '' }
     }
   }
 
-  termText.value = termName
-  termUrl.value = term.url
-  descriptionText.value = term.description
+  return { url: term.url, description: term.description }
 })
+
+const termUrl = computed(() => termData.value.url)
+const descriptionText = computed(() => termData.value.description)
 // Note: .term-content shouldn't be a span
 // but for some reason, div caused some side-
 // effects that did not show up during local

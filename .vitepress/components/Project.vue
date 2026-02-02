@@ -1,46 +1,53 @@
 <script setup>
-import { useSlots, onMounted, ref } from 'vue'
+import { useSlots, computed } from 'vue'
 import { withBase } from 'vitepress'
 import { data as projects } from './../data/projects.data'
 const props = defineProps(['name'])
 
 const slots = useSlots()
-const projectText = ref('')
-const projectUrl = ref('')
-const descriptionText = ref('')
-const iconSrc = ref('')
 
-const getProjectName = () => {
-  const defaultSlot = slots.default?.()
-  if (props.name) {
-    return props.name
-  } else if (defaultSlot && defaultSlot.length > 0) {
-    // Convert the slot's VNode(s) into plaintext
-    return defaultSlot.map(vnode => {
-      // If it's a text vnode
-      if (typeof vnode.children === 'string') {
-        return vnode.children
-      }
-      return ''
-    }).join('')
-  } else {
-    return null
-  }
+// Helper to extract text from VNodes recursively
+const extractTextFromVNodes = (vnodes) => {
+  if (!vnodes) return ''
+  return vnodes.map(vnode => {
+    if (typeof vnode === 'string') return vnode
+    if (typeof vnode.children === 'string') return vnode.children
+    if (Array.isArray(vnode.children)) return extractTextFromVNodes(vnode.children)
+    return ''
+  }).join('')
 }
 
-onMounted(() => {
-  const projectName = getProjectName()
+// Compute project data based on props.name or slot content
+const projectData = computed(() => {
+  // Prefer props.name if provided
+  let projectName = props.name
 
-  const project =  projects[projectName.trim()] || projects[projectName.toLowerCase().trim()];
-  if (!project) {
-    throw new Error("Project '" + projectName + "' does not exist!");
+  // Fall back to slot content
+  if (!projectName) {
+    const defaultSlot = slots.default?.()
+    projectName = extractTextFromVNodes(defaultSlot)
   }
 
-  projectText.value = project.name
-  projectUrl.value = project.url
-  descriptionText.value = project.description
-  iconSrc.value = project.icon ?? undefined
+  if (!projectName) return { name: '', url: '', description: '', icon: undefined }
+
+  const project = projects[projectName.trim()] || projects[projectName.toLowerCase().trim()]
+  if (!project) {
+    console.warn("Project '" + projectName + "' does not exist!")
+    return { name: '', url: '', description: '', icon: undefined }
+  }
+
+  return {
+    name: project.name,
+    url: project.url,
+    description: project.description,
+    icon: project.icon ?? undefined
+  }
 })
+
+const projectText = computed(() => projectData.value.name)
+const projectUrl = computed(() => projectData.value.url)
+const descriptionText = computed(() => projectData.value.description)
+const iconSrc = computed(() => projectData.value.icon)
 </script>
 
 <template>
@@ -48,13 +55,13 @@ onMounted(() => {
     <a :href="withBase(projectUrl)">
       <slot />
     </a>
-    <div class="project-content">
-      <div class="project-title">
+    <span class="project-content">
+      <span class="project-title">
         <img v-if="iconSrc" :src="withBase(iconSrc)" class="project-icon" />
         {{ projectText }}
-      </div>
+      </span>
       {{ descriptionText }}
-    </div>
+    </span>
   </span>
 </template>
 
@@ -86,6 +93,7 @@ onMounted(() => {
 }
 
 .project-title {
+  display: block;
   font-size: 1rem;
   margin-bottom: 0.5em;
 }
