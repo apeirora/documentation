@@ -11,7 +11,10 @@ We use them ourselves and share them here to enable everyone to share the Apeiro
 
 ## General ApeiroRA
 
-[Apeiro Reference Architecture Overview](/assets/resources/documents/20250508-SAP-OSS-Webinar-Apeiro.pdf) from May 2025 - this slide deck explains the overall value and vision of the IPCEI project, 8ra, and ApeiroRA in the context of open source.
+- [Apeiro Reference Architecture Overview](/assets/resources/documents/20250508-SAP-OSS-Webinar-Apeiro.pdf) (May 2025) - this slide deck explains the overall value and vision of the IPCEI project, 8ra, and ApeiroRA in the context of open source.
+
+- [Data Center Observability Blueprint](/assets/resources/documents/Apeiro_DataCenterObservability_Blueprint_20260130_ext.pdf) (Jan 2026) - this document outlines a blueprint for an open-source data center monitoring and
+observability platform, based on Apeiro Reference Architecture.
 
 <!--
 ## Specific ApeiroRA projects

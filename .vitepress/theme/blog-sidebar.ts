@@ -46,11 +46,14 @@ export default function blogSidebar () {
       return byYear
     }, {} as { [year: string]: SidebarItem[]})
 
-  const sidebar = Object.entries(byYear).reduce((sidebar, [year, blogPostItems]) => {
-    const yearItem = { text: year, items: blogPostItems }
-    sidebar.push(yearItem)
-    return sidebar
-  }, <SidebarItem[]>[])
+  const sidebar = Object.entries(byYear)
+    // sort descending by year
+    .sort(([leftYear], [rightYear]) => rightYear.localeCompare(leftYear))
+    .reduce((sidebar, [year, blogPostItems]) => {
+      const yearItem = { text: year, items: blogPostItems }
+      sidebar.push(yearItem)
+      return sidebar
+    }, <SidebarItem[]>[])
 
   return sidebar
 };

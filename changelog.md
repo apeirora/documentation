@@ -2,6 +2,14 @@
 title: Changelog
 ---
 
+## v2.6.0 (2026-02-04)
+
+**New content**
+
+- Blog post: [Immersive Data Center Management: Advancing Sustainability and Operational Excellence](./blog/2026-02-04-sustainability-immersive-data-center.md)
+- Document: [Data Center Observability Blueprint](/assets/resources/documents/Apeiro_DataCenterObservability_Blueprint_20260130_ext.pdf)
+
+
 ## v2.5.0 (2025-12-22)
 
 **New content**
