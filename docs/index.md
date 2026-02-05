@@ -15,7 +15,7 @@ For an overview of the ApeiroRA project, please visit the [project's main websit
 
 
 <div class="apeiro-box apeiro-summary shadow--lw">
-ApeiroRA provides concepts, specifications, and building blocks for constructing a<strong>consistent environment for managing and accessing a diverse range of services from different providers</strong>, called "<Term>Platform Mesh</Term>."
+ApeiroRA provides concepts, specifications, and building blocks for constructing a <strong>consistent environment for managing and accessing a diverse range of services from different providers</strong>, called "<Term>Platform Mesh</Term>."
 This Platform Mesh supports an unlimited spectrum of services, including infrastructure like virtual machines, runtime environments like Kubernetes clusters, application services like databases, and specialized business services.
 
 Developers of applications and services can utilize the Platform Mesh to <strong>acquire all the necessary services for building and running their applications</strong>.
