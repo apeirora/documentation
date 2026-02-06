@@ -26,5 +26,5 @@ And another one on YYY
 
 ## Relevant IPCEI-CIS Documents
 
-[First Version of the IPCEI-CIS Reference Architecture](https://www.8ra.com/news/laying-the-groundwork-for-europes-federated-cloud-edge-future/) ([PDF](https://www.8ra.com/wp-content/uploads/IPCEI-CIS_Reference-Architecture_final.pdf)) released July 2025.
+[Second Version of the IPCEI-CIS Reference Architecture](https://www.8ra.com/news/advancing-europes-federated-cloud-edge-infrastructure/) ([PDF](https://www.8ra.com/wp-content/uploads/IPCEI-CIS_Reference-Architecture_2-0.pdf)) released January 2026.
 

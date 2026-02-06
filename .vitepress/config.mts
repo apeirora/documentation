@@ -91,8 +91,9 @@ export default withMermaid(defineConfig({
 
     search: {
       provider: 'local'
-    }
+    },
 
+    copyrightYear: new Date().getFullYear()
   },
   head: [['link', { rel: 'icon', href: path.posix.resolve(BASE, './img/favicon.ico') }]],
   markdown: {

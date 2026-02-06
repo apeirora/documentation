@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { useData } from 'vitepress'
 import { useSidebar } from 'vitepress/theme'
 const { hasSidebar } = useSidebar()
+const { theme } = useData()
 </script>
 
 <template>
@@ -23,7 +25,7 @@ const { hasSidebar } = useSidebar()
           <div class="copyright">
             <p>
               <strong>
-                © 2025 SAP SE or an SAP affiliate company. All rights reserved.
+                © 2024-{{ theme.copyrightYear }} SAP SE or an SAP affiliate company. All rights reserved.
               </strong>
             </p>
           </div>

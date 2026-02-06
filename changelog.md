@@ -2,6 +2,12 @@
 title: Changelog
 ---
 
+## v2.6.1 (2026-02-06)
+
+**Updated content**
+
+- Document: [IPCEI-CIS Reference Architecture Version 2.0](./docs/resources/documents)
+
 ## v2.6.0 (2026-02-04)
 
 **New content**
