@@ -70,14 +70,14 @@ enabling organizations to maintain their established identity practices while le
 
 ### Key Management
 
-The platform provides comprehensive key management capabilities for accounts, leveraging the <Term>KMS</Term> (Key Management Service) to offer flexible and robust data protection. Within the account model, organizations have granular control over key management, ensuring data security at every level.
+The platform provides comprehensive key management capabilities for accounts, leveraging <Term>OpenKCM</Term> (Key Chain Management) to offer flexible and robust data protection. Within the account model, organizations have granular control over key management, ensuring data security at every level.
 
 Key features of the account-level Key Management include:
 - **Flexible Data Protection Options:** Organizations can choose to utilize their own encryption keys for accounts, maintaining full control over their data, or rely on the platform's robust security mechanisms for simplified key management.
-- **Integration with Key Management Service (KMS):** The account model seamlessly integrates with the platform's KMS, which can protect root keys using a <Term>Hardware Security Module</Term> (HSM). This integration ensures a high level of security for the encryption keys protecting account data.
-- **Key Hierarchy (Keychain):** The KMS employs a keychain concept, utilizing a hierarchy of keys including Data Encryption Keys (DEKs), Key Encryption Keys (KEKs), and Root Keys. This layered approach enhances security and allows for efficient key management. Root Keys, the top level in the hierarchy, can be protected by HSMs.
-- **Advanced Key Management Features:** The system supports advanced features such as key rotation policies to regularly update encryption keys, granular access controls to manage who can access and manage keys within accounts, and detailed audit capabilities for tracking key usage and modifications.
-- **Account-Level Control:** Key management is contextualized within the account model, allowing organizations to define and enforce key management policies and configurations at the account level, aligning with their organizational structure and compliance needs.
+- **Integration with Key Management Service (KMS):** The account model seamlessly integrates with the platform's KMS, OpenKCM, which can protect root keys (Level-1 Key) using a <Term>Hardware Security Module</Term> (HSM). This integration ensures a high level of security for the encryption keys protecting account data.
+- **Key Hierarchy (Keychain):** OpenKCM employs a keychain concept, utilizing a hierarchy of keys including Data Encryption Keys (DEKs), Key Encryption Keys (KEKs), and Root Keys. This layered approach enhances security and allows for efficient key management. Root Keys, the top level in the hierarchy, can be protected by HSMs.
+- **Advanced Key Management Features:** The system supports advanced features such as key rotation policies to regularly update encryption keys using OpenKCM's _Krypton_ layer, granular access controls to manage who can access and manage keys within accounts, and detailed audit capabilities for tracking key usage and modifications.
+- **Account-Level Control:** Key management is contextualized within the account model using OpenKCM, allowing organizations to define and enforce key management policies and configurations at the account level, aligning with their organizational structure and compliance needs.
 
 By leveraging these key management capabilities within the account model, organizations can ensure thorough data protection, maintain operational flexibility, and adhere to stringent security standards across their service ecosystem.
 
