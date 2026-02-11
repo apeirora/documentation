@@ -233,8 +233,8 @@
     "Open Resource Discovery": {
         "alias": "ord"
     },
-    "kms": {
-        "description": "Key Management Service (KMS) is a secure cloud service that manages cryptographic keys for data encryption, enabling users to easily create, control, and use encryption keys across various applications and services.",
+    "openkcm": {
+        "description": "OpenKCM is Apeiro's key chain manager, a secure cloud service that manages cryptographic keys for data encryption, enabling users to easily create, control, and use encryption keys across various applications and services.",
         "url": "/docs/best-practices/security/key-management"
     },
     "hsm": {
