@@ -6,9 +6,9 @@ title: Control Plane Hardware
 The minimal control plane footprint is designed for reliability and cost efficiency.
 We do not include the required capacity to run other optional Apeiro services from the COS layer and above in this consideration for the control plane sizing.
 Depending on the complete target scenario, additional capacity needs to be reserved to run Gardener and other services on the control plane.
-This page focuses on the recommended size of the control plane for a plain installation of the BOS layer and bare metal automation to manage the infrastructure in the data plane that will carry the workload.
+This page focuses on the recommended size of the control plane for a plain installation of the BOS layer and bare metal automation to manage the infrastructure in the work plane that will carry the workload.
 
-Additional sizing optimization for minimal footprint installations might be achieved by merging control and data plane into a single rack.
+Additional sizing optimization for minimal footprint installations might be achieved by merging control and work plane into a single rack.
 Our focus here is on a sustainable setup that can also be scaled out during productive operations, depending on increased resource demand.
 
 ## Bare Metal Hardware Specifications
@@ -16,13 +16,13 @@ The Control Plane of a pure bare metal setup that focuses on managing hardware r
 
 The minimal setup for a bare metal offering includes:
 - Management Nodes: Minimum of three servers to ensure high availability and redundancy for orchestration, monitoring, and API endpoints.
-- Network Switch: One management switch for interconnecting control and data plane components, supporting both internal and external traffic.
+- Network Switch: One management switch for interconnecting control and work plane components, supporting both internal and external traffic.
 - Compute Nodes: Two or more servers dedicated to workload execution and storage, sized according to anticipated resource demand.
 - Storage: Shared storage system accessible by all compute nodes for persistent data and VM images.
-- Firewall: At least one firewall for basic network segmentation and security between control, data plane, and external connections.
+- Firewall: At least one firewall for basic network segmentation and security between control, work plane, and external connections.
 - Console/Management Access: One console for out-of-band management and troubleshooting.
 
-This list presents the essential hardware components for a minimal yet scalable single rack deployment, combining both control plane and data plane functions for the Apeiro cloud infrastructure.
+This list presents the essential hardware components for a minimal yet scalable single rack deployment, combining both control plane and work plane functions for the Apeiro cloud infrastructure.
 Please refer to the subsequent sections for more detail on the respective components.
 
 ## CobaltCore Hardware Specifications
@@ -37,7 +37,7 @@ A typical **network fabric** pod for a Cobalt Core deployment in a modern data c
 - Console Server: One or more console servers for centralized access to the serial management ports of network and compute devices, supporting remote troubleshooting and maintenance.
 
 Specifications for each component may vary depending on performance requirements and vendor selection, but common features include support for high-speed interfaces (such as 100G QSFP28), redundant power supplies, and advanced network protocols (e.g., DMTF Redfish, VXLAN, EVPN).
-This general architecture is designed to provide scalable, resilient, and secure networking for control plane and data plane operations in bare metal and IaaS environments.
+This general architecture is designed to provide scalable, resilient, and secure networking for control plane and work plane operations in bare metal and IaaS environments.
 
 A typical **compute pod** deployment is designed to deliver scalable, efficient, and manageable compute resources.
 These pods commonly consist of a set of servers, network switches, and management components that together provide the necessary performance, connectivity, and operational flexibility for a wide variety of workloads.
@@ -50,7 +50,7 @@ Support for standardized management protocols, such as DMTF Redfish, is recommen
 This ensures seamless integration with automation tools and reduces complexity.
 Compute pods are architected to be modular, allowing for easy expansion and maintenance.
 Power efficiency, density, and cooling requirements are key factors in hardware selection.
-Network topology is optimized for low latency and high bandwidth, supporting both control plane and data plane operations.
+Network topology is optimized for low latency and high bandwidth, supporting both control plane and work plane operations.
 
 ## IronCore Hardware Specifications
 The Control Plane of IronCore consists typically of a single rack, holding management functionality for network, compute, and storage.

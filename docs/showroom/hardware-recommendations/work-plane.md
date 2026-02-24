@@ -1,13 +1,13 @@
 ---
 sidebar_position: 2
-title: Data Plane Hardware
+title: Work Plane Hardware
 ---
 
-The Data Plane footprint is determined by the required performance and horizontal scalability.
-The hardware recommendations for Data Plane are shared between CobaltCore and IronCore and will need to be adapted based on the actual workload profiles that need to be supported in the specific target setup.
-For simplicity in procurement, operations, and management of resources, it should be considered to use the same hardware specifications for control and data plane servers.
+The Work Plane footprint is determined by the required performance and horizontal scalability.
+The hardware recommendations for Work Plane are shared between CobaltCore and IronCore and will need to be adapted based on the actual workload profiles that need to be supported in the specific target setup.
+For simplicity in procurement, operations, and management of resources, it should be considered to use the same hardware specifications for control and work plane servers.
 
-## Compute Data Plane
+## Compute Work Plane
 
 General Purpose Compute Pod nodes are designed to provide flexible, scalable computing resources suitable for a wide range of workloads, including virtualization, container orchestration, and cloud-native applications.
 Typical hardware configurations for these nodes include a high-core-count, single-socket server processor (such as the latest Intel Xeon or AMD EPYC CPUs) with 128 or more cores, paired with substantial system memory, commonly 512GB RAM or higher, to support resource-intensive tasks and multiple virtual machines or containers simultaneously.
@@ -19,7 +19,7 @@ Additional 1G Base-T Ethernet ports are often included for management or out-of-
 For data center deployments, compute pod nodes are typically designed to maximize density and power efficiency, allowing up to 16 or more nodes per standard 10kW rack, depending on specific power, cooling, and workload requirements.
 These generalized specifications ensure that the compute pods can meet the demands of modern enterprise IT environments and scale effectively as business needs evolve.
 
-## Storage Data Plane
+## Storage Work Plane
 
 A typical storage node in modern data center environments is designed to deliver high-capacity, high-throughput, and reliable storage services for a variety of applications, such as distributed file systems, object storage, and database backends.
 These nodes commonly feature a high-core-count server processor, such as an AMD EPYC or Intel Xeon CPU, with at least 32 to 64 cores (and corresponding threads) to handle intensive I/O and background processing tasks.
@@ -36,7 +36,7 @@ In cost-sensitive deployments, hardware acceleration features like SmartNICs may
 To optimize for data center density and power efficiency, storage nodes are designed to maximize the number of units per rack, often supporting 12 to 18 nodes per standard 10kW rack, with scalability in modular increments to match capacity and redundancy requirements.
 This general specification ensures that storage nodes can be flexibly deployed in a wide range of enterprise and cloud environments, scaling efficiently as business needs grow.
 
-## Mixed Data Plane
+## Mixed Work Plane
 
 A typical combined compute and storage setup in modern data centers is designed to balance high performance, scalability, and efficient resource utilization.
 These solutions often involve distributing compute and storage resources across multiple racks to optimize power consumption and provide flexible scaling options.
@@ -54,9 +54,9 @@ These nodes may also incorporate hardware accelerators for networking and storag
 By modularly combining compute and storage resources across racks, organizations can scale their infrastructure in units that balance processing power, storage capacity, and network throughput.
 This approach supports a broad range of workloads, from distributed storage systems and virtualization to high-performance computing and data analytics, making it well-suited for both enterprise and cloud data center environments.
 
-## Network Data Plane
+## Network Work Plane
 
-For CobaltCore deployments we recommend a dedicated network pod (whereas for IronCore we recommend deploying the network data plane on the compute nodes).
+For CobaltCore deployments we recommend a dedicated network pod (whereas for IronCore we recommend deploying the network work plane on the compute nodes).
 A typical hardware specification for such a pod includes the following components:
 - Top-of-Rack (ToR) Switches: Multiple high-throughput ToR switches (commonly 2–4 per pod) provide primary network connectivity for compute, storage, and other devices within the rack. These switches often support high-speed Ethernet (e.g., 25/40/100/400GbE) to ensure low-latency and high-bandwidth communication between nodes.
 - Tenant Switches: One or more switches dedicated to tenant or customer network segments, enabling secure and isolated networking for different workloads or clients within the data center.
@@ -67,7 +67,7 @@ A typical hardware specification for such a pod includes the following component
 This modular pod-based architecture enables flexible scaling, robust fault tolerance, and streamlined management.
 The actual number and specification of devices may vary based on the data center's size, workload requirements, and specific use cases, but the general principle is to provide a balanced, redundant network foundation for efficient and secure operations.
 
-## AI Training and Inference Data Plane
+## AI Training and Inference Work Plane
 
 A typical hardware specification for **AI training pods** in modern data centers is designed to deliver high computational power, robust memory bandwidth, and scalable network connectivity to support demanding machine learning and deep learning workloads.
 - GPU Acceleration: AI training nodes commonly feature multiple high-end GPUs (such as NVIDIA H100, H200, A100, or AMD MI300 series), each equipped with large amounts of high-bandwidth memory (HBM2e or HBM3/3e, typically 40GB–141GB per GPU). These GPUs are selected for their performance in parallel processing and support for advanced features like mixed-precision (FP8, FP16) and Multi-Instance GPU (MIG) capability, which allow efficient resource partitioning and flexible scaling.

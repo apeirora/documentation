@@ -8,13 +8,13 @@ This section provides hardware recommendations for typical Apeiro cloud infrastr
 The Control Plane forms the backbone of the Apeiro cloud, managing orchestration, monitoring, and API endpoints.
 All Apeiro management components are deployed in the control plane.
 
-The Data Plane is responsible for workload execution, storage, AI training/inference, and networking.
-The specific buildout of the Data Plane depends on the requirements and expected workload to be handled on the infrastructure.
+The Work Plane is responsible for workload execution, storage, AI training/inference, and networking.
+The specific buildout of the Work Plane depends on the requirements and expected workload to be handled on the infrastructure.
 
 <ApeiroFigure src="/showroom/showroom-planes.png"
-  alt="An illustration of the layout of the control plane and data plane, consisting of multiple pods"
-  caption="The high-level control plane and data plane layout (shows optional components)"
+  alt="An illustration of the layout of the control plane and work plane, consisting of multiple pods"
+  caption="The high-level control plane and work plane layout (shows optional components)"
   width="100%"/>
 
-The recommendations focus on minimal and scalable footprints for both the [Control Plane](./control-plane.md) and [Data Plane](./data-plane.md), while illustrating options for deployments with one and three [availability zones](./scaling.md).
+The recommendations focus on minimal and scalable footprints for both the [Control Plane](./control-plane.md) and [Work Plane](./work-plane.md), while illustrating options for deployments with one and three [availability zones](./scaling.md).
 This ensures both robustness and flexibility for various enterprise workloads.

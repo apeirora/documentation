@@ -2,6 +2,13 @@
 title: Changelog
 ---
 
+## v2.6.3 (2026-02-24)
+
+**Updated content**
+
+- Aligned nomenclature on different plane types: [Showroom Hardware Recommendations](./docs/showroom/hardware-recommendations/index.md)
+- Contact information: Want to connect? Reach out to us at <a href="mailto:apeiro@sap.com">apeiro@sap.com</a>
+
 ## v2.6.1 (2026-02-06)
 
 **Updated content**

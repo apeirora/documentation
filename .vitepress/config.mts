@@ -51,6 +51,7 @@ export default withMermaid(defineConfig({
     './node_modules/**/*',
     'AUTHORING.md',
     'CONTRIBUTING.md',
+    'README.internal.md',
     'README.md',
     'RELEASE.md'
   ],

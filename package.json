@@ -10,7 +10,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "glob": "13.0.1",
+    "glob": "13.0.6",
     "js-yaml": "4.1.1",
     "lodash-es": "4.17.23",
     "markdown-it-footnote": "^4.0.0",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@types/js-yaml": "4.0.9",
-    "@types/node": "24.10.11",
+    "@types/node": "24.10.13",
     "semver": "7.7.4",
     "typescript": "~5.9.0"
   },

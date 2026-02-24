@@ -5,12 +5,12 @@ title: Availability Zones and Scaling
 
 ## Availability Zones
 
-With a single Control Plane and Data Plane, only limited SLAs (Service Level Agreements) can be guaranteed, as the entire system relies on a single set of resources and is thus more susceptible to outages or failures.
+With a single Control Plane and Work Plane, only limited SLAs (Service Level Agreements) can be guaranteed, as the entire system relies on a single set of resources and is thus more susceptible to outages or failures.
 To achieve higher SLAs and ensure greater system resilience, we recommend deploying multiple availability zones.
 
 An availability zone is an isolated location within a data center region, designed with independent power, cooling, and networking to reduce the risk of simultaneous failures. By distributing workloads across at least three identical availability zones, you can significantly improve fault tolerance and disaster recovery capabilities.
 
-This approach typically involves multiplying the Control Plane and Data Plane investments to create three separate, fully functional zones.
+This approach typically involves multiplying the Control Plane and Work Plane investments to create three separate, fully functional zones.
 In addition, deploying multiple availability zones requires robust load balancing to distribute traffic and workloads evenly, as well as data replication strategies to ensure data consistency and availability even in the event of a zone failure.
 
 Leveraging multiple availability zones is a best practice adopted by leading cloud providers to meet stringent uptime and reliability requirements for enterprise and mission-critical applications.
@@ -31,12 +31,12 @@ Vertical scaling can be achieved by upgrading to more powerful nodes, which may 
 
 Alternatively, horizontal scaling is possible by incorporating additional racks, thereby increasing the number of nodes that share the workload and enhance redundancy.
 
-This approach to rightsizing can be implemented proactively as part of scheduled hardware refresh cycles, aligning with the natural depreciation of equipment, or reactively in response to sudden surges in Data Plane demand.
+This approach to rightsizing can be implemented proactively as part of scheduled hardware refresh cycles, aligning with the natural depreciation of equipment, or reactively in response to sudden surges in work plane demand.
 This ensures that the Control Plane remains resilient and capable of supporting evolving infrastructure requirements without causing disruptions to ongoing services.
 
-### Data Plane
+### Work Plane
 
-The Data Plane can be scaled horizontally on demand by adding additional compute, storage, network, and AI nodes as needed based on the required capacity for the expected workload.
+The Work Plane can be scaled horizontally on demand by adding additional compute, storage, network, and AI nodes as needed based on the required capacity for the expected workload.
 Horizontal scaling, also known as "scaling out," involves increasing the number of nodes or servers in the system rather than upgrading the hardware of existing nodes.
 
 This approach enables organizations to handle greater workloads, improve fault tolerance, and maintain high availability.

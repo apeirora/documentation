@@ -45,6 +45,10 @@ const { theme } = useData()
         </a>
       </div>
 
+      <div class="footer-contact">
+        Want to connect? Reach out to us at <a href="mailto:apeiro@sap.com">apeiro@sap.com</a>.
+      </div>
+
       <div class="footer-legal-links">
         <a href="https://www.sap.com/corporate/en/legal/impressum.html">Legal Disclosure</a>
       </div>
@@ -163,6 +167,22 @@ const { theme } = useData()
   color: var(--vp-c-text-2);
   margin-top: 24px;
   line-height: 1.6;
+}
+
+.footer-contact {
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+}
+
+.footer-contact a {
+  color: var(--vp-c-text-2);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.footer-contact a:hover {
+  color: var(--vp-c-brand-1);
 }
 
 .footer-legal-links {
