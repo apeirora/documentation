@@ -1,4 +1,121 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "baseBranchPatterns": ["release"]
+  "baseBranchPatterns": [
+    "release"
+  ],
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dependency Dashboard",
+  "schedule": [
+    "after 3am and before 5am every weekday"
+  ],
+  "timezone": "Europe/Berlin",
+  "automerge": true,
+  "platformAutomerge": true,
+  "labels": [
+    "dependencies"
+  ],
+  "rebaseWhen": "behind-base-branch",
+  "separateMajorMinor": true,
+  "separateMinorPatch": true,
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "packageRules": [
+    {
+      "description": "Auto-merge patch updates for all dependencies",
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "merge-commit"
+    },
+    {
+      "description": "Auto-merge minor updates for dev dependencies only",
+      "matchDepTypes": [
+        "devDependencies"
+      ],
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "merge-commit"
+    },
+    {
+      "description": "Manual review required for major updates",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "automerge": false,
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Group all @types packages together",
+      "matchPackageNames": [
+        "@types/**"
+      ],
+      "groupName": "TypeScript type definitions",
+      "automerge": true
+    },
+    {
+      "description": "Group VitePress-related packages",
+      "matchPackageNames": [
+        "vitepress**"
+      ],
+      "groupName": "VitePress packages"
+    },
+    {
+      "description": "Auto-merge patch and minor updates for GitHub Actions",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "minor"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "merge-commit"
+    },
+    {
+      "description": "Manual review for major GitHub Actions updates",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "automerge": false,
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Conservative approach for third-party GitHub Actions",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "automerge": false,
+      "dependencyDashboardApproval": true,
+      "matchPackageNames": [
+        "!actions/**"
+      ]
+    },
+    {
+      "description": "Security vulnerability updates - immediate auto-merge",
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "automerge": true,
+      "schedule": [
+        "at any time"
+      ]
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": [
+      "security"
+    ]
+  }
 }
