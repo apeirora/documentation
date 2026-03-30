@@ -17,9 +17,6 @@ Instead, it provides a toolbox of core and optional elements designed to be comp
 
 Here are some examples that **fall outside the scope of Apeiro**:
 
-- *Identity Provider (IdP)*:  
-  Apeiro requires one or more OpenID Connect-compatible identity providers for authentication and user management.
-
 - *Legal contracts and customer management*:  
   Apeiro offers solely technical account management and does not include CRM functionalities or infrastructure access management for employees or something similar.
   It is assumed that these systems are already in place and need to be integrated.
