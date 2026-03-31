@@ -2,6 +2,12 @@
 title: Changelog
 ---
 
+## v2.8.0 (2026-03-31)
+
+**New content**
+
+- [Security in Platform Mesh](./docs/best-practices/platform-mesh/security.md) - an overview authentication, authorization, and other security aspects of the Platform Mesh
+
 ## v2.6.3 (2026-02-24)
 
 **Updated content**
