@@ -27,7 +27,7 @@ Explore the following Apeiro components for existing infrastructure:
 
 Explore the following Apeiro components for existing Kubernetes clusters:
 
-- **Platform Mesh** as interplay of [kcp](https://docs.kcp.io/kcp/main/setup/), [OpenMFP](https://openmfp.org/docs/getting-started/installation), and [OpenFGA](https://openfga.dev/docs/getting-started/setup-openfga/overview) - provide, discover, and consume services with Kubernetes-native principles.
+- **Platform Mesh** as interplay of [kcp](https://docs.kcp.io/kcp/main/setup/), [OpenMFP](https://openmfp.org/documentation/getting-started/), and [OpenFGA](https://openfga.dev/docs/getting-started/setup-openfga/overview) - provide, discover, and consume services with Kubernetes-native principles.
 - **[Open Component Model](https://ocm.software/docs/getting-started/)** - deliver and deploy software across environments with this standard and the corresponding tooling.
 - **[OpenBao](https://openbao.org/docs/install/)** - manage and store secrets and public key infrastructure securely.
 <!-- - **[Open Managed Control Plane](#)** -  -->
