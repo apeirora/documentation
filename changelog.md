@@ -2,11 +2,17 @@
 title: Changelog
 ---
 
+## v2.9.1 (2026-05-06)
+
+**Updated content**
+
+- Tutorial: [Local Platform Mesh](./docs/showroom/tutorials/local-platform-mesh-msp-demo.md) - updated to Platform Mesh 0.3.0; tutorials are now served under `/tutorials/` instead of `/guides/`
+
 ## v2.9.0 (2026-05-05)
 
 **New content**
 
-- Tutorial: [Local Platform Mesh](./docs/showroom/guides/local-platform-mesh-msp-demo.md) - step-by-step guide to setting up a local Apeiro Showroom environment with a sample Platform Mesh scenario
+- Tutorial: [Local Platform Mesh](./docs/showroom/tutorials/local-platform-mesh-msp-demo.md) - step-by-step guide to setting up a local Apeiro Showroom environment with a sample Platform Mesh scenario
 
 ## v2.8.0 (2026-03-31)
 

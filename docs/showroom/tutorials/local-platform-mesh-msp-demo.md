@@ -43,7 +43,7 @@ What makes this interesting is the **composition**. Chat UI does not bundle its 
 
 In production, KCP runs on a dedicated cluster and each provider has its own MSP (Managed Service Provider) cluster. Locally, everything runs in a single Kind cluster, but the logical boundaries are the same: provider workspaces are isolated from consumer workspaces, sync agents bridge the control plane to the workload layer, and operators only see CRs that belong to their APIExport.
 
-<ApeiroFigure src="/showroom/guides/local-pm-architecture.drawio.svg"
+<ApeiroFigure src="/showroom/tutorials/local-pm-architecture.drawio.svg"
   alt="Architecture diagram showing KCP control plane with provider and consumer workspaces, sync agents bridging to workload namespaces running Private LLM and Chat UI operators"
   caption="Local Platform Mesh architecture: everything runs in a single Kind cluster, but the logical layers (provider, consumer, sync, workload) mirror the production setup" />
 
@@ -73,12 +73,12 @@ For detailed prerequisite setup across operating systems and container runtimes,
 
 ### Step 1: Set up Local Platform Mesh
 
-Clone [`helm-charts`](https://github.com/platform-mesh/helm-charts), check out the validated local-demo commit, run the local setup, and install the kcp kubectl plugins. The commit pins the Platform Mesh OCM component used by local setup; do not edit `local-setup/kustomize/components/ocm/component.yaml`. A future version of this tutorial will switch to a release version of Platform Mesh.
+Clone [`helm-charts`](https://github.com/platform-mesh/helm-charts), check out the release tag, run the local setup, and install the kcp kubectl plugins. The tag pins the Platform Mesh OCM component used by local setup; do not edit `local-setup/kustomize/components/ocm/component.yaml`.
 
 ```sh
 git clone https://github.com/platform-mesh/helm-charts.git
 cd helm-charts
-git checkout b0ff8e91   # pins PM components to 0.4.0-build.30
+git checkout 0.3.0
 
 task local-setup
 
