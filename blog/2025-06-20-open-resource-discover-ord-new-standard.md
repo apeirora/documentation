@@ -17,7 +17,7 @@ In complex enterprise environments, knowing which digital services, events, and 
 ## Why ORD Matters for Industries
 Modern enterprises operate across fragmented landscapes — diverse platforms, microservices, APIs, events, and data products. Without a common way to describe and discover these offerings, teams waste time searching, aligning, and re-validating information.
 
-ORD creates a decentralized and open method for exposing metadata and therbey making these resources dynamically discoverable and actionable across ecosystems.
+ORD creates a decentralized and open method for exposing metadata and thereby making these resources dynamically discoverable and actionable across ecosystems.
 
 ![ORD-svg](https://open-resource-discovery.github.io/specification/assets/images/ord-provider-overview-7541358f15f21e362b88aa6f600ac6d4.svg)
 

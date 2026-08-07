@@ -11,11 +11,11 @@ Unify your services from hardware to software with Kubernetes' declarative power
 </div>
 
 This website provides in-depth information on areas and concepts of the Apeiro Reference Architecture (ApeiroRA).
-For an overview of the ApeiroRA project, please visit the [project's main website](https://apeirora.eu).
+For an overview of the Apeiro project, please visit the [project's main website](https://apeirora.eu).
 
 
 <div class="apeiro-box apeiro-summary shadow--lw">
-ApeiroRA provides concepts, specifications, and building blocks for constructing a<strong>consistent environment for managing and accessing a diverse range of services from different providers</strong>, called "<Term>Platform Mesh</Term>."
+Apeiro provides concepts, specifications, and building blocks for constructing a<strong>consistent environment for managing and accessing a diverse range of services from different providers</strong>, called "<Term>Platform Mesh</Term>."
 This Platform Mesh supports an unlimited spectrum of services, including infrastructure like virtual machines, runtime environments like Kubernetes clusters, application services like databases, and specialized business services.
 
 Developers of applications and services can utilize the Platform Mesh to <strong>acquire all the necessary services for building and running their applications</strong>.
@@ -30,13 +30,13 @@ The foundational principles of the Platform Mesh support both large-scale and sm
 :::
 
 
-## Where to start with the ApeiroRA Documentation?
+## Where to start with the Apeiro Documentation?
 
 A reference architecture is a **set of documents** that provides recommended structures and integrations of products and services to form a solution.
 It embodies accepted **industry best practices**, typically suggesting the optimal delivery method for specific technologies.
 
 The Apeiro Reference Architecture covers **next-generation approaches**, therefore this documentation first addresses the innovation concepts and the employed architecture.
-While many concepts are based on the de-facto cloud-native standards, **ApeiroRA diverges from accepted best practices** to leverage emerging concepts that we consider promising and are yet to become best practices.
+While many concepts are based on the de-facto cloud-native standards, the **Apeiro Reference Architecture diverges from accepted best practices** to leverage emerging concepts that we consider promising and are yet to become best practices.
 
 
 ### The Apeiro Reference Architecture Journey
@@ -46,8 +46,8 @@ To fully comprehend the core principles of the Platform Mesh, it is important to
 The initial pages of this documentation address topics that are relevant for understanding the Platform Mesh later on.
 Furthermore, there are additional concepts that, although not central to the Platform Mesh, become critical during its implementation.
 
-The concepts covered on this ApeiroRA website are relevant across the individual projects.
-Information available in other ApeiroRA open-source project documentation is not repeated here;
+The concepts covered on this Apeiro website are relevant across the individual projects.
+Information available in the respective project documentation is not repeated here;
 instead, links to the relevant documentation are provided for reference.
 
 **We recommend following the suggested topic path below**, as each section builds upon the previous ones.

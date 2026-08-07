@@ -12,7 +12,7 @@ Apeiro uses [OpenTelemetry](https://opentelemetry.io), also known as <Term>OTel<
 - Make data-driven improvements.
 
 ## Functional Overview
-All components of the Apeiro Reference Architecture strive to produce telemetry data compatible with the OpenTelemetry standard, it does not impose a specific sink implementation for telemetry data. Instead, any supported storage or tool can be configured. 
+All components of the Apeiro Reference Architecture strive to produce telemetry data compatible with the OpenTelemetry standard, it does not impose a specific sink implementation for telemetry data. Instead, any supported storage or tool can be configured.
 
 <ApeiroFigure src="/observability/img/audit-logging.svg"
   alt="Overview of OpenTelemetry in the Apeiro Reference Architecture"
@@ -59,7 +59,7 @@ Examples of audit logs include:
 - accessing sensitive information
 - modification of data
 
-The Apeiro Rerefence Architecture aims to bring audit logging to OpenTelemetry. While many capabilities required to process audit logs already exist in OpenTelemetry, standardized semantic conventions for audit logs and delivery guarantees are missing.
+Apeiro aims to bring audit logging to OpenTelemetry. While many capabilities required to process audit logs already exist in OpenTelemetry, standardized semantic conventions for audit logs and delivery guarantees are missing.
 
 Therefore, together with the OpenTelemetry community Apeiro teams are working on the following deliverables:
 - semantic convention for audit logs

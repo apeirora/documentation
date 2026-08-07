@@ -2,6 +2,13 @@
 title: Changelog
 ---
 
+## v2.10.0 (2026-08-06)
+
+**New content**
+
+- Blog post: [Running Rook at Petabyte Scale Across Multiple Regions](./blog/2026-03-18-running-rook-at-petabyte-scale.md) - our first external blog post, linking to an article published on Medium
+- Document: [Running Rook at Petabyte Scale Across Multiple Regions](https://www.clyso.com/eu/media/pages/products/rook/144058f243-1785224164/white-paper-rook_10072026.pdf) - a Clyso technical whitepaper added to the [Documents](./docs/resources/documents.md) resources
+
 ## v2.9.1 (2026-05-06)
 
 **Updated content**

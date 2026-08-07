@@ -60,7 +60,7 @@ This simple federation design has some direct challenges:
   [^1]: Such environments are prone to cyber attack techniques such as [lateral movement](https://en.wikipedia.org/wiki/Lateral_movement_(cybersecurity)).
 
 - **Network Access Constraints**:
-  The central cluster must be able to initiate outbound conncetions/forward-connect to all the remote payload clusters.This often necessitates a common network (public or private) where payload clusters cannot be fully secured behind firewalls, potentially increasing their exposure.
+  The central cluster must be able to initiate outbound connections/forward-connect to all the remote payload clusters. This often necessitates a common network (public or private) where payload clusters cannot be fully secured behind firewalls, potentially increasing their exposure.
 
 
 ### Federation with Agents: Decentralizing Control
@@ -90,7 +90,7 @@ Building on Kubernetes design principles, the concept of a `clusterlet` emerges 
 
 The most advanced evolution of this design involves a fundamental separation of the data plane[^2] from the runtime plane. With `clusterlets` operating within the payload clusters, the central cluster's function can be reduced to a pure data plane. This significantly enhances the system's security posture. In this configuration, the central data plane primarily consists of a generic API server and suitable persistence, devoid of the extensive resource types typically shipped with a native Kubernetes API server.
 
-[^2]: <Project>kcp</Project> is the project used in ApeiroRA that delivers a clusterless, pure data plane. The idea itself is older and has evolved from initiatives like [Kubeception](https://www.youtube.com/watch?v=EbNxGK9MwN4), [Gardener](https://gardener.cloud/docs/getting-started/architecture/), and [Badidea](https://www.youtube.com/watch?v=fxqV24h_ocs).
+[^2]: <Project>kcp</Project> is the project used in the Apeiro Reference Architecture that delivers a clusterless, pure data plane. The idea itself is older and has evolved from initiatives like [Kubeception](https://www.youtube.com/watch?v=EbNxGK9MwN4), [Gardener](https://gardener.cloud/docs/getting-started/architecture/), and [Badidea](https://www.youtube.com/watch?v=fxqV24h_ocs).
 
 For the <Term>controllers</Term> responsible for global federation aspects (e.g., federation schedulers, policy engines), a separate runtime Kubernetes cluster[^3] is utilized. This cluster is typically managed by administrators and does not require direct user access to the federation service, further isolating critical control logic.
 

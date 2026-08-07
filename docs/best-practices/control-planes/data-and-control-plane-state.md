@@ -3,7 +3,7 @@ sidebar_position: 4
 title: Data and Control Plane State
 ---
 
-In [Kubernetes Implementation Design](./kid.md), we discussed the conceptual interplay between data, control, and work planes, as implemented in Kubernetes. In the following we discuss how state plays a crucial role for for backup, restore, migration and pivoting.
+In [Kubernetes Implementation Design](./kid.md), we discussed the conceptual interplay between data, control, and work planes, as implemented in Kubernetes. In the following we discuss how state plays a crucial role for backup, restore, migration and pivoting.
 
 ## State
 

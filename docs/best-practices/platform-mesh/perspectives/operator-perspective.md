@@ -9,16 +9,13 @@ Finally, let's consider the perspective of platform mesh operators.
 
 ## Set up a Service Orchestration Environment
 
-A platform mesh setup typically includes a <Term>service orchestration environment</Term> and, in many cases, at least one <Term>service marketplace</Term>. 
+A platform mesh setup typically includes a <Term>service orchestration environment</Term> and, in many cases, at least one <Term>service marketplace</Term>.
 Depending on the scenario, external third-party service marketplaces may also be involved.
 
 **Apeiro does not offer turnkey solutions for either component.**
 Instead, it provides a toolbox of core and optional elements designed to be complemented with additional components that are likely already present in the existing setup where Apeiro Reference Architecture projects are deployed.
 
 Here are some examples that **fall outside the scope of Apeiro**:
-
-- *Identity Provider (IdP)*:  
-  Apeiro requires one or more OpenID Connect-compatible identity providers for authentication and user management.
 
 - *Legal contracts and customer management*:  
   Apeiro offers solely technical account management and does not include CRM functionalities or infrastructure access management for employees or something similar.
@@ -34,7 +31,7 @@ This task can be quite complex for a public cloud offering or relatively straigh
 
 ## Maintain Service Marketplaces
 
-Another significant aspect is the maintenance of content within service marketplaces.  
+Another significant aspect is the maintenance of content within service marketplaces.
 <Term>Service providers</Term> need to be registered and aligned with the commercial model of the service marketplace.
-These providers might operate within the same data center as the marketplace and be managed by the platform mesh operator, or they could be remote providers maintained by external suppliers.  
+These providers might operate within the same data center as the marketplace and be managed by the platform mesh operator, or they could be remote providers maintained by external suppliers.
 Additionally, service providers and the services they offer change over time, making this an ongoing task.

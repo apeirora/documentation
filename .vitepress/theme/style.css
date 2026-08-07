@@ -255,3 +255,45 @@
     top: 0;
   }
 }
+
+/* External blog posts */
+/* Sidebar EXT badge - injected via v-html, so it cannot be scoped. Subtle gray
+   badge with a hairline border and slightly rounded corners, distinct from the
+   post title. */
+.blog-ext-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-gray-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 5px;
+  padding: 1px 5px;
+  margin-left: 6px;
+  line-height: 1.5;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+/* Suppress VitePress's own external-link icon on external sidebar items - our
+   EXT ↗ flag already signals externality, and VPLink adds a second ↗ for any
+   absolute/_blank link. The flag lives inside .VPLink's text, so scope by the
+   presence of our flag. */
+.VPSidebarItem .VPLink:has(.blog-ext-flag).vp-external-link-icon::after,
+.VPSidebarItem .VPLink:has(.blog-ext-flag) .vp-external-link-icon::after {
+  display: none;
+}
+.vp-sr-only {  /* visually hidden, screen-reader only */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

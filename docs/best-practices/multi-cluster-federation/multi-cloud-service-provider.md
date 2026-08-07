@@ -11,7 +11,7 @@ In other words, they must be able to handle multiple <Term>work planes</Term> (t
 
 The environment for implementing the localized service or capability is typically a Kubernetes cluster; however, any specialized technical runtime environment may be used depending on the workload.
 And the dynamic, on-demand procurement can be delegated to a aforementioned [Managed Kubernetes Provider](./hosted-control-planes.md#managed-kubernetes-provider).
-In ApeiroRA, the service provider API must strictly adhere to the [Kubernetes Resource Model](./../digital-twins/krm/index.md). The [Multi-Cluster Federation](./index.md) pattern can serve as an implementation recommendation for a **Managed Service Provider**.
+In Apeiro, the service provider API must strictly adhere to the [Kubernetes Resource Model](./../digital-twins/krm/index.md). The [Multi-Cluster Federation](./index.md) pattern can serve as an implementation recommendation for a **Managed Service Provider**.
 
 When a consumer orders a <Term>capability</Term>, they initiate the process by creating a <Term>resource</Term> document using the service provider's API or <Term>data plane</Term>.
 A scheduler <Term>controller</Term> of the managed service provider then assigns this request to an adequate runtime environment, updating the document with the environment's identifier.

@@ -2,6 +2,7 @@
 #   name: <name>
 #   title: [title]
 #   url: [url]
+#   titleUrl: [url the title links to]
 vasu-chandrasekhara:
   name: Vasu Chandrasekhara
   title: Apeiro - Chief Product Owner at SAP
@@ -46,3 +47,8 @@ malte-hain:
   name: Malte Hain
   title: Senior Technology Consultant at SAP
   url: https://www.linkedin.com/in/maltehain
+artem-torubarov:
+  name: Artem Torubarov
+  title: Clyso
+  url: https://www.linkedin.com/in/artem-torubarov/
+  titleUrl: https://www.clyso.com/

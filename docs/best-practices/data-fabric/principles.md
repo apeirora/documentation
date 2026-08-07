@@ -14,7 +14,7 @@ Three key principles must be upheld:
 
 :::info
 
-Data Fabric uses slightly different terminology related to <Term>Open Resource Discovery</Term>, where the term _resource_ carries a different meaning compared to its definition in ApeiroRA.
+Data Fabric uses slightly different terminology related to <Term>Open Resource Discovery</Term>, where the term _resource_ carries a different meaning compared to its definition in the Apeiro Reference Architecture.
 
 :::
 
@@ -39,15 +39,15 @@ To maintain clarity and reduce complexity in this example, we will limit our sco
 
 Each system is capable of interacting with specific business objects and provides access to the necessary resources to support their processing. These resources may include APIs, Events, Data Products, and other integration mechanisms. However, in-depth implementation details are solely documented and not readily accessible through the user interface, requiring integrators to possess domain-specific expertise and invest substantial effort to ensure correct and efficient integration.
 
-<ApeiroFigure src="/data-fabric/img/na_landscape.svg" 
-    alt="System Landscape" 
+<ApeiroFigure src="/data-fabric/img/na_landscape.svg"
+    alt="System Landscape"
     caption="Example: System landscape"
     width="100%"/>
 
 Now, let us assume that all exposed resources are self-describing and include metadata that explicitly defines their associations with the relevant business objects they pertain to or reference.
 
-<ApeiroFigure src="/data-fabric/img/a_landscape.svg" 
-    alt="System Landscape" 
+<ApeiroFigure src="/data-fabric/img/a_landscape.svg"
+    alt="System Landscape"
     caption="Example: Metadata in system landscape"
     width="100%"/>
 

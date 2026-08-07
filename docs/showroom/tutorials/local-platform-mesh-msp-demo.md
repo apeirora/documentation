@@ -495,8 +495,8 @@ For operator-specific issues, see each project's local installation guide:
 
 | Symptom | Cause | Fix |
 |---------|-------|-----|
-| `task local-setup` hangs during Kind creation and kubelet logs contain `could not detect clock speed` | The older `kindest/node:v1.35.0` image can fail on some arm64 Docker setups | Use the pinned guide commit `b0ff8e91`, which uses `kindest/node:v1.35.1` |
-| Sync agent logs contain `frontproxy-front-proxy...:6443: i/o timeout` | PM `0.4.0-build.30` exposes the in-cluster front-proxy Service on `8443`, while the provider chart defaults still point at `6443` | Keep the Step 2 and Step 3 `kcpKubeconfig.inClusterServerUrl=...:8443` value on the MSP-side Helm installs |
+| `task local-setup` hangs during Kind creation and kubelet logs contain `could not detect clock speed` | The older `kindest/node:v1.35.0` image can fail on some arm64 Docker setups | Use the pinned release tag `0.3.0`, which uses `kindest/node:v1.35.1` |
+| Sync agent logs contain `frontproxy-front-proxy...:6443: i/o timeout` | The local Platform Mesh setup exposes the in-cluster front-proxy Service on `8443`, while the provider chart defaults still point at `6443` | Keep the Step 2 and Step 3 `kcpKubeconfig.inClusterServerUrl=...:8443` value on the MSP-side Helm installs |
 | `helm install` hits the wrong cluster | `KUBECONFIG` is set to `$KCP` by default; MSP-side installs must prefix with `KUBECONFIG=$KIND` | Re-run with `KUBECONFIG=$KIND helm install ...` on the MSP-side command |
 | `kubectl` against `localhost:8443` returns `http: server gave HTTP response to HTTPS client` | `localhost` can resolve to the wrong local listener for this setup | Apply the `127.0.0.1` kubeconfig patch in Step 1 |
 | `KUBECONFIG=$KIND kubectl …` returns `connection refused` against a `127.0.0.1:<port>` that doesn't match the running Kind container | Docker reassigns the Kind API-server port on each container restart and the file at `$KIND` still has the old port | Refresh `$KIND` from the live cluster: `kind get kubeconfig --name platform-mesh > "$KIND"` |

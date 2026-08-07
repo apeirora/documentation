@@ -14,7 +14,7 @@ kcp serves as the foundation for service management through:
 - Providing a consistent control plane for service management
 - Enabling standardized service definitions and consumption patterns
 
-It achieves these goals by building on top of Kubernetes' existing extensibility model for the <Term>Kubernetes Resource Model</Term> (the KRM; making it a "lingua franca" for declarative service management) while removing container orchestration functionality that is inherent to Kubernetes. Instead, it offers API orchestration functionality that is targetted towards providing declarative APIs via the KRM to users.
+It achieves these goals by building on top of Kubernetes' existing extensibility model for the <Term>Kubernetes Resource Model</Term> (the KRM; making it a "lingua franca" for declarative service management) while removing container orchestration functionality that is inherent to Kubernetes. Instead, it offers API orchestration functionality that is targeted towards providing declarative APIs via the KRM to users.
 
 In essence, kcp extracts the declarative API control plane of Kubernetes and makes it a standalone project usable to orchestrate any kind of digital services.
 

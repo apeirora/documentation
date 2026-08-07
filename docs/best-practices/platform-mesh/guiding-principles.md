@@ -7,7 +7,7 @@ The architectural framework, including its components and API specifications, is
 
 ## Declarative API
 
-The API design is solely dedicated to a declarative model, with no support for imperative requests. REST is exclusively used for managing declaration resources.  
+The API design is solely dedicated to a declarative model, with no support for imperative requests. REST is exclusively used for managing declaration resources.
 The declarative API model of Apeiro is inherited from the Kubernetes ecosystem, known as the <Term>Kubernetes Resource Model</Term> (KRM).
 This model is based on a generic API server with extensible resource types.
 
@@ -21,9 +21,9 @@ The same API is used by the controllers. Controllers work on the object space an
 
 ## Decoupling
 
-Decoupling and separation of concerns is an important design criterion for the components of the reference architecture.  
+Decoupling and separation of concerns is an important design criterion for the components of the reference architecture.
 All components and layers should be directly usable without needing the complete framework or service orchestration environment, meaning that components can be hardwired if desired.
-<Term>Service providers</Term> should be as self-contained as possible and directly usable, for example, with their own tenant/service account management that can also be linked with a corporate account system or the orchestration environment.  
+<Term>Service providers</Term> should be as self-contained as possible and directly usable, for example, with their own tenant/service account management that can also be linked with a corporate account system or the orchestration environment.
 While the overall architecture aims to enable the creation of <Term>marketplaces</Term> using various service providers, this central element should not be required for other parts to function or work together.
 Service providers should be able to be easily connected to any orchestration environment.
 

@@ -13,6 +13,9 @@ import { data } from '../data/blog-posts.data'
         :text="item.excerpt"
         :moreHref="item.url"
         :readingTime="item.metadata.readingTime"
+        :external="!!item.external"
+        :externalUrl="item.external?.externalUrl"
+        :source="item.external?.source"
         />
     </li>
   </ul>

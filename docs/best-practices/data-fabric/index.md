@@ -25,7 +25,7 @@ Key Elements of Gartner's Definition:
 * **Environment-Agnostic**<br/>
     Works across on-premises, cloud, hybrid, and multi-cloud environments.
 
-While Data Fabric encompasses various components, our focus within the scope of ApeiroRA is on metadata.
+While Data Fabric encompasses various components, our focus here is on metadata.
 The following diagram demonstrates how decentralized self-describing of application resources enables the identification of the correct objects (Entity Types) behind the resources exposed by applications.
 This approach helps clarify their meaning and determine which integration points are linked to the same underlying object.
 

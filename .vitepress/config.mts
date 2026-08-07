@@ -5,7 +5,7 @@ import blogSidebar from './theme/blog-sidebar';
 import docsSidebar from './theme/docs-sidebar';
 import matter from 'gray-matter'
 import path from 'node:path'
-import { getBlogDate, resolveAuthors, rewriteBlogPath } from './util/blog';
+import { getBlogDate, resolveAuthors, resolveExternal, rewriteBlogPath } from './util/blog';
 import { estimateReadingTime } from './util/reading-time';
 import fs from 'node:fs'
 import { glob } from 'glob'
@@ -53,7 +53,8 @@ export default withMermaid(defineConfig({
     'CONTRIBUTING.md',
     'README.internal.md',
     'README.md',
-    'RELEASE.md'
+    'RELEASE.md',
+    'proposals/**/*'
   ],
   // assetsDir: './static',
   cleanUrls: true,
@@ -131,6 +132,9 @@ export default withMermaid(defineConfig({
 
 
           const { content, data } = matter(code)
+          // Validate external stubs here too so a missing/malformed externalUrl
+          // fails fast at transform time, consistent with the sidebar and loader.
+          const isExternal = !!resolveExternal(data, id)
           const injectedChunks: string[] = []
           const injectToTop: string[] = []
           if (content.startsWith('__VP_PARAMS_START')) {
@@ -146,7 +150,7 @@ export default withMermaid(defineConfig({
           const isBlogPost = id.includes('/blog/')
             && !id.endsWith('/index.md')
           const isRedirect = id.includes('__VP_PARAMS_START__') && id.includes('redirect')
-          if (isBlogPost && !isRedirect) {
+          if (isBlogPost && !isRedirect && !isExternal) {
             injectedChunks.unshift(`
 <BlogPost
   date="${getBlogDate(id)}"
@@ -162,7 +166,7 @@ export default withMermaid(defineConfig({
           // with the logic. so we just hope no one uses this so early
           // in a document.
           const hasH1 = /^\s*#\s+.+/m.test(content.slice(0, 200))
-          if (data.title && !hasH1) {
+          if (data.title && !hasH1 && !isExternal) {
             injectedChunks.unshift(`# ${data.title}`)
           }
 
@@ -213,6 +217,10 @@ export default withMermaid(defineConfig({
       ['meta', { property: 'og:url', content: resolveAbsoluteUrl(pageData.relativePath.replace('index.md', '').replace('.md', '')) }],
       ['meta', { property: 'og:image', content: resolveAbsoluteUrl('./img/og-image.png') }],
     ]
+    // External blog stubs still emit a (blank) route; keep it out of search engines.
+    if (pageData.frontmatter.external) {
+      head.push(['meta', { name: 'robots', content: 'noindex' }])
+    }
     return head
   }
 }))

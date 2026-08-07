@@ -7,7 +7,7 @@ sidebar_position: 4
 **Services** are a fundamental part of the Apeiro Reference Architecture.
 
 However, the term "service" can often be ambiguous and open to interpretation, leading to misunderstandings.
-On this page, we define what a service is within the context of ApeiroRA and explain related concepts and terms.
+On this page, we define what a service is within the context of Apeiro and explain related concepts and terms.
 
 <ApeiroFigure src="/services/img/concepts.svg"
   alt="Terms and Concepts"
@@ -32,7 +32,7 @@ Specific examples of service APIs vary based on the type of workload, and these 
   These protocols have properties vital to the service, such as high performance, reduced data size, or enhanced reliability. They are designed to meet specific service requirements and optimize the service's operational parameters.
 
 Services may also incorporate a combination of different APIs to cater to varying needs.
-ApeiroRA recommends using <Term>Open Resource Discovery</Term> (ORD) to describe these interfaces, providing a standardized way to document and interact with service APIs.
+Apeiro recommends using <Term>Open Resource Discovery</Term> (ORD) to describe these interfaces, providing a standardized way to document and interact with service APIs.
 
 Additionally, a service might offer administrative and end-user tools, such as command-line interfaces (CLI) and web-based user interfaces (UIs), to facilitate easier management and interaction with the service's functionalities.
 
@@ -95,7 +95,7 @@ Generally, there are two categories of capabilities:
 
 The internal workings of a capability are considered implementation details.
 However, it is recommended to use a <Term>service provider</Term> to manage these capabilities.
-This approach enables both the <Term>service supplier</Term> and the <Term>service consumer</Term> to fully leverage the features and benefits of ApeiroRA.
+This approach enables both the <Term>service supplier</Term> and the <Term>service consumer</Term> to fully leverage the features and benefits of Apeiro.
 
 A capability and the corresponding <Term>resource</Term> together form a <Term>digital twin</Term>.
 
@@ -140,7 +140,7 @@ A <Term>service consumer</Term> creates, modifies, or deletes a resource within 
 The <Term>controller</Term> of the respective <Term>service provider</Term> detects the change and must respond accordingly.
 Together, the resource and the corresponding <Term>capability</Term> form a <Term>digital twin</Term>.
 
-An ApeiroRA resource closely resembles a resource in the <Term>Kubernetes Resource Model</Term> (KRM).
+An Apeiro resource closely resembles a resource in the <Term>Kubernetes Resource Model</Term> (KRM).
 it adheres to the same structures and patterns and is typically expressed in YAML.
 
 A hypothetical resource of a database might look like this:
@@ -163,7 +163,7 @@ spec:
 
 *A **service provider** is an entity that offers <Term>services</Term>, monitors its <Term>resources</Term>, and manages <Term>capabilities</Term>.*
 
-When a <Term>service supplier</Term> wishes to offer a <Term>service</Term> in the ApeiroRA realm, they must provide a service provider.
+When a <Term>service supplier</Term> wishes to offer a <Term>service</Term> in the Apeiro realm, they must provide a service provider.
 Typically, this service provider is a software application that has access to the <Term>service marketplaces</Term> where it is registered, as well as access to all <Term>service orchestration environments</Term> where it intends to offer services.
 This software facilitates registration in a service marketplace by providing all necessary metadata for one or more services, enabling potential service consumers to discover these services and order <Term>capabilities</Term> in the service orchestration environments.
 At a minimum, the service provider must operate a <Term>controller</Term> that monitors resources belonging to it and responds to any changes affecting them.
@@ -218,7 +218,7 @@ Consequently, the service provider's responsibilities are limited to tenant mana
 
 A **managed service** is delivered through a <Term>service provider</Term> and must include a declarative approach for managing <Term>capabilities</Term>, such as creating, updating, and deleting them.
 
-An **unmanaged service**  is set up by a DevOps team using tools and APIs that are outside the scope of ApeiroRA.
+An **unmanaged service**  is set up by a DevOps team using tools and APIs that are outside the scope of Apeiro.
 It is subsequently managed directly without the involvement of a <Term>service provider</Term>.
 Only legacy systems and services should be attached as unmanaged services.
 

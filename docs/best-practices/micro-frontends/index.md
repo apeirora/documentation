@@ -35,7 +35,7 @@ On a high level there are three common approaches to integrate Micro Frontends i
 - **Build-time Micro Frontend Integration**: In this approach, the Micro Frontends are built separately and then combined into a single application during the build process.
 - **Runtime Micro Frontend Integration**: A central container application loads Micro Frontends dynamically at runtime, allowing for more flexibility and independence.
 
-All above approaches can be used to implement a variation of a Micro Frontend architecture. Loading Micro Frontends at runtime is the preferred approach in ApeiroRA and combines the maximum flexibility with the highest independence.
+All above approaches can be used to implement a variation of a Micro Frontend architecture. Loading Micro Frontends at runtime is the preferred approach in Apeiro and combines the maximum flexibility with the highest independence.
 
 ## **Composition and Communication**
 

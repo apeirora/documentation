@@ -4,7 +4,7 @@ title: Developer
 ---
 
 
-Role: Focuses on on exposing and leveraging exposed metadata and APIs for building and extending applications efficiently.
+Role: Focuses on exposing and leveraging exposed metadata and APIs for building and extending applications efficiently.
 
 Data Fabric provides not only a conceptual and architectural framework but also a suite of developer tools aimed at minimizing effort and streamlining implementation.
 
