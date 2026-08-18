@@ -36,6 +36,20 @@ Lastly, an infrastructure provider that is supported by Gardener to create K8s c
 You can find installation instructions for [Gardener](https://gardener.cloud/docs/gardener/deployment/setup_gardener/), [OpenMFP](https://openmfp.org/documentation/getting-started/installation), [OpenFGA](https://openfga.dev/docs/getting-started/setup-openfga/overview), and [Platform Mesh/KCP](https://docs.kcp.io/kcp/main/setup/) in the respective project documentation.
 We will add additional documentation here over time that will also help with the integration configuration across these components.
 
+<SapVideo
+  entryId="1_l3csbn4t"
+  title="Moving Workloads – Make your workloads move like the wind"
+  thumbnail="/img/showroom/video-moving-workloads.jpg"
+  caption="Demo: workload mobility across Kubernetes clusters with Gardener and Platform Mesh"
+/>
+
+<SapVideo
+  entryId="1_zl7y6186"
+  title="SimpleCluster Sovereign LLM – Bring Your Own Cluster"
+  thumbnail="/img/showroom/video-simplecluster-sovereign-llm.jpg"
+  caption="Demo: one SaaS offering, customer-controlled deployment (MSP, cloud account, or sovereign infrastructure)"
+/>
+
 ### Lifecycle and Installation
 
 Adding lifecycle and installation management to application and service hosting is an enhancement to the basic showroom setup that is described in the previous section.
@@ -49,6 +63,13 @@ We will add instructions for OpenMCP later.
 
 On top of the other scenarios in using the showroom as an Application and Service Platform, additional capabilities can be put into the showroom to support application developers with additional value.
 This includes the Data Fabric capabilities and potentially other future Apeiro components.
+
+<SapVideo
+  entryId="1_9vwkra8g"
+  title="One chat app. Two private models."
+  thumbnail="/img/showroom/video-chat-app-private-models.jpg"
+  caption="Demo: switch private LLM models without changing the application"
+/>
 
 ## Setup for Infrastructure and Baremetal
 

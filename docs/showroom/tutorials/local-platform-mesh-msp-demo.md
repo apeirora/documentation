@@ -39,6 +39,17 @@ The two providers:
 
 What makes this interesting is the **composition**. Chat UI does not bundle its own LLM; it consumes one. The customer creates an LLM first, gets a Secret with the endpoint, then passes that Secret to the Chat UI. Two independent providers, connected through a standard interface.
 
+## See It in Action
+
+The following video shows the same scenario running across real separate clusters — the architecture and API contracts are identical to what you will build locally in this tutorial.
+
+<SapVideo
+  entryId="1_9vwkra8g"
+  title="One chat app. Two private models."
+  thumbnail="/img/showroom/video-chat-app-private-models.jpg"
+  caption="The Platform Mesh LLM + Chat UI scenario in a multi-cluster production-like setup — the same architecture this tutorial runs locally on Kind"
+/>
+
 ## Architecture
 
 In production, KCP runs on a dedicated cluster and each provider has its own MSP (Managed Service Provider) cluster. Locally, everything runs in a single Kind cluster, but the logical boundaries are the same: provider workspaces are isolated from consumer workspaces, sync agents bridge the control plane to the workload layer, and operators only see CRs that belong to their APIExport.

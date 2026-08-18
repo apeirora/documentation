@@ -4,6 +4,7 @@ import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import './style.css'
 import Figure from '../components/Figure.vue'
+import SapVideo from '../components/SapVideo.vue'
 import Term from '../components/Term.vue'
 import Project from '../components/Project.vue'
 import Journey from '../components/Journey.vue'
@@ -21,6 +22,7 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     app.component('ApeiroFigure', Figure)
+    app.component('SapVideo', SapVideo)
     app.component('Term', Term)
     app.component('Project', Project)
     app.component('Journey', Journey)

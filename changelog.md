@@ -2,6 +2,14 @@
 title: Changelog
 ---
 
+## v2.11.0 (2026-08-18)
+
+**New content**
+
+- [Videos](./docs/resources/videos.md) — new page in the Resources section with three demo videos from the Apeiro channel, including content summaries
+- [Showroom Scenarios](./docs/showroom/scenarios.md) — embedded demo videos for Application Hosting and Development and Management scenarios
+- [Local Platform Mesh Tutorial](./docs/showroom/tutorials/local-platform-mesh-msp-demo.md) — added "See it in Action" video section
+
 ## v2.10.0 (2026-08-06)
 
 **New content**

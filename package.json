@@ -18,7 +18,7 @@
     "mermaid": "^11.8.1",
     "vitepress": "^1.6.3",
     "vitepress-plugin-mermaid": "^2.0.17",
-    "vitepress-sidebar": "1.36.1"
+    "vitepress-sidebar": "1.38.0"
   },
   "devDependencies": {
     "@types/js-yaml": "4.0.9",
