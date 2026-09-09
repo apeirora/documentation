@@ -7,7 +7,7 @@ sidebar_position: 2
 
 ## Proportional-Integral-Derivative
 
-The controller pattern can be likened to a **PID (Proportional-Integral-Derivative) Controller**[^1] in control systems engineering, where the goal is to maintain a desired state by continuously adjusting the system's behavior. Here's how the Kubernetes controller relates to the PID controller:
+The controller pattern can be likened to a **PID (Proportional-Integral-Derivative) Controller** in control systems engineering, where the goal is to maintain a desired state by continuously adjusting the system's behavior. Here's how the Kubernetes controller relates to the PID controller:
 
 1. **Desired State vs. Setpoint**: In Kubernetes, the desired state is akin to the setpoint in a PID controller.
 
@@ -71,5 +71,4 @@ Edge and level triggering[^2] refer to different approaches for monitoring and r
 Controllers often use a hybrid approach, combining elements of both edge and level triggering.  
 For instance, the `ReplicaSet` controller uses level-based reconciliation, periodically reading the full resource, to ensure the desired number of replicas is continuously maintained, but it also reacts to specific events (like a Pod deletion) with edge triggering to quickly adjust and react to arbitrary failures of resources that it owns.
 
-[^1]: [Wikipedia: PID controller](https://en.wikipedia.org/wiki/Proportional%E2%80%93integral%E2%80%93derivative_controller)
 [^2]: [Level Triggering and Reconciliation in Kubernetes](https://hackernoon.com/level-triggering-and-reconciliation-in-kubernetes-1f17fe30333d)

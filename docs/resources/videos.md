@@ -14,7 +14,6 @@ A Workload Placement Operator evaluates these constraints and schedules workload
 <SapVideo
   entryId="1_l3csbn4t"
   title="Moving Workloads – Make your workloads move like the wind"
-  thumbnail="/img/showroom/video-moving-workloads.jpg"
   caption="Demo: policy-driven workload placement across Kubernetes clusters with Platform Mesh and KCP"
 />
 
@@ -26,7 +25,6 @@ The workload and data plane move to the customer-selected host; the SaaS contrac
 <SapVideo
   entryId="1_zl7y6186"
   title="SimpleCluster Sovereign LLM – Bring Your Own Cluster"
-  thumbnail="/img/showroom/video-simplecluster-sovereign-llm.jpg"
   caption="Demo: sovereignty-preserving SaaS — customer-controlled runtime, provider-managed lifecycle"
 />
 
@@ -39,6 +37,5 @@ The four layers — consumer, provider API, and workload — are each hosted in 
 <SapVideo
   entryId="1_9vwkra8g"
   title="One chat app. Two private models."
-  thumbnail="/img/showroom/video-chat-app-private-models.jpg"
   caption="Demo: model-agnostic chat application via Platform Mesh API contracts — swap the private LLM without changing the app"
 />

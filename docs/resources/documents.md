@@ -28,5 +28,7 @@ And another one on YYY
 
 ## Relevant IPCEI-CIS Documents
 
-[Second Version of the IPCEI-CIS Reference Architecture](https://www.8ra.com/news/advancing-europes-federated-cloud-edge-infrastructure/) ([PDF](https://www.8ra.com/wp-content/uploads/IPCEI-CIS_Reference-Architecture_2-0.pdf)) released January 2026.
+[Third Version of the IPCEI-CIS Reference Architecture](https://www.8ra.com/news/third-version-of-the-ipcei-cis-reference-architecture-released/) ([PDF](https://www.8ra.com/wp-content/uploads/IPCEI-CIS_Reference-Architecture_3-0.pdf)) released August 2026.
+
+[8ra Collaborative Security Framework (CSF)](https://www.8ra.com/news/establishing-a-unified-security-architecture-the-8ra-collaborative-security-framework-csf/) ([PDF](https://www.8ra.com/wp-content/uploads/IPCEI-CSF_2026.pdf)) released December 2025.
 

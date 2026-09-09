@@ -25,8 +25,8 @@ such that they can be accessed from automated provisioning procedures. Administr
   width="100%"/>
 
 For automated startup, OpenBao must support auto-unsealing, while the unseal key should be stored in
-<Term>Hardware security module</Term> (HSM)[^2].
-For HSM access, PKCS#11[^3] support must be [added](https://github.com/openbao/go-kms-wrapping/pull/14) to OpenBao.
+<Term>Hardware security module</Term> (HSM).
+For HSM access, PKCS#11[^2] support must be [added](https://github.com/openbao/go-kms-wrapping/pull/14) to OpenBao.
 For multi-tenancy, namespace support must be [added](https://github.com/openbao/openbao/issues/787) to OpenBao.
 In addition, disaster recovery is needed for enterprise readiness.
 
@@ -42,11 +42,10 @@ As above, administrator access is needed for the initial configuration or issue 
   caption="PKI"
   width="100%"/>
 
-For automated TLS configuration of server certificates (ACME[^4] protocol),
+For automated TLS configuration of server certificates (ACME[^3] protocol),
 OpenBao must support automated access to the private key for signing certificates. If we store the private key in HSM, we must extend the PKCS#11 support
 of OpenBao to enable digital signatures.
 
 [^1]: [What is OpenBao?](https://openbao.org/docs/what-is-openbao/)
-[^2]: [Wikipedia: Hardware security module](https://en.wikipedia.org/wiki/Hardware_security_module)
-[^3]: [Wikipedia: PKCS#11](https://en.wikipedia.org/wiki/PKCS_11)
-[^4]: [Wikipedia: ACME](https://de.wikipedia.org/wiki/Automatic_Certificate_Management_Environment)
+[^2]: [Wikipedia: PKCS#11](https://en.wikipedia.org/wiki/PKCS_11)
+[^3]: [RFC 8555 – Automatic Certificate Management Environment (ACME)](https://datatracker.ietf.org/doc/html/rfc8555)

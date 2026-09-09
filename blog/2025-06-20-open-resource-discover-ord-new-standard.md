@@ -19,7 +19,7 @@ Modern enterprises operate across fragmented landscapes — diverse platforms, m
 
 ORD creates a decentralized and open method for exposing metadata and thereby making these resources dynamically discoverable and actionable across ecosystems.
 
-![ORD-svg](https://open-resource-discovery.github.io/specification/assets/images/ord-provider-overview-7541358f15f21e362b88aa6f600ac6d4.svg)
+![ORD-svg](/assets/blog/ord-provider-overview.svg)
 
 
 ## Keeping it ORDinary: The Simple Genius of Common Understanding

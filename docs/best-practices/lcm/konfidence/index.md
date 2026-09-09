@@ -30,9 +30,7 @@ By avoiding unnecessary redeployments, Konfidence helps teams reduce operational
 - It enables reliable daily releases through automation, promotion control, and auditability.
 - It lowers infrastructure costs by reusing services across stages within the same landscape.
 
-In the aggregate emergence[^1], Konfidence changes the entire engineering culture of your development teams and alongside them, the operations and product teams. And in effect, the business and your customers win.
-
-[^1]: [Emergence](https://en.wikipedia.org/wiki/Emergence) occurs when a complex entity has properties or behaviors that its parts do not have on their own, and emerge only when they interact in a wider whole.
+In aggregate, Konfidence changes the entire engineering culture of your development teams and alongside them, the operations and product teams. And in effect, the business and your customers win.
 
 ## How Konfidence Works
 

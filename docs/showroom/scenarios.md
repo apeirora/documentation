@@ -39,14 +39,12 @@ We will add additional documentation here over time that will also help with the
 <SapVideo
   entryId="1_l3csbn4t"
   title="Moving Workloads – Make your workloads move like the wind"
-  thumbnail="/img/showroom/video-moving-workloads.jpg"
   caption="Demo: workload mobility across Kubernetes clusters with Gardener and Platform Mesh"
 />
 
 <SapVideo
   entryId="1_zl7y6186"
   title="SimpleCluster Sovereign LLM – Bring Your Own Cluster"
-  thumbnail="/img/showroom/video-simplecluster-sovereign-llm.jpg"
   caption="Demo: one SaaS offering, customer-controlled deployment (MSP, cloud account, or sovereign infrastructure)"
 />
 
@@ -67,7 +65,6 @@ This includes the Data Fabric capabilities and potentially other future Apeiro c
 <SapVideo
   entryId="1_9vwkra8g"
   title="One chat app. Two private models."
-  thumbnail="/img/showroom/video-chat-app-private-models.jpg"
   caption="Demo: switch private LLM models without changing the application"
 />
 

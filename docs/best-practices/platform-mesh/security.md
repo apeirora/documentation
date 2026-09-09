@@ -10,10 +10,8 @@ Platform Mesh addresses this challenge through a clear separation of authenticat
 This design aligns directly with the [decoupling principle](./guiding-principles.md) that guides the overall architecture: security subsystems, like all other components, should be directly usable without requiring the complete framework.
 
 Platform Mesh is accessed through multiple client types, each with distinct interaction patterns.
-UI clients interact through a Kubernetes-GraphQL-Gateway, `kubectl` users communicate directly with <Project>kcp</Project> via the KRM API, and AI agents are expected to interact through a dedicated MCP (Model Context Protocol) server[^1].
+UI clients interact through a Kubernetes-GraphQL-Gateway, `kubectl` users communicate directly with <Project>kcp</Project> via the KRM API, and AI agents are expected to interact through a dedicated MCP (Model Context Protocol) server (planned future component).
 Regardless of the client type, all requests ultimately reach <Project>kcp</Project>, where the same authentication and authorization mechanisms apply uniformly.
-
-[^1]: The MCP server for Platform Mesh is a planned future component.
 
 ```mermaid
 flowchart TD

@@ -4,7 +4,7 @@ title: Digital Twins
 keywords: [Digital Twins, Kubernetes Resource Model, KRM]
 ---
 
-A **digital twin** is a virtual representation of a physical object, system, or process that is continuously updated with real-time or near-real-time data to mirror its real-world counterpart[^1].
+A **digital twin** is a virtual representation of a physical object, system, or process that is continuously updated with real-time or near-real-time data to mirror its real-world counterpart.
 
 This concept allows organizations to order, simulate, analyze, and optimize the real-world with its corresponding virtual map. Digital Twins are prevalent in the concept of Internet of Things (IoT) and used across industries like manufacturing, healthcare, urban planning, and automotive design to improve efficiency, predict failures, and enhance system performance.
 
@@ -31,5 +31,3 @@ mindmap
       c{{Controllers}}
         o{{Operators}}
 ```
-
-[^1]: [Wikipedia: Digital Twin](https://en.wikipedia.org/wiki/Digital_twin)

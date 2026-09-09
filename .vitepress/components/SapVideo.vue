@@ -1,11 +1,14 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { withBase } from 'vitepress'
 
 const props = defineProps(['entryId', 'title', 'thumbnail', 'caption'])
 const loaded = ref(false)
 
-const thumbnailSrc = computed(() => withBase(props.thumbnail))
+const thumbnailSrc = computed(() =>
+  props.thumbnail
+    ? props.thumbnail
+    : `https://cdnapisec.kaltura.com/p/1921661/thumbnail/entry_id/${props.entryId}/width/640`
+)
 // Partner 1921661 / uiconf 54739572 = SAP Video Portal (video.sap.com) embed config
 const embedUrl = computed(() =>
   `https://cdnapisec.kaltura.com/p/1921661/embedPlaykitJs/uiconf_id/54739572?iframeembed=true&entry_id=${props.entryId}&autoPlay=true`

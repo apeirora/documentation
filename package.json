@@ -12,20 +12,20 @@
   },
   "dependencies": {
     "glob": "13.0.6",
-    "js-yaml": "4.3.1",
+    "js-yaml": "4.3.2",
     "lodash-es": "4.18.1",
     "markdown-it-footnote": "^4.0.0",
     "mermaid": "^11.8.1",
     "vitepress": "^1.6.3",
     "vitepress-plugin-mermaid": "^2.0.17",
-    "vitepress-sidebar": "1.38.0"
+    "vitepress-sidebar": "1.40.0"
   },
   "devDependencies": {
     "@types/js-yaml": "4.0.9",
     "@types/node": "24.13.3",
     "semver": "7.8.5",
     "typescript": "~5.9.0",
-    "vitest": "4.1.10"
+    "vitest": "4.1.11"
   },
   "engines": {
     "node": ">=24"

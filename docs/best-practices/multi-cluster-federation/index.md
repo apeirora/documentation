@@ -92,9 +92,11 @@ The most advanced evolution of this design involves a fundamental separation of 
 
 [^2]: <Project>kcp</Project> is the project used in the Apeiro Reference Architecture that delivers a clusterless, pure data plane. The idea itself is older and has evolved from initiatives like [Kubeception](https://www.youtube.com/watch?v=EbNxGK9MwN4), [Gardener](https://gardener.cloud/docs/getting-started/architecture/), and [Badidea](https://www.youtube.com/watch?v=fxqV24h_ocs).
 
-For the <Term>controllers</Term> responsible for global federation aspects (e.g., federation schedulers, policy engines), a separate runtime Kubernetes cluster[^3] is utilized. This cluster is typically managed by administrators and does not require direct user access to the federation service, further isolating critical control logic.
+For the <Term>controllers</Term> responsible for global federation aspects (e.g., federation schedulers, policy engines), a separate runtime Kubernetes cluster is utilized. This cluster is typically managed by administrators and does not require direct user access to the federation service, further isolating critical control logic.
 
-[^3]: Remember, controllers may run on any work plane or runtime and be connected with a data plane (hosting the relevant digital twin repository) which is not necessarily the same data plane used by a Kubernetes cluster in unisono.
+:::tip
+Controllers may run on any work plane or runtime and be connected with a data plane hosting the relevant digital twin repository — which is not necessarily the same data plane used by a Kubernetes cluster.
+:::
 
 <ApeiroFigure src="/multi-cluster-federation/img/planes.svg"
   alt="Federation with separated planes"

@@ -46,7 +46,6 @@ The following video shows the same scenario running across real separate cluster
 <SapVideo
   entryId="1_9vwkra8g"
   title="One chat app. Two private models."
-  thumbnail="/img/showroom/video-chat-app-private-models.jpg"
   caption="The Platform Mesh LLM + Chat UI scenario in a multi-cluster production-like setup — the same architecture this tutorial runs locally on Kind"
 />
 

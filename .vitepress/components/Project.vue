@@ -52,9 +52,10 @@ const iconSrc = computed(() => projectData.value.icon)
 
 <template>
   <span class="project-wrap">
-    <a :href="withBase(projectUrl)">
+    <a v-if="projectUrl" :href="withBase(projectUrl)">
       <slot />
     </a>
+    <span v-else class="project-no-link"><slot /></span>
     <span class="project-content">
       <span class="project-title">
         <img v-if="iconSrc" :src="withBase(iconSrc)" class="project-icon" />
@@ -110,5 +111,12 @@ const iconSrc = computed(() => projectData.value.icon)
 
 .project-wrap:hover .project-content {
   display: block;
+}
+
+.project-no-link {
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: default;
 }
 </style>

@@ -2,6 +2,14 @@
 title: Changelog
 ---
 
+## v2.12.0 (2026-09-09)
+
+**New content**
+
+- Document: [IPCEI-CIS Reference Architecture v3.0](./docs/resources/documents.md) - added link to the third version of the IPCEI-CIS Reference Architecture (v2.0 link removed)
+- Document: [8ra Collaborative Security Framework (CSF)](./docs/resources/documents.md) - added link to the 8ra Collaborative Security Framework
+- Blog post: [Workload Identity Should Come With the Cluster](./blog/2026-09-09-workload-identity-should-be-a-platform-default.md)
+
 ## v2.11.0 (2026-08-18)
 
 **New content**
