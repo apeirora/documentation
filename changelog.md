@@ -2,6 +2,12 @@
 title: Changelog
 ---
 
+## v2.13.0 (2026-09-18)
+
+**New content**
+
+- Blog post: [Sovereign Cloud Needs More Than a Region. It Needs Key Control.](./blog/2026-09-10-openkcm-sovereign-cloud-key-control.md) - OpenKCM perspective on sovereign cloud key governance: covers the key control problem, the project architecture and capabilities, recent releases of Krypton, Krypton Operator, and CMK, and upcoming development priorities
+
 ## v2.12.0 (2026-09-09)
 
 **New content**
@@ -14,9 +20,9 @@ title: Changelog
 
 **New content**
 
-- [Videos](./docs/resources/videos.md) — new page in the Resources section with three demo videos from the Apeiro channel, including content summaries
-- [Showroom Scenarios](./docs/showroom/scenarios.md) — embedded demo videos for Application Hosting and Development and Management scenarios
-- [Local Platform Mesh Tutorial](./docs/showroom/tutorials/local-platform-mesh-msp-demo.md) — added "See it in Action" video section
+- [Videos](./docs/resources/videos.md) - new page in the Resources section with three demo videos from the Apeiro channel, including content summaries
+- [Showroom Scenarios](./docs/showroom/scenarios.md) - embedded demo videos for Application Hosting and Development and Management scenarios
+- [Local Platform Mesh Tutorial](./docs/showroom/tutorials/local-platform-mesh-msp-demo.md) - added "See it in Action" video section
 
 ## v2.10.0 (2026-08-06)
 

@@ -6,12 +6,6 @@
         "url": "https://ai-trust-services.github.io",
         "icon": "/img/projects/ai-trust.svg"
     },
-    "apeiro-reference-architecture": {
-        "name": "Apeiro Reference Architecture",
-        "description": "ApeiroRA is an open, flexible, and secure blueprint for the cloud-edge continuum, strengthening European digital sovereignty. It provides a construction kit of reusable open-source components and interoperability standards for building cloud infrastructure — from centralized data centers to distributed edge deployments.",
-        "url": "https://apeirora.eu/",
-        "icon": "/img/projects/apeiro-reference-architecture.svg"
-    },
     "autonomous-operations": {
         "name": "Autonomous Operations",
         "description": "Autonomous Operations is a framework that keeps data centers running with minimal personnel across routine and adverse conditions. It captures expert knowledge and applies it automatically across sites, drastically increasing automation and autonomy. Distributed as open-source, it enables efficient operations of distributed cloud-edge environments and decentralized or air-gapped data centers.",
@@ -24,14 +18,6 @@
         "url": "https://cobaltcore.dev",
         "icon": "/img/projects/cobaltcore.svg"
     },
-    "cohere-mistral-ai-core": {
-        "name": "Cohere+Mistral on AI Core",
-        "description": "Enabling the LLMs of Cohere and Mistral for running in SCI data centers via SAP AI Core."
-    },
-    "confidential-computing": {
-        "name": "Confidential Computing",
-        "description": "Investigating how to ensure weight protection of LLMs through confidential computing. The goal is to enable use-cases where no external connectivity can be given to an LLM and full sovereignty is required."
-    },
     "confidential-computing-attestation": {
         "name": "Confidential Computing Attestation",
         "description": "Confidential Computing Attestation provides hardware-rooted trust verification for cloud workloads running in Trusted Execution Environments (TEEs). The project delivers attestation services that cryptographically verify the integrity and confidentiality guarantees of compute environments, enabling workloads to prove they are running on genuine, uncompromised confidential computing hardware."
@@ -40,11 +26,6 @@
         "name": "Crypto Broker",
         "description": "The Open Crypto Broker moves cryptographic operations into a managed environment, enabling governance and policies over which algorithms are allowed. It provides a unified interface for crypto operations to help workloads become crypto-agile.",
         "url": "https://github.com/open-crypto-broker"
-    },
-    "dc-design": {
-        "name": "DC Design & Reference Architecture",
-        "description": "DC Design & Reference Architecture provides open-source blueprints and observability platforms for modern data center operators. It covers physical infrastructure planning, rack-level telemetry collection via Embedded Monitoring Units and intelligent PDUs, environmental sensing, and regulatory compliance reporting. The platform integrates with CMDB, data lakes, and ticketing systems to deliver unified visibility, incident automation, and EU energy efficiency compliance across distributed data center environments.",
-        "url": "https://documentation.apeirora.eu/assets/resources/documents/Apeiro_DataCenterObservability_Blueprint_20260130_ext.pdf"
     },
     "garden-linux": {
         "name": "Garden Linux",
@@ -69,12 +50,6 @@
         "description": "We leverage the power of Digital Twins by treating the data center like a manufacturing environment. All relevant data flows into that Digital Twin, allowing immersive visualization and smart decision-making through forecasts and AI.",
         "url": "https://github.com/Immersive-Data-Center-Management",
         "icon": "/img/projects/immersive-dc.png"
-    },
-    "ironcore": {
-        "name": "IronCore",
-        "description": "IronCore is a next-generation, cloud-native Infrastructure as a Service and Bare Metal Automation platform. It is a modular and scalable system designed to manage compute, networking, and storage resources efficiently across cloud and near-edge environments.",
-        "url": "https://ironcore.dev/",
-        "icon": "/img/projects/ironcore.svg"
     },
     "ironcore-baremetal": {
         "name": "IronCore Bare Metal Management",
@@ -171,12 +146,6 @@
         "url": "https://open-resource-discovery.org/",
         "icon": "/img/projects/ord.svg"
     },
-    "ospo-neonephos": {
-        "name": "OSPO / NeoNephos",
-        "description": "NeoNephos is a Linux Foundation Europe initiative dedicated to advancing open-source projects aligned with the EU's IPCEI-CIS strategic objectives. It provides neutral, long-term governance for Apeiro projects beyond the initial funding period, making cloud-native infrastructure sovereign and independently sustainable.",
-        "url": "https://neonephos.org/",
-        "icon": "/img/projects/ospo-neonephos.svg"
-    },
     "otel-audit-logging": {
         "name": "Audit Logging",
         "description": "OpenTelemetry has evolved into a widely adopted standard for observability, but lacks support for audit logging purposes such as standardized semantic conventions and delivery guarantees. Together with the OpenTelemetry community, we are working on closing these gaps and making OpenTelemetry fit for audit logging.",
@@ -194,16 +163,6 @@
         "description": "Platform Mesh is the main Platform API for users and technical services to order and orchestrate capabilities attached to the environment. Its design principle is inherited from the Kubernetes Resource Model (KRM), enabling declarative management of services across distributed environments.",
         "url": "https://platform-mesh.io/",
         "icon": "/img/projects/platform-mesh.svg"
-    },
-    "showroom": {
-        "name": "Showroom",
-        "description": "The Showroom provides functioning deployments of the Apeiro Reference Architecture across multiple scenarios. It serves as a working integration environment, an end-to-end demonstration platform for stakeholders, and a starting point for establishing production setups.",
-        "url": "https://documentation.apeirora.eu/docs/showroom/scenarios",
-        "icon": "/img/projects/apeiro-reference-architecture.svg"
-    },
-    "sustainability": {
-        "name": "Sustainability",
-        "description": "Sustainability efforts for Pegasus"
     },
     "thalamus": {
         "name": "Thalamus",
