@@ -2,6 +2,12 @@
 title: Changelog
 ---
 
+## v2.14.0 (2026-09-24)
+
+**New content**
+
+- Blog post: [From Urgency to Reality: Building the Crypto Broker](./blog/2026-09-24-open-crypto-broker.md)
+
 ## v2.13.0 (2026-09-18)
 
 **New content**
