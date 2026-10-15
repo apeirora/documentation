@@ -72,5 +72,6 @@ It addresses these challenges with a structured, opinionated approach. Its found
 
 ## Further Information
 
-For those interested in exploring Konfidence further, the official project and its documentation will soon be released under:
-- [konfidence.cloud](https://konfidence.cloud)
+For those interested in exploring Konfidence further, the official project and its documentation are available under [konfidence.cloud](https://konfidence.cloud).
+
+For Konfidence's role in Apeiro's supply chain security model, see [Software Supply Chain Security](../../security/supply-chain-security.md#delivery-governance).

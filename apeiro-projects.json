@@ -48,7 +48,7 @@
     "immersive-dc": {
         "name": "Immersive Data Center Management",
         "description": "We leverage the power of Digital Twins by treating the data center like a manufacturing environment. All relevant data flows into that Digital Twin, allowing immersive visualization and smart decision-making through forecasts and AI.",
-        "url": "https://github.com/Immersive-Data-Center-Management",
+        "url": "https://idcm.cloud/",
         "icon": "/img/projects/immersive-dc.png"
     },
     "ironcore-baremetal": {

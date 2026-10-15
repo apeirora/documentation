@@ -2,6 +2,29 @@
 title: Changelog
 ---
 
+## v2.15.0 (2026-10-15)
+
+**New content**
+
+- [Security Principles](./docs/best-practices/security/security-principles.md) — new page covering Zero Trust, open standards, least privilege, digital sovereignty, defense in depth, crypto agility, and software supply chain integrity
+- [Scope & Shared Responsibility](./docs/best-practices/security/scope-and-responsibility.md) — new page with a full responsibility table clarifying what ApeiroRA provides versus what operators own, and an explicit list of what ApeiroRA does not define
+- [Identity & Access Management](./docs/best-practices/security/identity-access-management.md) — new page covering OIDC/MFA/SPIFFE authentication, OpenFGA Relationship-Based Access Control (ReBAC), workload identity, and federation
+- [Network Security](./docs/best-practices/security/network-security.md) — new page covering Zero Trust networking, Zero Trust Workload Identities (in development), IronCore declarative networking (NetworkPolicy, L3 tenant isolation, NATGateway, BMCSecret), CobaltCore for traditional workloads, and intrusion containment integration points
+- [Software Supply Chain Security](./docs/best-practices/security/supply-chain-security.md) — new page covering OCM as Software Bill of Delivery, provenance and signing (RSA, X.509, Sigstore), Open Delivery Gear continuous compliance, and Konfidence delivery governance
+- [Security Operations](./docs/best-practices/security/security-operations.md) — new page covering Greenhouse security observability (adopted by CobaltCore with Heureka), IronCore infrastructure telemetry, OpenTelemetry audit logging, and incident response integration points
+- [Emerging Threats](./docs/best-practices/security/emerging-threats.md) — new page covering Open Crypto Broker algorithm governance, the architectural path for future post-quantum migration, AI-driven threat analysis (AI as attack force multiplier, AI supply chain risks, why Apeiro's layered architecture is more critical rather than obsolete), and continuous vulnerability visibility via OCM/ODG
+- Blog post: [Security Compliance Automation](./blog/2025-06-10-security-compliance-automation.md) — original security compliance automation deep-dive by Frederik Thormaehlen, covering SCF, OCM as compliance backbone, tool-centric to model-centric transition, and the regulatory backdrop (EU CRA, EO 14028)
+
+**Updated content**
+
+- [Security Overview](./docs/best-practices/security/index.md) — expanded into a security hub with architecture orientation and navigation table linking all sub-sections; ordered by defense-in-depth layers
+- [Key Management](./docs/best-practices/security/key-management.md) — rewritten to accurately reflect OpenKCM's current state: pluggable KMS backends (AWS KMS, OpenBao), BYOK/HYOK via CMK component, early-availability warning for Q4 2026 production target
+- [Secrets Management & PKI](./docs/best-practices/security/secrets-management.md) — updated tone and structure; added operator responsibilities, Zero Trust Workload Identities complementarity note, and edition-availability qualifier for namespace support
+
+**Removed content**
+
+- Security Compliance Automation — removed as a documentation page; original content preserved as a blog post (see above)
+
 ## v2.14.0 (2026-09-24)
 
 **New content**

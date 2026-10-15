@@ -47,6 +47,7 @@ Keycloak is configured as an OIDC provider through <Project>kcp</Project>'s **au
 For user-facing identity providers, Keycloak acts as the federation layer through its identity brokering mechanism.
 For machine identity issuers, such as Kubernetes cluster JWT issuers or GitHub Actions OIDC, where identity brokering through Keycloak does not apply, <Project>kcp</Project>'s support for OIDC configuration at the workspace level enables direct integration at the account level.
 This ensures that the authentication layer is not hardwired to a single provider or federation path but rather configured through standard Kubernetes primitives.
+For the architecture-wide identity and access management model, including workload identity, see [Identity & Access Management](../security/identity-access-management.md).
 
 ### Internal Identity Provider
 
@@ -94,6 +95,8 @@ Authorization state is expressed as relationship tuples, (user, relation, object
 For example, if a team has ordered a service and a user is a member of that team, the user inherits access to that service instance without explicit per-user permission grants.
 
 The hierarchical <Term>account model</Term> maps naturally to this relationship graph, and permissions defined at a parent account can flow to child accounts through relationship inheritance.
+For OpenFGA's role in the broader Apeiro authorization model, see [Identity & Access Management](../security/identity-access-management.md).
+
 Resources from different <Term>service providers</Term> are represented as distinct resource types in <Project>kcp</Project>, and access to each is evaluated through the standard SubjectAccessReview mechanism regardless of the provider origin.
 
 ### Layered Evaluation
@@ -127,13 +130,13 @@ The security architecture integrates deeply with Platform Mesh [Account Model](.
 - **Service Relationship Authorization:** When <Term>service consumers</Term> engage with <Term>service providers</Term> through the export and bind mechanisms of the account model, the authorization layer automatically reflects these relationships. OpenFGA also controls where in the account hierarchy a provider's service can be bound, ensuring that service consumption is constrained to the appropriate organizational scope.
 - **Marketplace Integration:** When a provider API is activated through a <Term>marketplace</Term>, the OpenFGA authorization schema for the organization is extended to include the corresponding resource types and relations, making the new service's resources available for fine-grained authorization decisions.
 
-:::info NOTE
+::: info
 Platform Mesh security architecture represents ongoing research in distributed authorization patterns.
 The model continues to evolve to support enhanced cross-provider authorization scenarios, relationship-based authorization model management, and advanced authorization propagation across the account hierarchy.
 :::
 
 Platform Mesh security architecture builds on <Project>kcp</Project>'s own security foundations, including workspace isolation, APIExport identity, and permission claims.
-For a detailed analysis of these foundations, see the [kcp Security Self-Assessment](https://docs.kcp.io/kcp/v0.30/contributing/governance/security-self-assessment/) (particularly the [Security Functions and Features](https://docs.kcp.io/kcp/v0.30/contributing/governance/security-self-assessment/#security-functions-and-features) section) and the [security section of kcp's General Technical Review](https://docs.kcp.io/kcp/v0.30/contributing/governance/general-technical-review/#security).
+For a detailed analysis of these foundations, see the [kcp Security Self-Assessment](https://docs.kcp.io/kcp/v0.32/contributing/governance/security-self-assessment/) (particularly the [Security Functions and Features](https://docs.kcp.io/kcp/v0.32/contributing/governance/security-self-assessment/#security-functions-and-features) section) and the [security section of kcp's General Technical Review](https://docs.kcp.io/kcp/v0.32/contributing/governance/general-technical-review/#security).
 
 [^2]: [Keycloak](https://www.keycloak.org/)
 [^3]: [OpenFGA](https://openfga.dev/)

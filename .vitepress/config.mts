@@ -99,6 +99,9 @@ export default withMermaid(defineConfig({
   },
   head: [['link', { rel: 'icon', href: path.posix.resolve(BASE, './img/favicon.ico') }]],
   markdown: {
+    component: {
+      inlineTags: ['Project']
+    },
     config: (md) => {
       md.use(markdownItFootnote)
     }

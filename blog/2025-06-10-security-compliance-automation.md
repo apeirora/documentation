@@ -1,11 +1,12 @@
 ---
 title: Security Compliance Automation
-sidebar_position: 1
+authors:
+  - frederik-thormaehlen
 ---
 
-# Security Compliance Automation
+Security compliance in Apeiro is built around **continuous, automated evidence generation** rather than manual point-in-time assessments. The foundation is the Open Component Model (OCM) as a shared coordinate system, giving every software component a unique, stable identity. Once every tool in the delivery chain uses the same component identity, vulnerability findings, deployment records, compliance evidence, and provenance data can be correlated automatically across the full software lifecycle.
 
-This page outlines the **Security Compliance Automation** concepts.
+<!-- truncate -->
 
 ## Scope
 
@@ -45,7 +46,7 @@ SCF utilizes unique control IDs (UIDs) which are a combination of control framew
 
 ## Correlation IDs
 
-Correlation IDs  are used in enterprise software to track and correlate requests across multiple systems or services. Here are some of the benefits of leveraging them:
+Correlation IDs are used in enterprise software to track and correlate requests across multiple systems or services. Here are some of the benefits of leveraging them:
 1. Request Tracing: Correlation IDs allow for end-to-end request tracing in complex systems. This is particularly useful in microservices architectures or distributed systems where a single request might span multiple services.
 1. Debugging and Troubleshooting: By using a correlation ID, it becomes easier to track down where an issue occurred in the system. If an error occurs, the correlation ID can be used to trace the entire path of the request, making it easier to identify and fix the problem.
 1. Performance Monitoring: Correlation IDs can be used to monitor the performance of a system. By tracking the time it takes for a request to pass through the system, it's possible to identify bottlenecks and optimize performance.
@@ -58,56 +59,36 @@ Correlation IDs  are used in enterprise software to track and correlate requests
 
 ## Architecture Principles
 
-The major architecture principles in security compliance automation and certification preparation are to rely exclusively on open, public, extendable, standard -
+The major architecture principles in security compliance automation and certification preparation are to rely exclusively on open, public, extendable, standard:
 1. security controls framework which provides UIDs which is ready for automation. Framework of choice is the Secure Controls Framework (SCF)
-1. model which relies on Unique Correlation IDs which is ready for automation. Model of choice is the <Project name="ocm">Open Component Model (OCM)</Project>.
-Following above architecture principles will enable the security compliance automation reference implementation to be prepared and extendable for multiple existing and future certifications in all layers in the technology stack, in all regions, in all industries and in all security levels.
+1. model which relies on Unique Correlation IDs which is ready for automation. Model of choice is the Open Component Model (OCM).
 
+Following above architecture principles will enable the security compliance automation reference implementation to be prepared and extendable for multiple existing and future certifications in all layers in the technology stack, in all regions, in all industries and in all security levels.
 
 ## Value Proposition
 
-Software today must fulfill further obligations than its plain functionality.
-Beside others security, privacy and legal compliance are key requirements for all components in the reference.
-Organizations today, have an overtime historically grown stack of task specific, own- or third-party tools, bringing their specific underlying models, to support processes, which include most of the time manual process steps to bridge the gaps caused by this setting.
-Adding new tools or establishing new processes comes with a growing price of integration the more complex the tool landscape becomes.
-A feasible way out for organizations is to identify a common underlying model, which is open enough so that it can be leveraged in future processes alongside future tools.
-Therefore, we include relevant tools and best practices to increase the general security posture and compliance level with automation at source.
+Software today must fulfill further obligations than its plain functionality. Beside others security, privacy and legal compliance are key requirements for all components in the reference. Organizations today, have an overtime historically grown stack of task specific, own- or third-party tools, bringing their specific underlying models, to support processes, which include most of the time manual process steps to bridge the gaps caused by this setting. Adding new tools or establishing new processes comes with a growing price of integration the more complex the tool landscape becomes. A feasible way out for organizations is to identify a common underlying model, which is open enough so that it can be leveraged in future processes alongside future tools. Therefore, we include relevant tools and best practices to increase the general security posture and compliance level with automation at source.
 
-In addition, like the Software Bill of Materials (SBoM), we introduce a Software Bill of Delivery (SBoD) for cloud-native products described with the <Project name="ocm">Open Component Model (OCM)</Project>.
-While OCM's key feature is associated with lifecycle management, OCM based unique identities allow to correlate all audit relevant facts early in the software development and qualification process.
-Adding OCM based IDs to existing tools and related content will make it possible for organizations to start a transition from a tool centric setup to a model centric setup over time.
-The more tools and process steps adopt OCM based IDs aka OCM Coordinates, the more content can be correlated in the context of end-to-end processes.
+In addition, like the Software Bill of Materials (SBoM), we introduce a Software Bill of Delivery (SBoD) for cloud-native products described with the Open Component Model (OCM). While OCM's key feature is associated with lifecycle management, OCM based unique identities allow to correlate all audit relevant facts early in the software development and qualification process. Adding OCM based IDs to existing tools and related content will make it possible for organizations to start a transition from a tool centric setup to a model centric setup over time. The more tools and process steps adopt OCM based IDs aka OCM Coordinates, the more content can be correlated in the context of end-to-end processes.
 
-To support this transition end users can adopt and extend the OCM and its reference implementation, <Project>OCM Gear</Project>, for their specific development or security compliance automation process.
-As OCM reference implementation OCM Gear is an extensible toolbox and provides the technical foundation for our Security Compliance Automation.
-For each required tool e.g. a dedicated security scanner in build- or runtime a dedicated OCM Gear extension can be implemented as data provider.
-As a central process engine, OCM Gear correlates arbitrary metadata, such as security related findings, using OCM based unique identities and enables fine granular tracking of findings along with rich context information.
-OCM Gear can integrate with all related existing tooling, such as malware- and vulnerability scanners, and merge metadata from any relevant external data sources into a common coordinate system.
-Organizations with a previously tool-centric approach can transition to our Security and Compliance Automation using its model-based reference.
+To support this transition end users can adopt and extend the OCM and its reference implementation, Open Delivery Gear (ODG), for their specific development or security compliance automation process. As OCM reference implementation, ODG is an extensible toolbox and provides the technical foundation for Security Compliance Automation. For each required tool, e.g. a dedicated security scanner in build- or runtime, a dedicated ODG extension can be implemented as data provider. As a central process engine, ODG correlates arbitrary metadata, such as security related findings, using OCM based unique identities and enables fine granular tracking of findings along with rich context information. ODG can integrate with all related existing tooling, such as malware- and vulnerability scanners, and merge metadata from any relevant external data sources into a common coordinate system. Organizations with a previously tool-centric approach can transition to Security and Compliance Automation using its model-based reference.
 
-By design, OCM Gear offers an audit-safe, context aware re-prioritization concept of such findings, allowing developers to increase efficiency by sharpening their focus on genuinely relevant findings.
-This allows developers to minimize toil and false positive fatigue. Furthermore, OCM Gear allows security experts to refine and aggregate security and compliance metadata to be published and included in the product release (along with the artifacts and SBoMs) for a limited number of customers in industries with highest security demands.
-For those customers and partners with OCM and OCM Gear, software providers aid with a trust-but-verify mandate, by providing the necessary and decisive metadata for verification in a transparent fashion.
-We thereby fulfill a requirement for digital sovereignty.
+By design, ODG offers an audit-safe, context aware re-prioritization concept of such findings, allowing developers to increase efficiency by sharpening their focus on genuinely relevant findings. This allows developers to minimize toil and false positive fatigue. Furthermore, ODG allows security experts to refine and aggregate security and compliance metadata to be published and included in the product release (along with the artifacts and SBoMs) for a limited number of customers in industries with highest security demands. For those customers and partners with OCM and ODG, software providers aid with a trust-but-verify mandate, by providing the necessary and decisive metadata for verification in a transparent fashion. We thereby fulfill a requirement for digital sovereignty.
 
-Organizations which overtime manage their transition from a tool centric setup towards a model centric setup, with e2e automation leveraging OCM coordinates as correlation IDs will gain advantages which come with AI.
-Combining static information (SBoM) and dynamic information from runtime which can be correlated, LLM or ML System can be leveraged to e.g. identify lateral movement paths or other so far unknown attack vectors, which can become relevant as vital context information when an organization is under attack.
-As we will see more and more AI generated attacks in the future which are leveraging most of the time poor context information, our security compliance automation brings means to continuously generate better context information on the defence side, than any attacker can have.
-Thus, security related meta information as part of a software delivery must be handled in a secure way and should only be provided to trusted customers and partners under appropriate contractual boundaries.
+Organizations which overtime manage their transition from a tool centric setup towards a model centric setup, with end-to-end automation leveraging OCM coordinates as correlation IDs will gain advantages which come with AI. Combining static information (SBoM) and dynamic information from runtime which can be correlated, LLM or ML systems can be leveraged to e.g. identify lateral movement paths or other so far unknown attack vectors, which can become relevant as vital context information when an organization is under attack. As we will see more and more AI generated attacks in the future which are leveraging most of the time poor context information, security compliance automation brings means to continuously generate better context information on the defence side, than any attacker can have. Thus, security related meta information as part of a software delivery must be handled in a secure way and should only be provided to trusted customers and partners under appropriate contractual boundaries.
 
-Organizations which leverage our security compliance automation from scratch in their datacenters, should be prepared for several certifications per default, without the above-described transition phase.
-The primary set of services which are supported by Apeiro Security Compliance Automation includes security services, runtime environments, and services that are part of the IPCEI-CIS funded project scope.
+Organizations which leverage security compliance automation from scratch in their datacenters, should be prepared for several certifications per default, without the above-described transition phase. The primary set of services which are supported by Apeiro Security Compliance Automation includes security services, runtime environments, and services that are part of the IPCEI-CIS funded project scope.
 
 For more details about these services, visit the [Apeiro Reference Architecture](https://apeirora.eu) website.
 
+## Securing Software: The Regulatory Backdrop
 
-:::info Securing software
-Executive, Legislature, and Judiciary embrace and mandate software security. Worldwide, governments have concluded that Open-Source Software (OSS) underpins almost all essential products of modern (digital) life and that securing the highly dynamic OSS ecosystem is critical. This realization ushered in a major change of government strategy towards cybersecurity. For example, the Whitehouse, on counsel of Cybersecurity and Infrastructure Security Agency (CISA) and National Telecommunications and Information Administration (NTIA), issued U.S. Executive Order 14028, strongly recommending the usage of  Software Bill of Materials (SBOMs). This recommendation has for all practical reasons changed into a mandatory rule for software developers that de-facto now applies to all software vendors. Furthermore, CISA entered into a multi-faceted approach to cybersecurity:
+Executive, Legislature, and Judiciary embrace and mandate software security. Worldwide, governments have concluded that Open-Source Software (OSS) underpins almost all essential products of modern digital life and that securing the highly dynamic OSS ecosystem is critical. This realization ushered in a major change of government strategy towards cybersecurity.
 
-1. collaboration with, and setting early standards via, open-source foundations like Open Source Software Security Foundation (OpenSSF).
-2. financing initiatives in open source with high impact (cf. OpenSSF Mobilization Plan) to strengthen the security of the overall open source infrastructure.
-3. roll out security practices and (open) standards along with education via open source first (cf. CISA Open Source Software Security Roadmap), next to standardization bodies such as e.g. ISO.
+The Whitehouse, on counsel of the Cybersecurity and Infrastructure Security Agency (CISA) and National Telecommunications and Information Administration (NTIA), issued U.S. Executive Order 14028, directing federal agencies to require Software Bills of Materials (SBoMs) from software suppliers. This has for all practical reasons become a mandatory rule for software developers that de-facto now applies to all software vendors. Furthermore, CISA has entered into a multi-faceted approach to cybersecurity:
 
-The German Bundesamt für Sicherheit in der Informationstechnik (BSI) collaborates in the above-mentioned approach. The ensuing activities in the field of cybersecurity can be noticed in commercial software as well as in open-source. The EU Cyber Resilience Act (CRA) advised by European Union Agency for Cybersecurity (ENISA) mandates security and compliance goals which only can be met by modern security & compliance tools. And without automation the goals are futile.
+1. Collaboration with, and setting early standards via, open-source foundations like Open Source Software Security Foundation (OpenSSF).
+2. Financing initiatives in open source with high impact (cf. OpenSSF Mobilization Plan) to strengthen the security of the overall open source infrastructure.
+3. Roll out security practices and open standards along with education via open source first (cf. CISA Open Source Software Security Roadmap), next to standardization bodies such as ISO.
 
-:::
+The German Bundesamt für Sicherheit in der Informationstechnik (BSI) collaborates in the above-mentioned approach. The EU Cyber Resilience Act (CRA) advised by the European Union Agency for Cybersecurity (ENISA) mandates security and compliance goals which only can be met by modern security and compliance tools. And without automation the goals are futile.
