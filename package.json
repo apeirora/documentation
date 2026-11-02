@@ -29,5 +29,8 @@
   },
   "engines": {
     "node": ">=24"
+  },
+  "overrides": {
+    "qsu": "1.21.0"
   }
 }
