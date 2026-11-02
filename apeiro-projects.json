@@ -14,7 +14,7 @@
     },
     "cobalt-core": {
         "name": "CobaltCore",
-        "description": "CobaltCore is a cloud-native IaaS platform combining Kubernetes-native orchestration with OpenStack-influenced services to deliver a modern cloud distribution for cloud-native and traditional workloads alike. It ensures backward compatibility for stateful VMs and traditional network configurations. Compute, storage, and networking lifecycles are fully managed through Kubernetes APIs and wired together by feature-rich services covering every operational concern of a modern data center, enabling production-grade deployments at any scale within weeks, from bare metal up.",
+        "description": "CobaltCore is a cloud-native IaaS platform combining Kubernetes-native orchestration with OpenStack API surface to deliver a modern cloud distribution for cloud-native and traditional workloads alike. It ensures backward compatibility for stateful VMs and traditional network configurations. Compute, storage, and networking lifecycles are fully managed through Kubernetes APIs and wired together by feature-rich services covering every operational concern of a modern data center, enabling production-grade deployments at any scale within weeks, from bare metal up.",
         "url": "https://cobaltcore.dev",
         "icon": "/img/projects/cobaltcore.svg"
     },

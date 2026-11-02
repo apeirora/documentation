@@ -1,29 +1,41 @@
 ---
 sidebar_position: 5
 title: Identity & Access Management
-keywords: [Identity, Authentication, Authorization, OIDC, SPIFFE, OpenFGA, ReBAC, Federation, Zero Trust Workload Identities]
+keywords: [Identity, Authentication, Authorization, OIDC, Keycloak, SPIFFE, OpenFGA, ReBAC, RBAC, Federation, Zero Trust Workload Identities]
 ---
 
 Apeiro's identity and access management architecture covers two distinct concerns: **authentication** (establishing who or what is making a request) and **authorization** (deciding what that identity is permitted to do). Both are implemented using open standards and are designed to work across multi-provider and multi-tenant environments.
+
+A deliberate design principle is the **decoupling of authentication and authorization**. Rather than embedding authorization logic into individual applications, Apeiro promotes a shared, centralized authorization layer that any service can integrate with. This makes access control consistent across Platform Mesh, OpenMFP, Data Fabric, and other components without each service maintaining its own permission model.
+
+<ApeiroFigure src="/security/img/authn-authz.svg"
+  alt="Authentication and Authorization in Apeiro"
+  caption="Authentication and Authorization in Apeiro: Apeiro services authenticate via the internal IdP (Keycloak), which federates with external customer IdPs. Authorization uses Kubernetes RBAC as the primary gate. For simple deployments, Keycloak group-to-role mappings are sufficient. OpenFGA is an optional second tier for relationship-based access decisions in more complex scenarios."
+  width="100%"/>
 
 ## What Apeiro Provides
 
 - **OIDC-based authentication**: short-lived JWT tokens, MFA/2FA (operator-configured), and federation with external identity providers via [Keycloak](https://www.keycloak.org/)
 - **Workload identity**: <Project name="zero-trust-workload-identities">Zero Trust Workload Identities</Project> (in development) issues cryptographically verifiable SPIFFE SVIDs, enabling automatic mTLS between services
-- **Relationship-Based Access Control**: [OpenFGA](https://openfga.dev/) derives access decisions from explicit subject-object relationships, supporting delegated administration and multi-tenant authorization without overprivileged roles
+- **RBAC**: Keycloak group claims can be referenced as subjects in Kubernetes RBAC bindings, sufficient when access decisions depend only on role assignments
+- **Relationship-Based Access Control** (optional): [OpenFGA](https://openfga.dev/) derives access decisions from explicit subject-object relationships, supporting delegated administration and multi-tenant authorization in more complex scenarios
 - **Identity federation**: corporate OIDC, SAML, and LDAP identity brokering; SPIFFE trust domain federation across environments
 
 ## Authentication
 
 ### Platform and Operator Access
 
-Platform and operator authentication is based on [OpenID Connect (OIDC)](https://openid.net/connect/). OIDC-based authentication supports:
+For authentication, [OpenID Connect (OIDC)](https://openid.net/connect/) is the industry standard. [Keycloak](https://www.keycloak.org/) serves as Apeiro's default **internal IdP** - a core component for storing technical and personal user accounts and issuing OIDC tokens to Apeiro services.
+
+OIDC-based authentication supports:
 
 - Short-lived JWT tokens with defined expiry
 - MFA/2FA enforcement (operator-configured via Keycloak or external IDP)
 - Federation with external identity providers (corporate OIDC, SAML, LDAP) via identity brokering
 
-The <Project name="platformmesh">Platform Mesh</Project> implementation uses Keycloak as its internal identity provider, with per-organization dedicated realms and an identity brokering mechanism that normalizes external identities into a consistent internal representation. See [Platform Mesh Security](../platform-mesh/security.md) for the specific implementation.
+Customers often use their own identity providers. In this case, they can connect **external IdPs** to the internal IdP: Keycloak acts as an [identity broker](https://www.keycloak.org/docs/latest/server_admin/index.html#_identity_broker), federating authentication to external corporate identity providers via OpenID Connect or [SAML 2.0](https://www.keycloak.org/docs/latest/server_admin/#_client-saml-configuration). This allows Apeiro to normalize identities from diverse sources into a consistent internal representation without requiring each service to integrate with every external IdP separately.
+
+The <Project name="platformmesh">Platform Mesh</Project> implementation uses Keycloak with per-organization dedicated realms and this identity brokering mechanism. See [Platform Mesh Security](../platform-mesh/security.md) for the specific implementation.
 
 ### Workload Identity (Zero Trust Workload Identities)
 
@@ -42,15 +54,29 @@ SPIFFE (Secure Production Identity Framework for Everyone) defines a standard fo
 
 Once deployed, service-to-service communication can be authenticated and encrypted by default, with identities that are short-lived, automatically rotated, and tied to the workload's runtime context rather than a static credential.
 
-## Authorization: Relationship-Based Access Control
+## Authorization
 
-### Why ReBAC
+For authorization there is no single dominant industry standard. Apeiro supports two authorization paths, which can be combined:
 
-Apeiro's preferred authorization model is Relationship-Based Access Control (ReBAC) implemented through [OpenFGA](https://openfga.dev/) (Fine-Grained Authorization).
+### RBAC via Keycloak and Kubernetes (Default)
 
-Traditional RBAC assigns permissions through static roles. ABAC evaluates attributes at request time. ReBAC derives access decisions from explicit **relationships** between subjects and objects, which makes it significantly more expressive for complex multi-tenant and cross-provider environments without requiring attribute proliferation.
+Role-Based Access Control (RBAC) using **Keycloak groups referenced in Kubernetes RBAC bindings** covers access decisions based on role assignments. Keycloak groups (populated from internal user management or federated from an external IDP) are exposed as group claims in OIDC tokens. An operator creates `RoleBinding` or `ClusterRoleBinding` resources that reference those group names as subjects, granting the corresponding roles without requiring any additional authorization components.
 
-### How OpenFGA Works
+This model covers access control needs where membership in a group is the deciding factor: organizational roles, team permissions, or job function.
+
+### OpenFGA for Relationship-Based Access Control (Optional)
+
+When authorization decisions depend on **relationships between entities** (team memberships, resource ownership, service subscriptions, delegated administration) rather than on static role assignments, RBAC alone cannot express them. For these cases, Apeiro optionally integrates [OpenFGA](https://openfga.dev/) (Fine-Grained Authorization).
+
+OpenFGA implements **Relationship-Based Access Control (ReBAC)**, which can also express classical RBAC and ABAC models:
+
+- **RBAC**: roles and groups can be modeled directly within OpenFGA using its [authorization model and relationship tuples](https://openfga.dev/docs/modeling/roles-and-permissions).
+- **ABAC** ([Attribute-Based Access Control](https://openfga.dev/docs/authorization-concepts#what-is-attribute-based-access-control)): attribute conditions can be expressed as relationship types.
+- **ReBAC** derives access decisions from explicit **relationships** between subjects and objects, making it more expressive for scenarios where permissions depend on entity relationships rather than static role assignments.
+
+> "Relationship-Based Access Control (ReBAC) enables user access rules to be conditional on relations that a given user has with a given object and that object's relationship with other objects. For example, a given user can view a given document if the user has access to the document's parent folder." [^1]
+
+[^1]: [OpenFGA](https://openfga.dev/docs/authorization-concepts#what-is-relationship-based-access-control)
 
 Access decisions in OpenFGA are resolved from relationship tuples of the form `(user, relation, object)`. Permissions propagate through the relationship graph. Examples of relationships that can be modeled:
 
@@ -63,7 +89,9 @@ OpenFGA supports both **forward authorization checks** ("Can user X access resou
 
 ### Use in Apeiro
 
-OpenFGA is the authorization engine for <Project name="platformmesh">Platform Mesh</Project> and <Project>OpenMFP</Project>. It is exposed as an authorization webhook in the Platform Mesh control plane: Kubernetes RBAC acts as the first gate; requests without a RBAC opinion are forwarded to OpenFGA. This two-tier model means structural API access is handled by RBAC, while business-level and relationship-level decisions are handled by OpenFGA.
+In <Project name="platformmesh">Platform Mesh</Project> and <Project>OpenMFP</Project>, OpenFGA handles authorization decisions that depend on entity relationships. It is integrated as an authorization webhook in the Platform Mesh control plane: Kubernetes RBAC acts as the first gate; requests with no RBAC opinion are forwarded to OpenFGA. This two-tier model means structural API access is handled by RBAC, while relationship-level decisions are handled by OpenFGA.
+
+OpenFGA is integrated through the Kubernetes authorization webhook mechanism, so any conforming authorizer can be substituted. However, Platform Mesh builds on OpenFGA specifically for per-organization store provisioning, dynamic authorization schema generation, and marketplace integration; omitting it means those features are unavailable.
 
 The OpenFGA authorization schema in Platform Mesh evolves dynamically as service providers expose capabilities: new service types automatically extend the authorization model without manual schema updates.
 

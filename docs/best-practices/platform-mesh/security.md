@@ -74,7 +74,7 @@ This approach enables the "bring your own IDP" model essential for multi-organiz
 ## Authorization
 
 Once an identity is established, Platform Mesh must determine what that identity is permitted to do.
-Given the complexity of interactions across hierarchical accounts, <Term>service providers</Term>, and <Term>service consumers</Term>, Platform Mesh supports a **two-tier authorization model**: Kubernetes RBAC for control-plane-local decisions and OpenFGA for authorization across control plane boundaries.
+Given the complexity of interactions across hierarchical accounts, <Term>service providers</Term>, and <Term>service consumers</Term>, Platform Mesh supports a **two-tier authorization model**: Kubernetes RBAC for control-plane-local decisions and, optionally, OpenFGA for authorization across control plane boundaries.
 
 ### Kubernetes-Native RBAC
 
@@ -86,9 +86,12 @@ Each account functions as an isolated <Term>control plane</Term> with its own RB
 RBAC rules are themselves Kubernetes resources, managed declaratively through the same KRM patterns used for all platform resources, consistent with the [declarative API principle](./guiding-principles.md).
 This extends naturally to Custom Resource Definitions introduced by <Term>Managed Service Providers</Term>: when a service provider exposes new <Term>capabilities</Term>, the existing RBAC mechanism governs access without additional configuration.
 
-### Fine-Grained Authorization with ReBAC
+Keycloak group memberships are propagated as claims in OIDC tokens and can be referenced as subjects in Kubernetes RBAC bindings.
+When access decisions depend only on role assignments, without relationships between entities such as ownership, team membership, or service subscriptions, this Keycloak-groups-to-RBAC path is sufficient and no additional authorization component is needed.
 
-The second tier addresses authorization decisions that go beyond what RBAC can express: decisions that depend on relationships between entities such as team memberships, resource ownership, or service subscriptions.
+### Fine-Grained Authorization with ReBAC (Optional)
+
+The optional second tier addresses authorization decisions that go beyond what RBAC can express: decisions that depend on **relationships between entities** (team memberships, resource ownership, service subscriptions) rather than on resource types.
 
 OpenFGA[^3] provides **Relationship-Based Access Control (ReBAC)**, an authorization model based on the Zanzibar approach[^4], where access decisions are derived from a graph of relationships rather than static role assignments.
 Authorization state is expressed as relationship tuples, (user, relation, object), and permissions propagate through the graph.
@@ -124,7 +127,7 @@ Replacing either component with an alternative would require reimplementing thes
 The security architecture integrates deeply with Platform Mesh [Account Model](./account-model.md), ensuring that security boundaries align with organizational boundaries throughout the hierarchy.
 
 - **Per-Organization Identity Realm:** Platform Mesh creates a dedicated Keycloak realm for each organization, providing complete isolation of user stores, client configurations, and authentication policies. This realm is configured as an OIDC provider through <Project>kcp</Project>'s authentication configuration, tying the organization's identity management directly to its account hierarchy.
-- **Per-Organization FGA Store:** Similarly, each organization receives a dedicated OpenFGA store, isolating authorization state across organizational boundaries. This ensures that relationship tuples and authorization evaluations for one organization cannot interfere with another.
+- **Per-Organization FGA Store:** Each organization receives a dedicated OpenFGA store, isolating authorization state across organizational boundaries. This ensures that relationship tuples and authorization evaluations for one organization cannot interfere with another.
 - **Dynamic Authorization Schema:** Platform Mesh dynamically generates the OpenFGA authorization schema for each organization based on the APIs bound within that organization's accounts. As <Term>service providers</Term> expose new <Term>capabilities</Term> and consumers bind to them, the authorization model automatically evolves to include the corresponding types and relations, eliminating the need for manual schema maintenance.
 - **Hierarchical Inheritance:** OpenFGA relationship tuples can be inherited through the account hierarchy. Permissions defined at a parent account can propagate to child accounts through the relationship graph, simplifying governance while allowing overrides where organizational requirements demand it.
 - **Service Relationship Authorization:** When <Term>service consumers</Term> engage with <Term>service providers</Term> through the export and bind mechanisms of the account model, the authorization layer automatically reflects these relationships. OpenFGA also controls where in the account hierarchy a provider's service can be bound, ensuring that service consumption is constrained to the appropriate organizational scope.
