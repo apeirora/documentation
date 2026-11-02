@@ -8,3 +8,33 @@ path = "**"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2024 - 2025 SAP SE or an SAP affiliate company and ApeiroRA contributors"
 SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = "public/showroom/scenarios/providers/arsys.svg"
+precedence = "override"
+SPDX-FileCopyrightText = "Arsys"
+SPDX-License-Identifier = "LicenseRef-Third-Party-Logos"
+
+[[annotations]]
+path = "public/showroom/scenarios/providers/cloudferro.svg"
+precedence = "override"
+SPDX-FileCopyrightText = "CloudFerro"
+SPDX-License-Identifier = "LicenseRef-Third-Party-Logos"
+
+[[annotations]]
+path = "public/showroom/scenarios/providers/dati-group.svg"
+precedence = "override"
+SPDX-FileCopyrightText = "DATI Group"
+SPDX-License-Identifier = "LicenseRef-Third-Party-Logos"
+
+[[annotations]]
+path = "public/showroom/scenarios/providers/deutsche-telekom.jpg"
+precedence = "override"
+SPDX-FileCopyrightText = "Deutsche Telekom"
+SPDX-License-Identifier = "LicenseRef-Third-Party-Logos"
+
+[[annotations]]
+path = "public/showroom/scenarios/providers/leaseweb.svg"
+precedence = "override"
+SPDX-FileCopyrightText = "Leaseweb"
+SPDX-License-Identifier = "LicenseRef-Third-Party-Logos"

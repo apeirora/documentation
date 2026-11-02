@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="32.3.0">
+  <diagram id="sovereign-hosting-choices" name="Choose where workloads run">
+    <mxGraphModel dx="860" dy="460" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="860" pageHeight="460" math="0" shadow="0" background="none">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="Customer" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F1FBFF;strokeColor=#35B1CF;strokeWidth=2;fontColor=#000000;fontFamily=Helvetica;fontSize=23;" vertex="1" parent="1">
+          <mxGeometry x="80" y="20" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="&lt;b&gt;SimpleCluster&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:20px&quot;&gt;Choose where your workload runs&lt;/span&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#146DDF;strokeColor=#146DDF;strokeWidth=2;fontColor=#FFFFFF;fontFamily=Helvetica;fontSize=23;" vertex="1" parent="1">
+          <mxGeometry x="360" y="20" width="420" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Select ONE hosting destination" style="text;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#146DDF;fontFamily=Helvetica;fontSize=23;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="140" width="820" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="&lt;b&gt;Provider-hosted&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:18px&quot;&gt;Hosting environment&lt;/span&gt;" style="swimlane;startSize=80;horizontal=1;rounded=1;arcSize=8;html=1;whiteSpace=wrap;container=1;collapsible=0;pointerEvents=0;fillColor=#F1FBFF;swimlaneFillColor=#F1FBFF;strokeColor=#35B1CF;strokeWidth=2;fontColor=#000000;fontFamily=Helvetica;fontSize=22;align=center;" vertex="1" parent="1">
+          <mxGeometry x="20" y="200" width="240" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="Workload" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#35B1CF;strokeWidth=2;fontColor=#000000;fontFamily=Helvetica;fontSize=22;" vertex="1" parent="5">
+          <mxGeometry x="30" y="100" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="&lt;b&gt;Chosen cloud&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:18px&quot;&gt;Hosting environment&lt;/span&gt;" style="swimlane;startSize=80;horizontal=1;rounded=1;arcSize=8;html=1;whiteSpace=wrap;container=1;collapsible=0;pointerEvents=0;fillColor=#F1FBFF;swimlaneFillColor=#F1FBFF;strokeColor=#35B1CF;strokeWidth=2;fontColor=#000000;fontFamily=Helvetica;fontSize=22;align=center;" vertex="1" parent="1">
+          <mxGeometry x="310" y="200" width="240" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="Workload" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#35B1CF;strokeWidth=2;fontColor=#000000;fontFamily=Helvetica;fontSize=22;" vertex="1" parent="7">
+          <mxGeometry x="30" y="100" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="&lt;b&gt;Own data center&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:18px&quot;&gt;Hosting environment&lt;/span&gt;" style="swimlane;startSize=80;horizontal=1;rounded=1;arcSize=8;html=1;whiteSpace=wrap;container=1;collapsible=0;pointerEvents=0;fillColor=#F1FBFF;swimlaneFillColor=#F1FBFF;strokeColor=#35B1CF;strokeWidth=2;fontColor=#000000;fontFamily=Helvetica;fontSize=22;align=center;" vertex="1" parent="1">
+          <mxGeometry x="600" y="200" width="240" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="Workload" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#35B1CF;strokeWidth=2;fontColor=#000000;fontFamily=Helvetica;fontSize=22;" vertex="1" parent="9">
+          <mxGeometry x="30" y="100" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="OR" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#146DDF;fontFamily=Helvetica;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="270" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="OR" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#146DDF;fontFamily=Helvetica;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="270" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="Illustrative alternatives depend on available provider integrations.&lt;br&gt;One destination per choice, not automatic migration or failover." style="text;html=1;whiteSpace=wrap;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#000000;fontFamily=Helvetica;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="400" width="820" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0A59E4;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

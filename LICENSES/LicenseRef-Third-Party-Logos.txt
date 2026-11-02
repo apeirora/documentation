@@ -1,0 +1,13 @@
+Third-party provider logos
+
+The provider logos identified by this license reference are not licensed under
+this project's Apache-2.0 license. Copyright, trademark and other rights remain
+with their respective owners. This project grants no additional rights to use,
+modify or redistribute these logos.
+
+Use is subject to the respective owner's applicable permissions and published
+conditions. Source URLs and any identified usage conditions are recorded in
+public/showroom/scenarios/providers/SOURCES.md. That source record does not
+establish a general redistribution license. In particular, Deutsche Telekom's
+source page permits editorial use in connection with its group; no general
+open-source license was identified for the other provider logos.

@@ -60,6 +60,11 @@ export default withMermaid(defineConfig({
   cleanUrls: true,
   appearance: false, // disable dark mode
   rewrites: id => {
+    // Preserve the existing overview URL while grouping scenario pages in the sidebar.
+    // https://vitepress.dev/guide/routing#route-rewrites
+    if (id === 'docs/showroom/scenarios/index.md') {
+      return 'docs/showroom/scenarios.md'
+    }
     if (id.startsWith('blog/')) {
       return rewriteBlogPath(id)
     }

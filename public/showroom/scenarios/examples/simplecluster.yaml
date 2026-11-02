@@ -1,0 +1,13 @@
+apiVersion: showroom.apeirora.eu/v1alpha1
+kind: SimpleCluster
+metadata:
+  name: sovereign-workloads
+  namespace: default
+spec:
+  providerConfigRefs:
+    - apeiro-gardener-ironcore
+  workers:
+    nodes: 1
+    requested:
+      cpu: "1"
+      memory: 8Gi

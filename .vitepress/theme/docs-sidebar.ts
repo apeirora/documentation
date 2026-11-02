@@ -40,6 +40,11 @@ const sortByFrontmatterSidebarPosition  = (items: SidebarItemAugmented[]) => {
         it.text = data.sidebar_label
       }
       it.__frontmatter = data
+      // Match the overview rewrite while retaining the source path for metadata reads.
+      // https://vitepress.dev/guide/routing#route-rewrites
+      if (it.link === '/docs/showroom/scenarios/index' || it.link === '/docs/showroom/scenarios/index.md') {
+        it.link = '/docs/showroom/scenarios'
+      }
     }
     if (it.items) {
       it.items = sortByFrontmatterSidebarPosition(it.items)

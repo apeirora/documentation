@@ -2,6 +2,13 @@
 title: Changelog
 ---
 
+## v2.16.0 (2026-11-02)
+
+**New content**
+
+- [Sovereign Workload Hosting](./docs/showroom/scenarios/simplecluster-sovereign-workloads.md) - scenario explaining hosting choices and responsibilities for sovereign workloads
+- [SimpleCluster Provisioning](./docs/showroom/tutorials/simplecluster-sovereign-workloads.md) - separate tutorial with CLI steps and portal screenshots for provisioning a Kubernetes cluster
+
 ## v2.15.0 (2026-10-15)
 
 **New content**
@@ -50,7 +57,7 @@ title: Changelog
 **New content**
 
 - [Videos](./docs/resources/videos.md) - new page in the Resources section with three demo videos from the Apeiro channel, including content summaries
-- [Showroom Scenarios](./docs/showroom/scenarios.md) - embedded demo videos for Application Hosting and Development and Management scenarios
+- [Showroom Scenarios](./docs/showroom/scenarios/index.md) - embedded demo videos for Application Hosting and Development and Management scenarios
 - [Local Platform Mesh Tutorial](./docs/showroom/tutorials/local-platform-mesh-msp-demo.md) - added "See it in Action" video section
 
 ## v2.10.0 (2026-08-06)
