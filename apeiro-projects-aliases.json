@@ -7,7 +7,7 @@
     "crypto-broker": ["CryptoBroker", "cryptobroker", "Open Crypto Broker", "OpenCryptoBroker"],
     "garden-linux": ["GardenLinux", "GL", "gl"],
     "gardener": ["Gardener"],
-    "greenhouse": ["Greenhouse", "GH"],
+    "cloudoperators": ["Cloudoperators", "CloudOperators", "Greenhouse", "GH"],
     "immersive-dc": ["ImmersiveDC", "immersivedc", "Immersive DC"],
     "ironcore-baremetal": ["IronCore Bare Metal", "BareMetal", "baremetal", "IronCoreBareMetal"],
     "ironcore-iaas": ["IronCore IaaS", "IronCoreIaaS", "IronCore", "IC"],

@@ -1,21 +1,21 @@
 ---
 sidebar_position: 9
 title: Security Operations
-keywords: [Security Operations, Greenhouse, OpenTelemetry, Audit Logging, Incident Response, Observability]
+keywords: [Security Operations, Cloudoperators, OpenTelemetry, Audit Logging, Incident Response, Observability]
 ---
 
 Apeiro provides technical building blocks for security observability, audit logging, and incident response integration. These components enable operators to detect, investigate, and respond to security events, but they do not constitute an incident response process. That remains the responsibility of the operating organization.
 
 ## What Apeiro Provides
 
-- **Security observability**: <Project>CobaltCore</Project> adopts <Project>Greenhouse</Project> as its operations platform (unified dashboards, Heureka for remediation and compliance tracking); <Project>IronCore</Project> produces infrastructure-layer telemetry suitable for SIEM and XDR integration
+- **Security observability**: <Project>CobaltCore</Project> adopts <Project>Cloudoperators</Project> as its operations platform (unified dashboards, Heureka for remediation and compliance tracking); <Project>IronCore</Project> produces infrastructure-layer telemetry suitable for SIEM and XDR integration
 - **Audit logging**: OpenTelemetry-based audit event transport with structured events suitable for SIEM ingestion, forensic investigation, and supply chain correlation via OCM
 - **Incident response integration points**: component operations across <Project>OpenBao</Project>, <Project>OpenKCM</Project>, OIDC providers, OpenTelemetry, and <Project name="odg">Open Delivery Gear</Project> that an operator's IR/SOAR tooling can invoke
 - **Resilience building blocks**: <Project>Gardener</Project> HA control planes, <Project>IronCore</Project> infrastructure abstraction across providers, and <Project>CobaltCore</Project> HA IaaS for workload portability
 
 ## Security Observability
 
-<Project>Greenhouse</Project> is Apeiro's Kubernetes-based Day-2 operations platform. It serves as the aggregation and visualization layer for operational and security data originating from infrastructure and platform components:
+<Project>Cloudoperators</Project> is Apeiro's Kubernetes-based Day-2 operations platform. It serves as the aggregation and visualization layer for operational and security data originating from infrastructure and platform components:
 
 - Unified dashboards for infrastructure state, alerting, and security posture
 - Organization and access management with fine-grained Kubernetes RBAC
@@ -23,7 +23,7 @@ Apeiro provides technical building blocks for security observability, audit logg
 - Operational playbooks
 - Plugin-based extensibility for custom tooling integration
 
-<Project>CobaltCore</Project> explicitly integrates Greenhouse as its operations platform, and additionally integrates [Heureka Security Posture Management](https://github.com/cloudoperators/heureka), which provides:
+<Project>CobaltCore</Project> explicitly integrates Cloudoperators as its operations platform, and additionally integrates [Heureka Security Posture Management](https://github.com/cloudoperators/heureka), which provides:
 
 - Remediation tracking for security issues (vulnerabilities, security events, policy violations)
 - Compliance tracking and auditability across infrastructure components

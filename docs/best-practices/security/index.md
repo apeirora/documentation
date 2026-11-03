@@ -18,7 +18,7 @@ Apeiro addresses security across multiple domains, each backed by specific open-
 - **Secrets & certificates**: <Project>OpenBao</Project> (secrets management, PKI, certificate lifecycle)
 - **Key management**: <Project>OpenKCM</Project> (customer-controlled encryption at-rest, BYOK/HYOK)
 - **Software supply chain**: <Project name="ocm">Open Component Model</Project> (provenance, signing), <Project name="odg">Open Delivery Gear</Project> (continuous compliance), <Project>Konfidence</Project> (SaaS application delivery governance, promotion gates)
-- **Security operations**: <Project>CobaltCore</Project> (integrates <Project>Greenhouse</Project> and [Heureka Security Posture Management](https://github.com/cloudoperators/heureka)), <Project>IronCore</Project> (cloud-native infrastructure telemetry), [Audit Logging](https://github.com/apeirora/audit-log-poc-for-otel)
+- **Security operations**: <Project>CobaltCore</Project> (integrates <Project>Cloudoperators</Project> and [Heureka Security Posture Management](https://github.com/cloudoperators/heureka)), <Project>IronCore</Project> (cloud-native infrastructure telemetry), [Audit Logging](https://github.com/apeirora/audit-log-poc-for-otel)
 - **Crypto agility**: <Project name="crypto-broker">Open Crypto Broker</Project> (algorithm governance, post-quantum path)
 
 ## Security Documentation
@@ -34,7 +34,7 @@ The first three pages cover general framework topics. The remaining pages follow
 | [Secrets Management & PKI](./secrets-management.md) | OpenBao: secrets storage, certificate lifecycle, PKI |
 | [Key Management](./key-management.md) | OpenKCM: key hierarchies, BYOK/HYOK, pluggable KMS backends |
 | [Software Supply Chain Security](./supply-chain-security.md) | OCM provenance, ODG compliance, Konfidence SaaS application delivery governance |
-| [Security Operations](./security-operations.md) | Greenhouse observability, Heureka security posture management, audit logging, incident response enablers |
+| [Security Operations](./security-operations.md) | Cloudoperators observability, Heureka security posture management, audit logging, incident response enablers |
 | [Emerging Threats](./emerging-threats.md) | Open Crypto Broker, post-quantum path, supply chain threat visibility |
 
 ## Platform Mesh Security

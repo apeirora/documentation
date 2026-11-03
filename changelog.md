@@ -2,6 +2,12 @@
 title: Changelog
 ---
 
+## v2.17.0 (2026-11-03)
+
+**Updated content**
+
+- Project registry: Greenhouse has been renamed to [Cloudoperators](https://cloudoperators.dev); all documentation references and aliases updated accordingly
+
 ## v2.16.0 (2026-11-02)
 
 **New content**

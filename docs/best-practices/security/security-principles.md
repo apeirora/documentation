@@ -41,5 +41,5 @@ Security controls are layered across the stack. No single component is the sole 
 3. Secrets and certificate lifecycle: <Project>OpenBao</Project>
 4. Encryption key governance: <Project>OpenKCM</Project>
 5. Software supply chain integrity: <Project name="ocm">Open Component Model</Project>, <Project name="odg">Open Delivery Gear</Project>
-6. Observability and audit logging: <Project>Greenhouse</Project>, OpenTelemetry
+6. Observability and audit logging: <Project>Cloudoperators</Project>, OpenTelemetry
 7. Crypto agility: <Project name="crypto-broker">Open Crypto Broker</Project>

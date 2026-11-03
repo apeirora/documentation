@@ -12,6 +12,12 @@
         "url": "https://autonomous-operations.dev",
         "icon": "/img/projects/autonomous-operations.svg"
     },
+    "cloudoperators": {
+        "name": "Cloudoperators",
+        "description": "Cloudoperators is a Kubernetes-based day-2 operations platform providing a set of opinionated tools and operational processes for managing cloud-native infrastructure at scale.",
+        "url": "https://cloudoperators.dev",
+        "icon": "/img/projects/cloudoperators.svg"
+    },
     "cobalt-core": {
         "name": "CobaltCore",
         "description": "CobaltCore is a cloud-native IaaS platform combining Kubernetes-native orchestration with OpenStack API surface to deliver a modern cloud distribution for cloud-native and traditional workloads alike. It ensures backward compatibility for stateful VMs and traditional network configurations. Compute, storage, and networking lifecycles are fully managed through Kubernetes APIs and wired together by feature-rich services covering every operational concern of a modern data center, enabling production-grade deployments at any scale within weeks, from bare metal up.",
@@ -38,12 +44,6 @@
         "description": "Deliver fully-managed Kubernetes clusters at scale everywhere with your own Gardener installation. A robust, scalable, and production-hardened, certification-ready open-source system managing Kubernetes clusters across many infrastructure providers — embodying open standards and interoperability as a bootstrap building block in ApeiroRA.",
         "url": "https://gardener.cloud/",
         "icon": "/img/projects/gardener.svg"
-    },
-    "greenhouse": {
-        "name": "Greenhouse",
-        "description": "Greenhouse is a Kubernetes-based day-2 operations platform providing a set of opinionated tools and operational processes for managing cloud-native infrastructure at scale.",
-        "url": "https://cloudoperators.github.io/greenhouse",
-        "icon": "/img/projects/greenhouse.svg"
     },
     "immersive-dc": {
         "name": "Immersive Data Center Management",

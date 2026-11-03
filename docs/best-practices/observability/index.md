@@ -1,7 +1,7 @@
 ---
 sidebar_position: 9
 title: Observability
-keywords: [Telemetry, OpenTelemetry, OTel, Observability, Greenhouse]
+keywords: [Telemetry, OpenTelemetry, OTel, Observability, Cloudoperators]
 ---
 
 This page describes the approach towards **observability** in Apeiro.

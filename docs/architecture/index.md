@@ -88,7 +88,7 @@ These Apeiro components are part of the **Application** layer:
 - <Project>Konfidence</Project>
 
 These Apeiro components are part of the **Management** domain:
-- <Project>Greenhouse</Project>
+- <Project>Cloudoperators</Project>
 - <Project name="openmfp">Open Micro Frontend Platform</Project>
 - <Project name="openmcp">Open Managed Control Plane</Project>
 - <Project name="ocm">Open Component Model</Project>

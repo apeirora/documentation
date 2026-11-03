@@ -33,7 +33,7 @@ The following table clarifies what Apeiro provides architecturally versus what r
 | **Data protection (transit)** | <Project>OpenBao</Project> PKI; SPIFFE-based mTLS (in development) | Trust domain design, TLS policy enforcement, certificate governance decisions |
 | **Data protection (at rest)** | <Project>OpenKCM</Project> encryption | Data classification, retention policies, regulatory compliance |
 | **Software supply chain** | <Project name="ocm">Open Component Model</Project> provenance and signing, <Project name="odg">Open Delivery Gear</Project> vulnerability scanning | SBoM policy, vulnerability remediation SLA definition, compliance decisions |
-| **Security operations** | <Project>Greenhouse</Project> observability, Audit Logging standards | SIEM/XDR tooling, SOC operations, incident response process |
+| **Security operations** | <Project>Cloudoperators</Project> observability, Audit Logging standards | SIEM/XDR tooling, SOC operations, incident response process |
 | **Resilience** | <Project>Gardener</Project> HA clusters; cloud-native (<Project>IronCore</Project>) and OpenStack-based (<Project>CobaltCore</Project>) IaaS with declarative infrastructure lifecycle automation and continuous reconciliation | RTO/RPO commitments, DR testing, uptime guarantees |
 | **Compliance** | <Project name="ocm">Open Component Model</Project>/<Project name="odg">Open Delivery Gear</Project> compliance evidence generation, SCF-based controls reference | Regulatory compliance, certification activities, audit submissions |
 | **Governance** | Open standards, open-source transparency | CSA2/EUCS participation, certification strategy, enterprise risk management |
