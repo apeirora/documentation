@@ -2,6 +2,12 @@
 title: Changelog
 ---
 
+## v2.18.0 (2026-11-17)
+
+**New content**
+
+- Blog post: [IPCEI-CIS Hackathon Potsdam, July 2026: What We Built](./blog/2026-11-17-ipcei-cis-hackathon-potsdam-july-summary.md)
+
 ## v2.17.0 (2026-11-03)
 
 **Updated content**

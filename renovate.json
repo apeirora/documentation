@@ -3,8 +3,10 @@
   "baseBranchPatterns": [
     "release"
   ],
-  "dependencyDashboard": true,
-  "dependencyDashboardTitle": "Renovate Dependency Dashboard",
+  "dependencyDashboard": {
+    "enabled": true,
+    "title": "Renovate Dependency Dashboard"
+  },
   "schedule": [
     "after 3am and before 5am every weekday"
   ],
