@@ -33,7 +33,7 @@ The Platform Mesh tracks, led jointly with BWI, tackled three problems that come
 
 **Access control**: The current role model ties permissions to individual identities, which doesn't scale for production environments where personnel rotate frequently across organizations and borders. The team prototyped group and role-centric access alongside just-in-time privilege elevation, moving toward a model where standing elevated access is the exception rather than the default. Working repositories and a demo came out of this track. 
 
-**Standardized IaaS APIs**: Proprietary cloud APIs are one of the main practical barriers to workload portability. The track produced a proof-of-concept API layer for provider-agnostic workload migration, with a video demonstration available. The goal is to let public sector operators move workloads between providers without API translation overhead, including in crisis scenarios. 
+**Standardized IaaS APIs**: Proprietary cloud APIs are one of the main practical barriers to workload portability. The track produced a proof-of-concept API layer for provider-agnostic workload migration, with a [video demonstration](https://www.youtube.com/watch?v=ZKNeE781jLI) available. The goal is to let public sector operators move workloads between providers without API translation overhead, including in crisis scenarios. 
 
 **Developer experience**: A third area investigated was identity provider decoupling, specifically separating Keycloak from Platform Mesh's core architecture to support teams to bring their own IdP in the future. This turned out to be more technically involved than the initial scope assumed. The track documented the dependencies and what would be needed to address them. 
 
@@ -52,12 +52,13 @@ The Thalamus track ran three workstreams focused on sovereign AI infrastructure.
 
 A separate track ran on **GPU environment footprint**: adding real carbon emission data to AI inference observability. The approach is an OpenTelemetry Collector plugin that reads watt-hour data directly from blade PDUs via IPMI or Redfish and combines it with real-time grid carbon intensity from services like Electricity Maps. The result is a `gpu.carbon.emissions.grams` metric that appears in existing dashboards without additional instrumentation. Other tools estimate; this one reads the actual meter. 
 
-Full writeup: [Thalamus Hackathon Workshop](https://cobaltcore-dev.github.io/thalamus/main/ipcei-cis-workshop-2026/) Thalamus website: [Thalamus](https://cobaltcore-dev.github.io/thalamus/v0.2.0/) 
+Full writeup: [Thalamus Hackathon Workshop](https://cobaltcore-dev.github.io/thalamus/main/ipcei-cis-workshop-2026/) 
+Thalamus website: [Thalamus](https://cobaltcore-dev.github.io/thalamus/v0.2.0/) 
 
 ---
 ### What came out of the four days 
 
-Across the tracks, the teams produced working proofs of concept, new repositories, architectural proposals, onboarding documentation, and demo-ready integrations. Not everything is production-ready, and that's intentional. The format is designed to accelerate exploration, not ship finished software. 
+Across the tracks, the teams produced working proofs of concept, progress in architectural decision making, onboarding documentation, and demo-ready integrations. Not everything is production-ready, and that's intentional. The format is designed to accelerate exploration, not ship finished software. 
 
 Several outcomes will feed directly into open-source contributions and formal RFCs. The IaaS API standardization work is one example. The SBOM generation track is another, with preparation already published at [ocm-project issue #184](https://github.com/open-component-model/ocm-project/issues/184). 
 
