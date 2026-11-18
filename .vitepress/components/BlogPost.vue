@@ -25,26 +25,11 @@
         <template v-if="readingTime != null"> · {{ readingTime }} min read</template>
       </div>
       <div class="authors" v-if="authors">
-        <ul>
-          <li v-for="author in authors">
-            <div class="name">
-              <a v-if="author.url" :href="author.url" target="_blank" rel="noopener noreferrer">
-                {{  author.name }}
-              </a>
-              <span v-else>
-                {{  author.name }}
-              </span>
-            </div>
-            <div v-if="author.title" class="title">
-              <a v-if="author.titleUrl" :href="author.titleUrl" target="_blank" rel="noopener noreferrer">
-                {{  author.title }}
-              </a>
-              <span v-else>
-                {{  author.title }}
-              </span>
-            </div>
-          </li>
-        </ul>
+        <span class="author" v-for="(author, index) in authors"><span class="name"><a
+              v-if="author.url" :href="author.url" target="_blank" rel="noopener noreferrer">{{ author.name }}</a><span
+              v-else>{{ author.name }}</span></span><span v-if="author.title" class="title"> (<a
+              v-if="author.titleUrl" :href="author.titleUrl" target="_blank" rel="noopener noreferrer">{{ author.title }}</a><span
+              v-else>{{ author.title }}</span>)</span><span v-if="index < authors.length - 1">, </span></span>
       </div>
     </header>
     <div v-if="text" v-html="text"></div>
@@ -75,29 +60,17 @@ h2 > a {
   margin-bottom: 1rem;
 }
 
-.authors ul {
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
+.authors {
+  margin-bottom: 1rem;
+}
 
-  li {
-    margin: 0;
-    margin-bottom: 0.5rem;
-    display: block;
-    flex-basis: 50%;
-    flex-grow: 0;
-    flex-shrink: 0;
+.authors .name {
+  font-weight: bold;
+}
 
-    .name {
-      font-weight: bold;
-    }
-
-    .title {
-      font-size: 0.8rem;
-      line-height: 1rem;
-    }
-  }
+.authors .title {
+  font-size: 0.8rem;
+  color: var(--vp-c-text-2);
 }
 
 .more {
